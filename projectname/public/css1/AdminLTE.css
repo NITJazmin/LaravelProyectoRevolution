@@ -26,6 +26,11 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
 }
+
+bt-azul{
+  background: #35388D;
+}
+
 /* Layout */
 .wrapper {
   min-height: 100%;

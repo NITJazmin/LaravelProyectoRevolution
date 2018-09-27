@@ -27,7 +27,7 @@
         <!-- Logo -->
         <a href="index.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>REV-</b>V</span>
+          <span class="logo-mini"><b>REV</b>V</span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>ESE</b></span>
         </a>
@@ -83,58 +83,57 @@
           <ul class="sidebar-menu">
             <li class="header"></li>
             
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-laptop"></i>
-                <span>Inicio</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
+            <li class="treeview"><a href="#"><i class="fa fa-qrcode"></i>
+                <span>Inicio</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="almacen/articulo"><i class="fa fa-circle-o"></i> Artículos</a></li>
-                <li><a href="almacen/categoria"><i class="fa fa-circle-o"></i> Categorías</a></li>
+                <li><a href="almacen/articulo"><i class="fa fa-circle-o"></i> Ver Perfil</a></li>
+                <li><a href="almacen/articulo"><i class="fa fa-circle-o"></i> Editar Perfil</a></li>
               </ul>
             </li>
 
-            <li class="treeview"><a href="#"><i class="fa fa-th"></i>
+            <li class="treeview"><a href="#"><i class="fa fa-child"></i>
                 <span>Coordinadores</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li class="active"><a href="compras/ingreso"><i class="fa fa-circle-o"></i> Ingresos</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Proveedores</a></li>
+                <li class="active"><a href="compras/ingreso"><i class="fa fa-circle-o"></i> Ver coordinadores</a></li>
+                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
               </ul>
             </li>
 
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-th"></i>
+                <i class="fa fa-child"></i>
                 <span>Reclutadores</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i> Ingresos</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Proveedores</a></li>
+                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i> Ver Reclutadores</a></li>
+                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
               </ul>
             </li>
             
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-th"></i>
+                <i class="fa fa-child"></i>
                 <span>Analistas</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i> Ingresos</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Proveedores</a></li>
+                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i> Ver Analistas</a></li>
+                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
+                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Solicitar ESE</a></li>
+                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Ver Reportes</a></li>
               </ul>
             </li>
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-shopping-cart"></i>
+                <i class="fa fa-tasks"></i>
                 <span>Empresas</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="ventas/venta"><i class="fa fa-circle-o"></i> Ventas</a></li>
-                <li><a href="ventas/cliente"><i class="fa fa-circle-o"></i> Clientes</a></li>
+                <li><a href="ventas/venta"><i class="fa fa-circle-o"></i>Ver Empresas</a></li>
+                <li><a href="ventas/cliente"><i class="fa fa-circle-o"></i>Agregar Nuevo</a></li>
+                <li><a href="ventas/cliente"><i class="fa fa-circle-o"></i>Ver solicitudes</a></li>
               </ul>
             </li>
                        
@@ -144,7 +143,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="configuracion/usuario"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+                <li><a href="configuracion/usuario"><i class="fa fa-area-chart"></i>Reporte Global</a></li>
                 
               </ul>
             </li>                        
@@ -205,11 +204,11 @@
 
       
     <!-- jQuery 2.1.4 -->
-    <script src="{{asset('js2/jQuery-2.1.4.min.js2')}}"></script>
+    <script src="{{asset('js2/jQuery-2.1.4.min.js')}}"></script>
     <!-- Bootstrap 3.3.5 -->
-    <script src="{{asset('js2/bootstrap.min.js2')}}"></script>
+    <script src="{{asset('js2/bootstrap.min.js')}}"></script>
     <!-- AdminLTE App -->
-    <script src="{{asset('js2/app.min.js2')}}"></script>
+    <script src="{{asset('js2/app.min.js')}}"></script>
     
   </body>
 </html>

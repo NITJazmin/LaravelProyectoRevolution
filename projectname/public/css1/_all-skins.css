@@ -89,7 +89,7 @@
   text-decoration: none;
 }
 .skin-blue .treeview-menu > li > a {
-  color: #8aa4af;
+  color: #5CB030;
 }
 .skin-blue .treeview-menu > li.active > a,
 .skin-blue .treeview-menu > li > a:hover {
@@ -418,7 +418,7 @@
   text-decoration: none;
 }
 .skin-black .treeview-menu > li > a {
-  color: #8aa4af;
+  color: #5CB030;
 }
 .skin-black .treeview-menu > li.active > a,
 .skin-black .treeview-menu > li > a:hover {
@@ -728,7 +728,7 @@
   text-decoration: none;
 }
 .skin-green .treeview-menu > li > a {
-  color: #8aa4af;
+  color: #5CB030;
 }
 .skin-green .treeview-menu > li.active > a,
 .skin-green .treeview-menu > li > a:hover {
@@ -1018,7 +1018,7 @@
   text-decoration: none;
 }
 .skin-red .treeview-menu > li > a {
-  color: #8aa4af;
+  color: #5CB030;
 }
 .skin-red .treeview-menu > li.active > a,
 .skin-red .treeview-menu > li > a:hover {
@@ -1308,7 +1308,7 @@
   text-decoration: none;
 }
 .skin-yellow .treeview-menu > li > a {
-  color: #8aa4af;
+  color: #5CB030;
 }
 .skin-yellow .treeview-menu > li.active > a,
 .skin-yellow .treeview-menu > li > a:hover {
@@ -1598,7 +1598,7 @@
   text-decoration: none;
 }
 .skin-purple .treeview-menu > li > a {
-  color: #8aa4af;
+  color: #5CB030;
 }
 .skin-purple .treeview-menu > li.active > a,
 .skin-purple .treeview-menu > li > a:hover {

@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class CoordinadorRev extends Model
 {
-    protected $table= 'CoordinadorRev';
-    protected $primaryKey= 'ID_coordinador';
+    protected $table='CoordinadorRev';
+    protected $primaryKey='ID_coordinador';
 
-    public $timestamp= false;
+    public $timestamp=false;
 
     protected $fillable=[
     	'Nombre',
-    	'P.app',
-    	'S.app',
-    	'e-mail',
+    	'Papp',
+    	'Sapp',
+    	'email',
     	'condicion'
     ];
 
