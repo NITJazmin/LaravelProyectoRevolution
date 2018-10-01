@@ -28,7 +28,7 @@
 				<input type="text" name="Sapp" class="form-control" value="{{$coordinador->Sapp}}" placeholder="Segundo apellido">
 			</div>
 			<div class="form-group">
-				<label for="Email">E-mail apellido</label>
+				<label for="Email">E-mail</label>
 				<input type="text" name="Email" class="form-control" value="{{$coordinador->Em}}" placeholder="Segundo apellido">
 			</div>
 			<div class="form-group">

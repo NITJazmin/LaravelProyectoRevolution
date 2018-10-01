@@ -25,7 +25,7 @@ class CoordinadorRevController extends Controller
            $coordinador=DB::table('CoordinadorRev')->where('Nombre','LIKE','%'.$query.'%')
            ->where('condicion','=','1')
            ->orderBy('ID_coordinador','asc')
-           ->paginate(15);   
+           -> paginate(15);
            return view('revolution.coordinador.index',["coordinador"=>$coordinador,"searchText"=>$query]);
         }
         //return view('revolution.coordinador.index');
@@ -98,7 +98,6 @@ class CoordinadorRevController extends Controller
         $coordinador->Papp=$request->get('Papp');
         $coordinador->Sapp=$request->get('Sapp');
         $coordinador->Email=$request->get('Email');
-        $coordinador->condicion=$request->get('condicion');
         $coordinador->update();
         return Redirect::to('revolution/coordinador');
     }

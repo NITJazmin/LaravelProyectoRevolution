@@ -25,14 +25,15 @@
 								{{ $coor->Sapp}} 
 							<td>{{ $coor->email}} </td>
 							<td>
-								<a href=" "><button class="btn btn-primary">Editar</button></a>
-								<a href="coordinador/drop"><button class="btn btn-danger">Eliminar</button></a>
+								<a href="{{URL::action('CoordinadorRevController@edit',$coor->ID_coordinador)}} "><button class="btn btn-primary">Editar</button></a>
+								<a href="" data-target="#modal-delete-{{$coor->ID_coordinador}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
 							</td>
 						</tr>
+					@include('revolution.coordinador.modal')
 					@endforeach
 				</table>
 			</div>
-			<a href="coordinador/create"><button type="button" class="btn btn-success">Nuevo</button></a>
+			<a href="/revolution/coordinador/create"><button type="button" class="btn btn-success">Nuevo</button></a>
 			{{$coordinador->render()}}
 			
 		</div>
