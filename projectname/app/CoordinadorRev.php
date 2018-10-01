@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class CoordinadorRev extends Model
 {
     protected $table='CoordinadorRev';
-    protected $primaryKey='ID_coordinador';
-
-    public $timestamp=false;
+    protected $primaryKey ='ID_coordinador';
+    public $timestamps=false;
 
     protected $fillable=[
     	'Nombre',

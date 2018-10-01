@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\CoordinadorRev;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\CoordinadorRevFormRequest;
 use DB;
 
 class CoordinadorRevController extends Controller
@@ -21,9 +23,9 @@ class CoordinadorRevController extends Controller
         {
            $query=trim($request->get('searchText'));
            $coordinador=DB::table('CoordinadorRev')->where('Nombre','LIKE','%'.$query.'%')
-           //->where('condicion','=','1')
-           ->orderBy('ID_coordinador','desc')
-           ->paginate(7);   
+           ->where('condicion','=','1')
+           ->orderBy('ID_coordinador','asc')
+           ->paginate(15);   
            return view('revolution.coordinador.index',["coordinador"=>$coordinador,"searchText"=>$query]);
         }
         //return view('revolution.coordinador.index');
@@ -37,6 +39,7 @@ class CoordinadorRevController extends Controller
     public function create()
     {
         return view('revolution.coordinador.create');
+
     }
 
     /**
@@ -45,9 +48,18 @@ class CoordinadorRevController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CoordinadorRevFormRequest $request)
     {
-        //
+        $coordinador=new CoordinadorRev;
+        //'nombre' es obj creado del request
+        $coordinador->Nombre=$request->get('Nombre');
+        $coordinador->Papp=$request->get('Sapp');
+        $coordinador->Sapp=$request->get('Sapp');
+        $coordinador->Email=$request->get('Email');
+        $coordinador->condicion='1';
+        $coordinador->save();
+        //Después de guardar nos redireccionamos a la carpeta coordinador
+        return Redirect::to('revolution/coordinador');
     }
 
     /**
@@ -58,7 +70,7 @@ class CoordinadorRevController extends Controller
      */
     public function show($id)
     {
-        //
+        return view("revolution.coordinador.show",["coordinador"=>CoordinadorRev::findOrFail($id)]);
     }
 
     /**
@@ -69,7 +81,7 @@ class CoordinadorRevController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view("revolution.coordinador.edit",["coordinador"=>CoordinadorRev::findOrFail($id)]);
     }
 
     /**
@@ -81,7 +93,14 @@ class CoordinadorRevController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $coordinador=CoordinadorRev::findOrFail($id);
+        $coordinador->Nombre=$request->get('Nombre');
+        $coordinador->Papp=$request->get('Papp');
+        $coordinador->Sapp=$request->get('Sapp');
+        $coordinador->Email=$request->get('Email');
+        $coordinador->condicion=$request->get('condicion');
+        $coordinador->update();
+        return Redirect::to('revolution/coordinador');
     }
 
     /**
@@ -92,6 +111,9 @@ class CoordinadorRevController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $coordinador=CoordinadorRev::findOrFail($id);
+        $coordinador->condicion='0';
+        $coordinador->update();
+        return Redirect::to('revolution/coordinador');
     }
 }

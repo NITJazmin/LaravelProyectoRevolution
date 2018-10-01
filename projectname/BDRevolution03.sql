@@ -25,9 +25,10 @@ USE `RevolutioBD` ;
 CREATE TABLE IF NOT EXISTS `RevolutioBD`.`CoordinadorRev` (
   `ID_coordinador` INT NOT NULL AUTO_INCREMENT,
   `Nombre` VARCHAR(45) NULL,
-  `P.app` VARCHAR(45) NULL,
-  `S.app` VARCHAR(45) NULL,
-  `e-mail` VARCHAR(45) NULL,
+  `Papp` VARCHAR(45) NULL,
+  `Sapp` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NULL,
+  `condicion` INT NULL,
   PRIMARY KEY (`ID_coordinador`))
 ENGINE = InnoDB;
 

@@ -25,10 +25,11 @@ class CoordinadorRevFormRequest extends FormRequest
     public function rules() /*Va como que las reglas del negocio las restricciones de la BD)*/
     {
         return [
-            'nombre'=>'required|max:45', //puede o no ser requerido =>'required'
-            'papp'=>'required|max:45',
-            'sapp'=>'required|max:45',
-            'email'=>'required|max:45',           
+            'Nombre'=>'required|max:45', //puede o no ser requerido =>'required'
+            'Papp'=>'required|max:45',
+            'Sapp'=>'required|max:45',
+            'Email'=>'required|max:45',
+                       
         ];
     }
 }
