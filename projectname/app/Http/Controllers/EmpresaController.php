@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\EmpresaFormRequest;
 use DB;
 
-class CoordinadorRevController extends Controller
+class EmpresaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +22,7 @@ class CoordinadorRevController extends Controller
         if ($request)
         {
            $query=trim($request->get('searchText'));
-           $empresa=DB::table('empresaRev')->where('Nombre','LIKE','%'.$query.'%')
+           $empresa=DB::table('Empresa')->where('Nombre','LIKE','%'.$query.'%')
            ->where('condicion','=','1')
            ->orderBy('ID_empresa','asc')
            -> paginate(15);
@@ -31,88 +31,15 @@ class CoordinadorRevController extends Controller
         //return view('revolution.empresa.index');
     }
 
-    /**
+ /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('revolution.coordinador.create');
+        return view('revolution.empresa.create');
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CoordinadorRevFormRequest $request)
-    {
-        $coordinador=new CoordinadorRev;
-        //'nombre' es obj creado del request
-        $coordinador->Nombre=$request->get('Nombre');
-        $coordinador->Papp=$request->get('Sapp');
-        $coordinador->Sapp=$request->get('Sapp');
-        $coordinador->Email=$request->get('Email');
-        $coordinador->condicion='1';
-        $coordinador->save();
-        //Después de guardar nos redireccionamos a la carpeta coordinador
-        return Redirect::to('revolution/coordinador');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return view("revolution.coordinador.show",["coordinador"=>CoordinadorRev::findOrFail($id)]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        return view("revolution.coordinador.edit",["coordinador"=>CoordinadorRev::findOrFail($id)]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $coordinador=CoordinadorRev::findOrFail($id);
-        $coordinador->Nombre=$request->get('Nombre');
-        $coordinador->Papp=$request->get('Papp');
-        $coordinador->Sapp=$request->get('Sapp');
-        $coordinador->Email=$request->get('Email');
-        $coordinador->update();
-        return Redirect::to('revolution/coordinador');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-       $coordinador=CoordinadorRev::findOrFail($id);
-        $coordinador->condicion='0';
-        $coordinador->update();
-        return Redirect::to('revolution/coordinador');
-    }
 }

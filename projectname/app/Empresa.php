@@ -13,6 +13,5 @@ class Cliente extends Model
     protected $fillable=[
     	'Nombre',
     	'Telefono',
-    	'ID_coordinador'
     ];
 }

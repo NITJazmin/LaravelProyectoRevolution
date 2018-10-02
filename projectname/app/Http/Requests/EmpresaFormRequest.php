@@ -25,8 +25,7 @@ class ClienteFormRequest extends Request
     {
         return [
             'Nombre'=>'required|max:45',
-            'Nombre'=>'max:45',
-            'ID_coordinador'=>'required'
+            'Nombre'=>'max:45'
         ];
     }
 }

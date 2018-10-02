@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('revolution/coordinador','CoordinadorRevController'); /*Para hacer un grupo de recursos con las rutas de index, update etc*/
-Route::resource('revolution/cliente','ClienteController');
+Route::resource('revolution/empresa','EmpresaController');
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
