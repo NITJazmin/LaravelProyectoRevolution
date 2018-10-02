@@ -26,7 +26,7 @@
 							<td><?php echo e($coor->email); ?> </td>
 							<td>
 								<a href="<?php echo e(URL::action('CoordinadorRevController@edit',$coor->ID_coordinador)); ?> "><button class="btn btn-primary">Editar</button></a>
-								<a href="" data-target="#modal-delete-<?php echo e($coor->ID_coordinador); ?>" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+								<button type="button" data-target="#modal-delete-<?php echo e($coor->ID_coordinador); ?>" data-toggle="modal" class="btn btn-danger">Eliminar</button>
 							</td>
 						</tr>
 					<?php echo $__env->make('revolution.coordinador.modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -26,7 +26,7 @@
 							<td>{{ $coor->email}} </td>
 							<td>
 								<a href="{{URL::action('CoordinadorRevController@edit',$coor->ID_coordinador)}} "><button class="btn btn-primary">Editar</button></a>
-								<a href="" data-target="#modal-delete-{{$coor->ID_coordinador}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+								<button type="button" data-target="#modal-delete-{{$coor->ID_coordinador}}" data-toggle="modal" class="btn btn-danger">Eliminar</button>
 							</td>
 						</tr>
 					@include('revolution.coordinador.modal')

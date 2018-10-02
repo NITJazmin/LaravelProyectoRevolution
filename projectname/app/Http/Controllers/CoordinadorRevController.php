@@ -112,7 +112,7 @@ class CoordinadorRevController extends Controller
     {
        $coordinador=CoordinadorRev::findOrFail($id);
         $coordinador->condicion='0';
-        $coordinador->update();
+        $coordinador->save();
         return Redirect::to('revolution/coordinador');
     }
 }

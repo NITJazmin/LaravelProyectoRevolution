@@ -28,8 +28,7 @@ class CoordinadorRevFormRequest extends FormRequest
             'Nombre'=>'required|max:45', //puede o no ser requerido =>'required'
             'Papp'=>'required|max:45',
             'Sapp'=>'required|max:45',
-            'Email'=>'required|max:45',
-                       
+            'Email'=>'required|max:45'                     
         ];
     }
 }

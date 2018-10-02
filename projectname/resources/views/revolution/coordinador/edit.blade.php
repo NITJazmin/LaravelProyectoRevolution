@@ -29,7 +29,7 @@
 			</div>
 			<div class="form-group">
 				<label for="Email">E-mail</label>
-				<input type="text" name="Email" class="form-control" value="{{$coordinador->Em}}" placeholder="Segundo apellido">
+				<input type="text" name="Email" class="form-control" value="{{$coordinador->email}}" placeholder="E-mail">
 			</div>
 			<div class="form-group">
 				<button class="btn btn-primary" type="submit">Guardar</button>
