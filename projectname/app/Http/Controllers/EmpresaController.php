@@ -19,6 +19,7 @@ class EmpresaController extends Controller
      */
     public function index(Request $request)
     {
+        $vista="empresa";
         if ($request)
         {
            $query=trim($request->get('searchText'));
@@ -26,12 +27,12 @@ class EmpresaController extends Controller
            ->where('condicion','=','1')
            ->orderBy('ID_empresa','asc')
            -> paginate(15);
-           return view('revolution.empresa.index',["empresa"=>$empresa,"searchText"=>$query]);
+           return view('revolution.empresa.index',["empresa"=>$empresa,"searchText"=>$query,$vista]);
         }
-        //return view('revolution.empresa.index');
+        
     }
 
- /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -41,5 +42,24 @@ class EmpresaController extends Controller
         return view('revolution.empresa.create');
 
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(EmpresaFormRequest $request)
+    {
+        $empresa=new Empresa;
+        //'nombre' es obj creado del request
+        $empresa->Nombre=$request->get('Nombre');
+        $empresa->Telefono=$request->get('Telefono');
+        $empresa->condicion='1';
+        $empresa->save();
+        //Después de guardar nos redireccionamos a la carpeta coordinador
+        return Redirect::to('revolution/empresa');
+    }
+
 
 }

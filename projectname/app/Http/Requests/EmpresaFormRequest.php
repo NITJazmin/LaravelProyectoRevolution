@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class ClienteFormRequest extends Request
+class EmpresaFormRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class ClienteFormRequest extends Request
     {
         return [
             'Nombre'=>'required|max:45',
-            'Nombre'=>'max:45'
+            'Telefono'=>'max:45'
         ];
     }
 }

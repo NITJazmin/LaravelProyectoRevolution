@@ -33,7 +33,9 @@
 			</div>
 			<div class="form-group">
 				<button class="btn btn-primary" type="submit">Guardar</button>
-				<button class="btn btn-danger" type="reset">Cancelar</button>
+				<a href="/revolution/coordinador/">
+					<button class="btn btn-danger" type="reset">Cancelar</button>
+				</a>
 			</div>
 			<?php echo Form::close(); ?>
 
