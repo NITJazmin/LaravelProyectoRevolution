@@ -12,7 +12,7 @@
 				</ul>
 			</div>
 			@endif
-
+	
 			{!! Form::open(array('url'=>'revolution/coordinador','method'=>'POST','autocomplete'=>'on')) !!}
 			
 			<div class="form-group">

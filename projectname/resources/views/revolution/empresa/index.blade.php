@@ -23,15 +23,15 @@
 							<td>{{ $emp->Nombre}}
 							<td>{{ $emp->Telefono}} </td>
 							<td>
-								<a href=""><button class="btn btn-primary">Editar</button></a>
-								<a href=""><button class="btn btn-danger">Eliminar</button></a>
+								<a href="{{URL::action('EmpresaController@edit',$emp->ID_empresa)}}"><button class="btn btn-primary">Editar</button></a>
+								<button type="button" data-target="#modal-delete-{{$emp->ID_empresa}}" data-toggle="modal" class="btn btn-danger">Eliminar</button>
 							</td>
 						</tr>
+					@include('revolution.empresa.modal')
 					@endforeach
 				</table>
 			</div>
 			<a href="/revolution/empresa/create"><button type="button" class="btn btn-success">Nuevo</button></a>
-			
 			
 		</div>
 	</div>

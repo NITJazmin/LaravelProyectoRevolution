@@ -61,5 +61,57 @@ class EmpresaController extends Controller
         return Redirect::to('revolution/empresa');
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view("revolution.empresa.show",["empresa"=>Empresa::findOrFail($id)]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        return view("revolution.empresa.edit",["empresa"=>Empresa::findOrFail($id)]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $empresa=Empresa::findOrFail($id);
+        $empresa->Nombre=$request->get('Nombre');
+        $empresa->Telefono=$request->get('Telefono');
+        $empresa->update();
+        return Redirect::to('revolution/empresa');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+       $empresa=Empresa::findOrFail($id);
+       $empresa->condicion='0';
+       $empresa->save();
+        return Redirect::to('revolution/empresa');
+    }
+
 
 }
