@@ -20,8 +20,16 @@
 				<input type="text" name="Nombre" class="form-control" value="{{$empresa->Nombre}}" placeholder="Nombre...">
 			</div>
 			<div class="form-group">
+				<label for="Giro">Giro de la Empresa</label>
+				<input type="text" name="Giro" class="form-control" value="{{$empresa->Giro}}" placeholder="Giro">
+			</div>
+			<div class="form-group">
+				<label for="Direccion">Direccion Física</label>
+				<input type="text" name="Direccion" class="form-control" value="{{$empresa->Direccion}}" placeholder="Direccion">
+			</div>
+			<div class="form-group">
 				<label for="Telefono">Telefono</label>
-				<input type="text" name="Papp" class="form-control" value="{{$empresa->Telefono}}" placeholder="Telefono">
+				<input type="text" name="Telefono" class="form-control" value="{{$empresa->Telefono}}" placeholder="Telefono">
 			</div>
 			<div class="form-group">
 				<button class="btn btn-primary" type="submit">Guardar</button>

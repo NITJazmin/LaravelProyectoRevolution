@@ -54,6 +54,8 @@ class EmpresaController extends Controller
         $empresa=new Empresa;
         //'nombre' es obj creado del request
         $empresa->Nombre=$request->get('Nombre');
+        $empresa->Giro=$request->get('Giro');
+        $empresa->Direccion=$request->get('Direccion');
         $empresa->Telefono=$request->get('Telefono');
         $empresa->condicion='1';
         $empresa->save();
@@ -94,6 +96,8 @@ class EmpresaController extends Controller
     {
         $empresa=Empresa::findOrFail($id);
         $empresa->Nombre=$request->get('Nombre');
+        $empresa->Giro=$request->get('Giro');
+        $empresa->Direccion=$request->get('Direccion');
         $empresa->Telefono=$request->get('Telefono');
         $empresa->update();
         return Redirect::to('revolution/empresa');

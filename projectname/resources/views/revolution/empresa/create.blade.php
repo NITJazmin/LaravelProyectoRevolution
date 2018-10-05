@@ -20,6 +20,14 @@
 				<input type="text" name="Nombre" class="form-control" placeholder="Nombre...">
 			</div>
 			<div class="form-group">
+				<label for="Giro">Giro de la Empresa</label>
+				<input type="text" name="Giro" class="form-control" placeholder="Giro">
+			</div>
+			<div class="form-group">
+				<label for="Direccion">Dirección Física</label>
+				<input type="text" name="Direccion" class="form-control" placeholder="Dirección">
+			</div>
+			<div class="form-group">
 				<label for="Telefono">Telefono</label>
 				<input type="text" name="Telefono" class="form-control" placeholder="Telefono">
 			</div>

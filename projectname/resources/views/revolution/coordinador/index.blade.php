@@ -12,14 +12,12 @@
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-condensed table-hover">
 					<thead>
-						<th>ID_Coordinador</th>
 						<th>Nombre</th>
 						<th>e-mail</th>
 						<th>opciones</th>
 					</thead>
 					@foreach ($coordinador as $coor)
 						<tr>
-							<td>{{ $coor->ID_coordinador}} </td>
 							<td>{{ $coor->Nombre}}
 								{{ $coor->Papp}} 
 								{{ $coor->Sapp}} 

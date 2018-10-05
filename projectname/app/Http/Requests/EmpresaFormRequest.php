@@ -25,6 +25,8 @@ class EmpresaFormRequest extends Request
     {
         return [
             'Nombre'=>'required|max:45',
+            'Giro'=>'required|max:45',
+            'Direccion'=>'required|max:150',
             'Telefono'=>'max:45'
         ];
     }
