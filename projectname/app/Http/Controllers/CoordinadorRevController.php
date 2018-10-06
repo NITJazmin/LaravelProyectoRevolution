@@ -19,6 +19,7 @@ class CoordinadorRevController extends Controller
      */
     public function index(Request $request)
     {
+        $vista="coordinador";
         if ($request)
         {
            $query=trim($request->get('searchText'));
@@ -26,7 +27,7 @@ class CoordinadorRevController extends Controller
            ->where('condicion','=','1')
            ->orderBy('ID_coordinador','asc')
            -> paginate(15);
-           return view('revolution.coordinador.index',["coordinador"=>$coordinador,"searchText"=>$query]);
+           return view('revolution.coordinador.index',["coordinador"=>$coordinador,"searchText"=>$query])->with('vista',$vista);
         }
         //return view('revolution.coordinador.index');
     }
@@ -112,7 +113,7 @@ class CoordinadorRevController extends Controller
     {
        $coordinador=CoordinadorRev::findOrFail($id);
         $coordinador->condicion='0';
-        $coordinador->update();
+        $coordinador->save();
         return Redirect::to('revolution/coordinador');
     }
 }

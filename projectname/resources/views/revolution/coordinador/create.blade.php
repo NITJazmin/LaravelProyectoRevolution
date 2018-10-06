@@ -12,7 +12,7 @@
 				</ul>
 			</div>
 			@endif
-
+	
 			{!! Form::open(array('url'=>'revolution/coordinador','method'=>'POST','autocomplete'=>'on')) !!}
 			
 			<div class="form-group">
@@ -28,8 +28,8 @@
 				<input type="text" name="Sapp" class="form-control" placeholder="Segundo apellido">
 			</div>
 			<div class="form-group">
-				<label for="Email">E-mail apellido</label>
-				<input type="text" name="Email" class="form-control" placeholder="Segundo apellido">
+				<label for="Email">E-mail</label>
+				<input type="text" name="Email" class="form-control" placeholder="E-mail">
 			</div>
 			<div class="form-group">
 				<button class="btn btn-primary" type="submit">Guardar</button>

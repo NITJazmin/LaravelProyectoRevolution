@@ -25,7 +25,7 @@
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="index.html" class="logo">
+        <a href="/" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>REV</b>V</span>
           <!-- logo for regular state and mobile devices -->
@@ -131,8 +131,8 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="ventas/venta"><i class="fa fa-circle-o"></i>Ver Empresas</a></li>
-                <li><a href="ventas/cliente"><i class="fa fa-circle-o"></i>Agregar Nuevo</a></li>
+                <li><a href="/revolution/empresa/"><i class="fa fa-circle-o"></i>Ver Empresas</a></li>
+                <li><a href="/revolution/empresa/create"><i class="fa fa-circle-o"></i>Agregar Nuevo</a></li>
                 <li><a href="ventas/cliente"><i class="fa fa-circle-o"></i>Ver solicitudes</a></li>
               </ul>
             </li>

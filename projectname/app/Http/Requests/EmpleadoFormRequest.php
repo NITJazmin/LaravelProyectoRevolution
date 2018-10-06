@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Requests;
+
+use App\Http\Requests\Request;
+
+class EmpleadoFormRequest extends Request
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+empleado/
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'Nombre'=>'required|max:45', 
+            'Papp'=>'max:45',
+            'Sapp'=>'max:45',            
+            'Telefono'=>'max:45'
+            'email'=>'required|max:45',
+            'ID_empresa'=>'required'
+        ];
+    }
+}

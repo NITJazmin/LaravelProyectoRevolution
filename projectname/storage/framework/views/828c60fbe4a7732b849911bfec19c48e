@@ -1,4 +1,12 @@
-<?php echo Form::open(array('url'=>'revolution/coordinador','method'=>'GET','autocomplete'=>'on','role'=>'search')); ?>
+<?php if($vista=="empresa"): ?>
+		<?php echo Form::open(array('url'=>'revolution/empresa','method'=>'GET','autocomplete'=>'on','role'=>'search')); ?>
+
+<?php else: ?>
+	<?php echo Form::open(array('url'=>'revolution/coordinador','method'=>'GET','autocomplete'=>'on','role'=>'search')); ?>;
+<?php endif; ?>
+
+
+
 
 <div class="form-group">
 	<div class="input-group">
@@ -11,3 +19,4 @@
 
 
 <?php echo Form::close(); ?>
+

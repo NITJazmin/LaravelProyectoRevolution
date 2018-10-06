@@ -11,14 +11,12 @@
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-condensed table-hover">
 					<thead>
-						<th>ID_Coordinador</th>
 						<th>Nombre</th>
 						<th>e-mail</th>
 						<th>opciones</th>
 					</thead>
 					<?php foreach($coordinador as $coor): ?>
 						<tr>
-							<td><?php echo e($coor->ID_coordinador); ?> </td>
 							<td><?php echo e($coor->Nombre); ?>
 
 								<?php echo e($coor->Papp); ?> 
@@ -26,7 +24,7 @@
 							<td><?php echo e($coor->email); ?> </td>
 							<td>
 								<a href="<?php echo e(URL::action('CoordinadorRevController@edit',$coor->ID_coordinador)); ?> "><button class="btn btn-primary">Editar</button></a>
-								<a href="" data-target="#modal-delete-<?php echo e($coor->ID_coordinador); ?>" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+								<button type="button" data-target="#modal-delete-<?php echo e($coor->ID_coordinador); ?>" data-toggle="modal" class="btn btn-danger">Eliminar</button>
 							</td>
 						</tr>
 					<?php echo $__env->make('revolution.coordinador.modal', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

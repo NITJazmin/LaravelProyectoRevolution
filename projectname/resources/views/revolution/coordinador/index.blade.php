@@ -12,21 +12,19 @@
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-condensed table-hover">
 					<thead>
-						<th>ID_Coordinador</th>
 						<th>Nombre</th>
 						<th>e-mail</th>
 						<th>opciones</th>
 					</thead>
 					@foreach ($coordinador as $coor)
 						<tr>
-							<td>{{ $coor->ID_coordinador}} </td>
 							<td>{{ $coor->Nombre}}
 								{{ $coor->Papp}} 
 								{{ $coor->Sapp}} 
 							<td>{{ $coor->email}} </td>
 							<td>
 								<a href="{{URL::action('CoordinadorRevController@edit',$coor->ID_coordinador)}} "><button class="btn btn-primary">Editar</button></a>
-								<a href="" data-target="#modal-delete-{{$coor->ID_coordinador}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>
+								<button type="button" data-target="#modal-delete-{{$coor->ID_coordinador}}" data-toggle="modal" class="btn btn-danger">Eliminar</button>
 							</td>
 						</tr>
 					@include('revolution.coordinador.modal')
