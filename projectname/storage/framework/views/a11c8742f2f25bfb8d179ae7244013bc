@@ -106,8 +106,8 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i> Ver Reclutadores</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
+                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Ver Reclutadores</a></li>
+                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
               </ul>
             </li>
             
@@ -118,10 +118,10 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i> Ver Analistas</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Solicitar ESE</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Ver Reportes</a></li>
+                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Ver Analistas</a></li>
+                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
+                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Solicitar ESE</a></li>
+                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Ver Reportes</a></li>
               </ul>
             </li>
             <li class="treeview">
@@ -133,7 +133,7 @@
               <ul class="treeview-menu">
                 <li><a href="/revolution/empresa/"><i class="fa fa-circle-o"></i>Ver Empresas</a></li>
                 <li><a href="/revolution/empresa/create"><i class="fa fa-circle-o"></i>Agregar Nuevo</a></li>
-                <li><a href="ventas/cliente"><i class="fa fa-circle-o"></i>Ver solicitudes</a></li>
+                <li><a href="/revolution"><i class="fa fa-circle-o"></i>Ver solicitudes</a></li>
               </ul>
             </li>
                        
