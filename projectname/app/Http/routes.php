@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/layouts', function () {
+    return view('layouts.empresa');
+});
 
 Route::resource('revolution/coordinador','CoordinadorRevController'); /*Para hacer un grupo de recursos con las rutas de index, update etc*/
 Route::resource('revolution/empresa','EmpresaController');
