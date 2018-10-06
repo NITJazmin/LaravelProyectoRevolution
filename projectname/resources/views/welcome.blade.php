@@ -67,7 +67,7 @@
     </head>
     <body>
         <div class="content">
-                <a href="revolution/coordinador/"><button type="button" class="button">Entrar</button></a>
+                <a href="auth/login"><button type="button" class="button">Entrar</button></a>
             </div>
     </body>
 </html>
