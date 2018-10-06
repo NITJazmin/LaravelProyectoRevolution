@@ -12,7 +12,7 @@ use DB;
 
 class EmpresaController extends Controller
 {
-    /**
+    /**Empresa1Empresa1
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -27,7 +27,7 @@ class EmpresaController extends Controller
            ->where('condicion','=','1')
            ->orderBy('ID_empresa','asc')
            -> paginate(15);
-           return view('revolution.empresa.index',["empresa"=>$empresa,"searchText"=>$query,$vista]);
+           return view('revolution.empresa.index',["empresa"=>$empresa,"searchText"=>$query])->with('vista',$vista);
         }
         
     }

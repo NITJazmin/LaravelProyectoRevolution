@@ -1,4 +1,4 @@
-<?php if($vista="empresa"): ?>
+<?php if($vista=="empresa"): ?>
 		<?php echo Form::open(array('url'=>'revolution/empresa','method'=>'GET','autocomplete'=>'on','role'=>'search')); ?>
 
 <?php else: ?>

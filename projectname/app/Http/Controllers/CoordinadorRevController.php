@@ -27,7 +27,7 @@ class CoordinadorRevController extends Controller
            ->where('condicion','=','1')
            ->orderBy('ID_coordinador','asc')
            -> paginate(15);
-           return view('revolution.coordinador.index',["coordinador"=>$coordinador,"searchText"=>$query,$vista]);
+           return view('revolution.coordinador.index',["coordinador"=>$coordinador,"searchText"=>$query])->with('vista',$vista);
         }
         //return view('revolution.coordinador.index');
     }

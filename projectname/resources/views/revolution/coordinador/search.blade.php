@@ -1,4 +1,4 @@
-@if($vista="empresa")
+@if($vista=="empresa")
 		{!! Form::open(array('url'=>'revolution/empresa','method'=>'GET','autocomplete'=>'on','role'=>'search')) !!}
 @else
 	{!! Form::open(array('url'=>'revolution/coordinador','method'=>'GET','autocomplete'=>'on','role'=>'search')) !!};
