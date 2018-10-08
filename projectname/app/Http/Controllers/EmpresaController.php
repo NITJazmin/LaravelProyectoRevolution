@@ -60,7 +60,7 @@ class EmpresaController extends Controller
         $empresa->condicion='1';
         $empresa->save();
         //Después de guardar nos redireccionamos a la carpeta coordinador
-        return Redirect::to('revolution/empresa');
+        return view('revolution.empleado.create');
     }
 
     /**

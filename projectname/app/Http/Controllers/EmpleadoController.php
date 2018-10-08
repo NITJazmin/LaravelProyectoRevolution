@@ -24,11 +24,13 @@ class EmpleadoController extends Controller
         if ($request)
         {
            $query=trim($request->get('searchText'));
-           $empleado=DB::table('Empleado')->where('Nombre','LIKE','%'.$query.'%')
-           ->where('condicion','=','1')
-           ->orderBy('ID_empleado','asc')
+           $empleado=DB::table('Empleado as empl')
+           ->join('Empresa as emp','empl.ID_empresa','=','emp.ID_empresa')
+           ->select('empl.Nombre','empl.Papp','empl.Sapp','empl.Telefono','empl.email')
+           ->where('empl.Nombre','LIKE','%'.$query.'%')
+           ->orderBy('empl.ID_empleado','asc')
            -> paginate(15);
-           return view('revolution.empleado.index',["empleado"=>$empleado,"searchText"=>$query,$vista]);
+           return view('revolution.empleado.index',["empleado"=>$empleado,"searchText"=>$query])->with('vista',$vista);
         }
     }
 
@@ -39,7 +41,10 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        return view('revolution.empleado.create'); 
+        $coordinador=DB::table('Coordinador')
+        ->where('condicion','=','1')
+        ->get();
+        return view("revolution.empleado.create",["coordinador"=>$coordinador]); 
     }
 
     /**
@@ -48,13 +53,13 @@ class EmpleadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmpleadoFormRequest $request)
     {
         $empleado=new Empleado;
         //'nombre' es obj creado del request
         $empleado->Nombre=$request->get('Nombre');
-        $empleado->Papp=$request->get('Primer Apellido');
-        $empleado->Sapp=$request->get('Segundo Apellido');
+        $empleado->Papp=$request->get('PrimerApellido');
+        $empleado->Sapp=$request->get('SegundoApellido');
         $empleado->Telefono=$request->get('Telefono');
         $empleado->email=$request->get('email');
         $empleado->ID_empleado->get('ID_empleado');
@@ -72,7 +77,7 @@ class EmpleadoController extends Controller
      */
     public function show($id)
     {
-        //
+        return view("revolution.empleado.show",["empleado"=>Empleado::findOrfile($id)]);
     }
 
     /**
@@ -83,7 +88,11 @@ class EmpleadoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $empleado=Empleado::findOrfile($id);
+        $coordinador=DB::table('Coordinador')
+        ->where('condicion','=','1')
+        ->get();
+        return view("revolution.empleado.edit",["empleado"=>$empleado,"coordinador"=>$coordinador]);
     }
 
     /**
@@ -95,7 +104,17 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $empleado=Coordinador::findOrfile($id);
+
+        $empleado->Nombre=$request->get('Nombre');
+        $empleado->Papp=$request->get('Primer Apellido');
+        $empleado->Sapp=$request->get('Segundo Apellido');
+        $empleado->Telefono=$request->get('Telefono');
+        $empleado->email=$request->get('email');
+        $empleado->ID_empleado->get('ID_empleado');
+
+        $empleado->update();
+        return Redirect::to('revolution/empleado');
     }
 
     /**
@@ -106,6 +125,9 @@ class EmpleadoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $empleado=Empresa::findOrfile($id);
+        $empleado->condicion='0';
+        $empleado->update();
+        return Redirect::to('revolution/empleado');
     }
 }

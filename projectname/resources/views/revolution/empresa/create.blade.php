@@ -32,7 +32,7 @@
 				<input type="text" name="Telefono" class="form-control" placeholder="Telefono">
 			</div>
 			<div class="form-group">
-				<button class="btn btn-primary" type="submit">Aceptar</button>
+					<button class="btn btn-primary">Siguiente</button>
 				<button class="btn btn-danger" type="reset">Cancelar</button>
 			</div>
 			{!!Form::close()!!}
