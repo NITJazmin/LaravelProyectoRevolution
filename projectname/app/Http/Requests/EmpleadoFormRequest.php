@@ -15,7 +15,7 @@ class EmpleadoFormRequest extends Request
     {
         return true;
     }
-empleado/
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -27,8 +27,9 @@ empleado/
             'Nombre'=>'required|max:45', 
             'Papp'=>'max:45',
             'Sapp'=>'max:45',            
-            'Telefono'=>'max:45'
+            'Telefono'=>'max:45',
             'email'=>'required|max:45',
+            'puesto'=>'required|max:80',
             'ID_empresa'=>'required'
         ];
     }

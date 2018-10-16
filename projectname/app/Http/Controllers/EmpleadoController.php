@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Empleado;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\EmpleadoFormRequest;
+use App\Empleado;
+use App\Http\Controllers\Controller;
 use DB;
 
 class EmpleadoController extends Controller
@@ -25,9 +24,13 @@ class EmpleadoController extends Controller
         {
            $query=trim($request->get('searchText'));
            $empleado=DB::table('Empleado as empl')
-           ->join('Empresa as emp','empl.ID_empresa','=','emp.ID_empresa')
-           ->select('empl.Nombre','empl.Papp','empl.Sapp','empl.Telefono','empl.email')
+           ->join('Empresa','empl.ID_empresa','=','Empresa.ID_empresa')
+           ->select('empl.ID_empleado','empl.Nombre','empl.Papp','empl.Sapp','empl.Telefono','empl.email','empl.puesto','Empresa.Nombre as empresa')
+           ->where('empl.condicion','=','1')
            ->where('empl.Nombre','LIKE','%'.$query.'%')
+           ->orwhere('empl.Papp','LIKE','%'.$query.'%')
+           ->orwhere('empl.Sapp','LIKE','%'.$query.'%')
+           ->orwhere('empl.puest','LIKE','%'.$query.'%')
            ->orderBy('empl.ID_empleado','asc')
            -> paginate(15);
            return view('revolution.empleado.index',["empleado"=>$empleado,"searchText"=>$query])->with('vista',$vista);
@@ -41,10 +44,8 @@ class EmpleadoController extends Controller
      */
     public function create()
     {
-        $coordinador=DB::table('Coordinador')
-        ->where('condicion','=','1')
-        ->get();
-        return view("revolution.empleado.create",["coordinador"=>$coordinador]); 
+        $empresa=DB::table('Empresa')->where('condicion','=','1')->get();
+        return view("revolution.empleado.create",["empresa"=>$empresa]); 
     }
 
     /**
@@ -58,11 +59,12 @@ class EmpleadoController extends Controller
         $empleado=new Empleado;
         //'nombre' es obj creado del request
         $empleado->Nombre=$request->get('Nombre');
-        $empleado->Papp=$request->get('PrimerApellido');
-        $empleado->Sapp=$request->get('SegundoApellido');
+        $empleado->Papp=$request->get('Ṕapp');
+        $empleado->Sapp=$request->get('Sapp');
         $empleado->Telefono=$request->get('Telefono');
         $empleado->email=$request->get('email');
-        $empleado->ID_empleado->get('ID_empleado');
+        $empleado->puesto=$request->get('puesto');
+        $empleado->ID_empresa=$request->get('ID_empresa');
         $empleado->condicion='1';
         $empleado->save();
         //Después de guardar nos redireccionamos a la carpeta 
@@ -88,11 +90,11 @@ class EmpleadoController extends Controller
      */
     public function edit($id)
     {
-        $empleado=Empleado::findOrfile($id);
-        $coordinador=DB::table('Coordinador')
+        $empleado=Empleado::findOrFail($id);
+        $empresa=DB::table('Empresa')
         ->where('condicion','=','1')
         ->get();
-        return view("revolution.empleado.edit",["empleado"=>$empleado,"coordinador"=>$coordinador]);
+        return view("revolution.empleado.edit",["empleado"=>$empleado,"empresa"=>$empresa]);
     }
 
     /**
@@ -102,17 +104,16 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmpleadoFormRequest $request, $id)
     {
-        $empleado=Coordinador::findOrfile($id);
+        $empleado=Empleado::findOrFail($id);
 
         $empleado->Nombre=$request->get('Nombre');
-        $empleado->Papp=$request->get('Primer Apellido');
-        $empleado->Sapp=$request->get('Segundo Apellido');
+        $empleado->Papp=$request->get('Papp');
+        $empleado->Sapp=$request->get('Sapp');
         $empleado->Telefono=$request->get('Telefono');
         $empleado->email=$request->get('email');
-        $empleado->ID_empleado->get('ID_empleado');
-
+        $empleado->puesto=$request->get('puesto');
         $empleado->update();
         return Redirect::to('revolution/empleado');
     }
@@ -125,9 +126,12 @@ class EmpleadoController extends Controller
      */
     public function destroy($id)
     {
-        $empleado=Empresa::findOrfile($id);
+        $empleado=Empleado::findOrFail($id);
+
         $empleado->condicion='0';
         $empleado->update();
         return Redirect::to('revolution/empleado');
     }
+
+
 }

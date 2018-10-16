@@ -32,8 +32,9 @@
 				<input type="text" name="Telefono" class="form-control" placeholder="Telefono">
 			</div>
 			<div class="form-group">
-					<button class="btn btn-primary">Siguiente</button>
-				<button class="btn btn-danger" type="reset">Cancelar</button>
+				<button class="btn btn-primary">Siguiente</button>
+				<a href="/revolution/empresa/">
+				<button class="btn btn-danger" type="reset">Cancelar</button></a>
 			</div>
 			{!!Form::close()!!}
 

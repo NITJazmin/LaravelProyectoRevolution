@@ -16,6 +16,7 @@ class Empleado extends Model
     	'Sapp',
     	'Telefono',
     	'email',
+        'puesto',
     	'ID_empresa',
     	'condicion'
     ];

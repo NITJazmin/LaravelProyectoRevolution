@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 			<h3>Listado de Encargados</h3>		
-			@include('revolution.coordinador.search')<!--Pendiente de arreglar -->
+			@include('revolution.coordinador.search')<!---->
 		</div>
 	</div>
 
@@ -16,23 +16,33 @@
 						<th>Nombre del Encargado</th>
 						<th>Telefono</th>
 						<th>E-mail</th>
-						<th>opciones</th>
+						<th>Puesto</th>
+						<th>Empresa</th>
+						<th>opciones</th>						
 					</thead>
 					@foreach($empleado as $empl)
-						<tr>
+						<tr>	
 							<td>
 								{{$empl->Nombre}}
-								{{$empl->App}}
+								{{$empl->Papp}}
 								{{$empl->Sapp}}	
 							</td>
 							<td>{{$empl->Telefono}}</td>
-							<td> {{$empl->email}}</td>
-						</tr>
+							<td>{{$empl->email}}</td>
+							<td>{{$empl->puesto}}</td>
+							<td> {{$empl->empresa}}</td>
+							<td>
+					 			<a href="{{URL::action('EmpleadoController@edit',$empl->ID_empleado)}} "><button class="btn btn-primary"> Editar </button></a>
 
+								<button type="button" data-target="#modal-delete-{{$empl->ID_empleado}}" data-toggle="modal" class="btn btn-danger">Eliminar</button>
+							</td>
+						</tr>
+					@include('revolution.empleado.modal')
 					@endforeach
 				</table>
 			</div>
-			
+			<a href="/revolution/empleado/create"><button type="button" class="btn btn-success">Nuevo</button></a>
+			{{$empleado->render()}}
 		</div>
 	</div>
 
