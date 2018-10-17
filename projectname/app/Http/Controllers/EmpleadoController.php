@@ -28,10 +28,8 @@ class EmpleadoController extends Controller
            ->select('empl.ID_empleado','empl.Nombre','empl.Papp','empl.Sapp','empl.Telefono','empl.email','empl.puesto','Empresa.Nombre as empresa')
            ->where('empl.condicion','=','1')
            ->where('empl.Nombre','LIKE','%'.$query.'%')
-           ->orwhere('empl.Papp','LIKE','%'.$query.'%')
-           ->orwhere('empl.Sapp','LIKE','%'.$query.'%')
-           ->orwhere('empl.puest','LIKE','%'.$query.'%')
-           ->orderBy('empl.ID_empleado','asc')
+           ->orwhere('empl.Papp','LIKE','%'.$query.'%')           
+           ->orderBy('Empresa.Nombre','asc')
            -> paginate(15);
            return view('revolution.empleado.index',["empleado"=>$empleado,"searchText"=>$query])->with('vista',$vista);
         }

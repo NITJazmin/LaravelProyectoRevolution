@@ -44,13 +44,13 @@
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
 				<label for="email">E-mail</label>
-				<input type="text" name="email" {{$empleado->email}} class="form-control" placeholder="email">
+				<input type="text" name="email" value="{{$empleado->email}}" class="form-control" placeholder="email">
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
 				<label for="puesto">Puesto</label>
-				<input type="text" name="puesto" {{$empleado->puesto}} class="form-control" placeholder="puesto">
+				<input type="text" name="puesto" value="{{$empleado->puesto}}" class="form-control" placeholder="puesto">
 			</div>
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
