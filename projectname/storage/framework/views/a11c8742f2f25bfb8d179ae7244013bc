@@ -90,7 +90,6 @@
                 <li><a href="almacen/articulo"><i class="fa fa-circle-o"></i> Editar Perfil</a></li>
               </ul>
             </li>
-
             <li class="treeview"><a href="#"><i class="fa fa-child"></i>
                 <span>Coordinadores</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
@@ -106,8 +105,8 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i> Ver Reclutadores</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
+                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Ver Reclutadores</a></li>
+                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
               </ul>
             </li>
             
@@ -118,10 +117,10 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i> Ver Analistas</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Solicitar ESE</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Ver Reportes</a></li>
+                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Ver Analistas</a></li>
+                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
+                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Solicitar ESE</a></li>
+                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Ver Reportes</a></li>
               </ul>
             </li>
             <li class="treeview">
@@ -133,7 +132,14 @@
               <ul class="treeview-menu">
                 <li><a href="/revolution/empresa/"><i class="fa fa-circle-o"></i>Ver Empresas</a></li>
                 <li><a href="/revolution/empresa/create"><i class="fa fa-circle-o"></i>Agregar Nuevo</a></li>
-                <li><a href="ventas/cliente"><i class="fa fa-circle-o"></i>Ver solicitudes</a></li>
+                <li><a href="/revolution/empleado/"><i class="fa fa-circle-o"></i>Empleados</a></li>
+                <li >
+                  <a href="/revolution/coordinador/create"><i class="fa fa-circle-o"></i> Solicitudes</a>
+                  <ul class="treeview-menu">
+                      <li class="active"><a href="/revolution"><i class="fa fa-eye""></i> Ver Solicitudes</a></li>
+                      <li><a href="/revolution"><i class="fa fa-pencil-square-o"></i>Repartir Solicitudes</a></li>
+                  </ul>    
+                </li>
               </ul>
             </li>
                        

@@ -1,7 +1,9 @@
 @if($vista=="empresa")
 		{!! Form::open(array('url'=>'revolution/empresa','method'=>'GET','autocomplete'=>'on','role'=>'search')) !!}
-@else
-	{!! Form::open(array('url'=>'revolution/coordinador','method'=>'GET','autocomplete'=>'on','role'=>'search')) !!};
+@elseif($vista=="coordinador")
+	{!! Form::open(array('url'=>'revolution/coordinador','method'=>'GET','autocomplete'=>'on','role'=>'search')) !!}
+@elseif($vista=="empleado")
+	{!! Form::open(array('url'=>'revolution/empleado','method'=>'GET','autocomplete'=>'on','role'=>'search')) !!}
 @endif
 
 

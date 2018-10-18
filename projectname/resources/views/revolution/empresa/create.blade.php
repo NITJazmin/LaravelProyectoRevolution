@@ -13,7 +13,7 @@
 			</div>
 			@endif
 
-			{!! Form::open(array('url'=>'revolution/empresa','method'=>'POST','autocomplete'=>'off')) !!}
+		{!! Form::open(array('url'=>'revolution/empresa','method'=>'POST','autocomplete'=>'off')) !!}
 			
 			<div class="form-group">
 				<label for="Nombre">Nombre de la Empresa</label>
@@ -32,7 +32,7 @@
 				<input type="text" name="Telefono" class="form-control" placeholder="Telefono">
 			</div>
 			<div class="form-group">
-				<button class="btn btn-primary" type="submit">Aceptar</button>
+				<button class="btn btn-primary" type="submit">Guardar</button>
 				<button class="btn btn-danger" type="reset">Cancelar</button>
 			</div>
 			{!!Form::close()!!}

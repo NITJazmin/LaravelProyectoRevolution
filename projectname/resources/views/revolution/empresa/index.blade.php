@@ -12,6 +12,7 @@
 			<div class="table-responsive">
 				<table class="table table-striped table-bordered table-condensed table-hover">
 					<thead>
+						<th>ID</th>
 						<th>Nombre Comercial</th>
 						<th>Giro de la empresa</th>
 						<th>Direccion Física</th>
@@ -20,12 +21,13 @@
 					</thead>
 					@foreach ($empresa as $emp)
 						<tr>
+							<td>{{$emp->ID_empresa}} </td>
 							<td>{{ $emp->Nombre}}</td>
 							<td>{{ $emp->Giro}}</td>
 							<td>{{ $emp->Direccion}}</td>
 							<td>{{ $emp->Telefono}} </td>
 							<td>
-								<a href="/revolution/empleado"><button type="button" class="btn btn-warning">Encargado(s)</button></a>
+								<!--<a href="/revolution/empleado"><button type="button" class="btn btn-warning">Encargado(s)</button></a>-->
 								<a href="{{URL::action('EmpresaController@edit',$emp->ID_empresa)}}"><button class="btn btn-primary"> Editar </button></a>
 								<button type="button" data-target="#modal-delete-{{$emp->ID_empresa}}" data-toggle="modal" class="btn btn-danger">Eliminar</button>
 							</td>
@@ -35,7 +37,6 @@
 				</table>
 			</div>
 			<a href="/revolution/empresa/create"><button type="button" class="btn btn-success">Nuevo</button></a>
-			
 		</div>
 	</div>
 

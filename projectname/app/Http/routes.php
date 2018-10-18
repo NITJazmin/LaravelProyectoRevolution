@@ -19,14 +19,21 @@ Route::get('/layouts', function () {
     return view('layouts.empresa');
 });
 
+Route::get('/revolution', function () {
+    return view('revolution.construccion');
+});
+
+
 Route::resource('revolution/coordinador','CoordinadorRevController'); /*Para hacer un grupo de recursos con las rutas de index, update etc*/
 Route::resource('revolution/empresa','EmpresaController');
 Route::resource('revolution/empleado','EmpleadoController');
+
+
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
-
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');

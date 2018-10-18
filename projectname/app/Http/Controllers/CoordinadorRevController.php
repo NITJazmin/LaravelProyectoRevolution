@@ -23,7 +23,11 @@ class CoordinadorRevController extends Controller
         if ($request)
         {
            $query=trim($request->get('searchText'));
-           $coordinador=DB::table('CoordinadorRev')->where('Nombre','LIKE','%'.$query.'%')
+           $coordinador=DB::table('CoordinadorRev')
+           ->where('Nombre','LIKE','%'.$query.'%')
+           ->orwhere('Papp','LIKE','%'.$query.'%')
+           ->orwhere('Sapp','LIKE','%'.$query.'%')
+           ->orwhere('email','LIKE','%'.$query.'%')
            ->where('condicion','=','1')
            ->orderBy('ID_coordinador','asc')
            -> paginate(15);
