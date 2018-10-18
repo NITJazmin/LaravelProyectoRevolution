@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AnalistaFormRequest;
+use Illuminate\Support\Facades\Redirect;
+use App\Analista;
+use DB;
+
 
 class AnalistaController extends Controller
 {
@@ -14,9 +19,22 @@ class AnalistaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $vista="analista";
+        if ($request)
+        {
+           $query=trim($request->get('searchText'));
+           $analista=DB::table('Analista as a')
+           ->join('CoordinadorRev as c','a.ID_coordinador','=','c.ID_coordinador')
+           ->select('a.ID_analista','a.Nombre','a.Papp','a.Sapp','a.emailEmpresa','a.Telefono')
+           ->where('a.condicion','=','1')
+           ->where('a.Nombre','LIKE','%'.$query.'%')
+           ->orwhere('a.Papp','LIKE','%'.$query.'%')           
+           ->orderBy('a.Nombre','asc')
+           -> paginate(15);
+           return view('revolution.analista.index',["analista"=>$analista,"searchText"=>$query])->with('vista',$vista);
+        }
     }
 
     /**
@@ -26,7 +44,8 @@ class AnalistaController extends Controller
      */
     public function create()
     {
-        //
+        $coordinador=DB::table('CoordinadorRev')->where('condicion','=','1')->get();
+        return view("revolution.analista.create",["coordinador"=>$coordinador]); 
     }
 
     /**
@@ -35,9 +54,20 @@ class AnalistaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AnalistaFormRequest $request)
     {
-        //
+        $analista=new Analista;
+        //'nombre' es obj creado del request
+        $analista->Nombre=$request->get('Nombre');
+        $analista->Papp=$request->get('ṔrimerApp');
+        $analista->Sapp=$request->get('SegundoApp');
+        $analista->Telefono=$request->get('Telefono');
+        $analista->emailEmpresa=$request->get('email');
+        $analista->ID_coordinador=$request->get('ID_coordinador'); //pendiente de quitar //
+        $analista->condicion='1';
+        $analista->save();
+        //Después de guardar nos redireccionamos a la carpeta 
+        return Redirect::to('revolution/analista'); 
     }
 
     /**
@@ -48,7 +78,7 @@ class AnalistaController extends Controller
      */
     public function show($id)
     {
-        //
+        return view("revolution.analista.show",["analista"=>Analista::findOrfile($id)]);
     }
 
     /**
@@ -59,7 +89,11 @@ class AnalistaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $analista=Analista::findOrFail($id);
+        $coordinador=DB::table('CoordinadorRev')
+        ->where('condicion','=','1')
+        ->get();
+        return view("revolution.analista.edit",["analista"=>$analista,"coordinador"=>$coordinador]);
     }
 
     /**
@@ -69,9 +103,17 @@ class AnalistaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AnalistaFormRequest $request, $id)
     {
-        //
+        $analista=Analista::findOrFail($id);
+
+        $analista->Nombre=$request->get('Nombre');
+        $analista->Papp=$request->get('Papp');
+        $analista->Sapp=$request->get('Sapp');
+        $analista->Telefono=$request->get('Telefono');
+        $analista->emailEmpresa=$request->get('emailEmpresa');
+        $analista->update();
+        return Redirect::to('revolution/analista');
     }
 
     /**
@@ -82,6 +124,11 @@ class AnalistaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $analista=Analista::findOrFail($id);
+
+        $analista->condicion='0';
+        $analista->update();
+        return Redirect::to('revolution/analista');
     }
+
 }

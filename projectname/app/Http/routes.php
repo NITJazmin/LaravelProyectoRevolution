@@ -24,9 +24,12 @@ Route::get('/revolution', function () {
 });
 
 
-Route::resource('revolution/coordinador','CoordinadorRevController'); /*Para hacer un grupo de recursos con las rutas de index, update etc*/
+
+Route::resource('revolution/analista','AnalistaController');
+Route::resource('revolution/coordinador','CoordinadorRevController');
+Route::resource('revolution/empleado','EmpleadoController'); 
 Route::resource('revolution/empresa','EmpresaController');
-Route::resource('revolution/empleado','EmpleadoController');
+Route::resource('revolution/peticion','PeticionController');
 
 
 

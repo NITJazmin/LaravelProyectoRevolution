@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Peticion;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\PeticionFormRequest;
+use DB;
 
 class PeticionController extends Controller
 {
@@ -14,9 +18,25 @@ class PeticionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $vista="peticion";
+        if ($request)
+        {
+           $query=trim($request->get('searchText'));
+           $solicitud=DB::table('Peticion as sol')
+           ->join('Empleado as empl','sol.ID_empleado','=','empl.ID_empleado')
+           ->join('CoordinadorRev as coor','sol.ID_coordinador','=','coor.ID_coordinador')
+           ->select('sol.*','empl.Nombre as empleado','empl.Papp','empl.Sapp','coor.Nombre as coordinador','coor.Papp as apellido')
+
+
+           ->where('sol.condicion','=','1')
+           ->where('sol.Nombre','LIKE','%'.$query.'%')
+           ->orwhere('empl.Nombre','LIKE','%'.$query.'%')           
+           ->orderBy('sol.ID_peticion','asc')
+           -> paginate(15);
+           return view('revolution.peticion.index',["solicitud"=>$solicitud,"searchText"=>$query])->with('vista',$vista);
+        }
     }
 
     /**

@@ -118,8 +118,8 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Ver Analistas</a></li>
-                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
+                <li><a href="/revolution/analista/"><i class="fa fa-circle-o"></i> Ver Analistas</a></li>
+                <li><a href="/revolution/analista/create"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
                 <li><a href="/revolution"><i class="fa fa-circle-o"></i> Solicitar ESE</a></li>
                 <li><a href="/revolution"><i class="fa fa-circle-o"></i> Ver Reportes</a></li>
               </ul>
@@ -137,7 +137,7 @@
                 <li >
                   <a href="/revolution/coordinador/create"><i class="fa fa-circle-o"></i> Solicitudes</a>
                   <ul class="treeview-menu">
-                      <li class="active"><a href="/revolution"><i class="fa fa-eye""></i> Ver Solicitudes</a></li>
+                      <li class="active"><a href="/revolution/peticion/"><i class="fa fa-eye""></i> Ver Solicitudes</a></li>
                       <li><a href="/revolution"><i class="fa fa-pencil-square-o"></i>Repartir Solicitudes</a></li>
                   </ul>    
                 </li>
