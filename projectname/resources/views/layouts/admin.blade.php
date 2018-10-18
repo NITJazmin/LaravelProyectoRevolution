@@ -57,7 +57,8 @@
                       jaz.jcm1@gmail.com - Desarrollando Software
                     </p>
                   </li>
-                  
+                  <li role="separator" class="divider"></li>
+                  <li><a href="{{route('Cerrarsesion')}}">Cerrar sesión</a></li>                  
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     

@@ -8,7 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
-{
+{   
+    protected $redirectTo = '/revolution/coordinador';
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller

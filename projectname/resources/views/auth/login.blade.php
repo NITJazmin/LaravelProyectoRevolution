@@ -14,14 +14,16 @@
                     <form method="POST" action="/auth/login" role="form">
                         {!! csrf_field() !!}
                     
-                        <div class="form-group">
+                        <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
                             <label for="ejemplo_email_1">Correo electronico</label>
                             <input type="email" class="form-control" id="ejemplo_email_1" name="email" value="{{ old('email') }}">
+                            {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                         </div>
                     
-                        <div class="form-group">
+                        <div class="form-group {{ $errors->has('password') ? 'has-error' : ''}}">
                             <label for="password">Contraseña</label>
                             <input type="password" name="password" class="form-control" id="password">
+                            {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
                         </div>
                     
                         <div class="checkbox">
