@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `RevolutioBD`
 --
+drop database RevolutioBD;
+CREATE database RevolutioBD;
+use RevolutioBD;
 
 -- --------------------------------------------------------
 
