@@ -43,12 +43,6 @@
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
-				<label for="email">E-mail</label>
-				<input type="text" name="email" required value="{{old('email')}}"class="form-control" placeholder="email">
-			</div>
-		</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-			<div class="form-group">
 				<label for="puesto">Puesto</label>
 				<input type="text" name="puesto" required value="{{old('Puesto')}}"class="form-control" placeholder="Puesto">
 			</div>

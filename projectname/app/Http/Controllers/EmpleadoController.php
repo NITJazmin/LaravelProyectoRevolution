@@ -25,7 +25,7 @@ class EmpleadoController extends Controller
            $query=trim($request->get('searchText'));
            $empleado=DB::table('Empleado as empl')
            ->join('Empresa','empl.ID_empresa','=','Empresa.ID_empresa')
-           ->select('empl.ID_empleado','empl.Nombre','empl.Papp','empl.Sapp','empl.Telefono','empl.email','empl.puesto','Empresa.Nombre as empresa')
+           ->select('empl.ID_empleado','empl.Nombre','empl.Papp','empl.Sapp','empl.Telefono','empl.puesto','Empresa.Nombre as empresa')
            ->where('empl.condicion','=','1')
            ->where('empl.Nombre','LIKE','%'.$query.'%')
            ->orwhere('empl.Papp','LIKE','%'.$query.'%')           
@@ -60,7 +60,6 @@ class EmpleadoController extends Controller
         $empleado->Papp=$request->get('Ṕapp');
         $empleado->Sapp=$request->get('Sapp');
         $empleado->Telefono=$request->get('Telefono');
-        $empleado->email=$request->get('email');
         $empleado->puesto=$request->get('puesto');
         $empleado->ID_empresa=$request->get('ID_empresa');
         $empleado->condicion='1';
@@ -110,7 +109,6 @@ class EmpleadoController extends Controller
         $empleado->Papp=$request->get('Papp');
         $empleado->Sapp=$request->get('Sapp');
         $empleado->Telefono=$request->get('Telefono');
-        $empleado->email=$request->get('email');
         $empleado->puesto=$request->get('puesto');
         $empleado->update();
         return Redirect::to('revolution/empleado');

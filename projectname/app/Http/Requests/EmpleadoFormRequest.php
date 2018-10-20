@@ -28,7 +28,6 @@ class EmpleadoFormRequest extends Request
             'Papp'=>'max:45',
             'Sapp'=>'max:45',            
             'Telefono'=>'max:45',
-            'email'=>'required|max:45',
             'puesto'=>'required|max:80',
             'ID_empresa'=>'required'
         ];

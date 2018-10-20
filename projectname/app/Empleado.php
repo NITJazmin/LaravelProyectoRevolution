@@ -15,7 +15,6 @@ class Empleado extends Model
     	'Paap',
     	'Sapp',
     	'Telefono',
-    	'email',
         'puesto',
     	'ID_empresa',
     	'condicion'

@@ -14,7 +14,6 @@
 				<table class="table table-striped table-bordered table-condensed table-hover">
 					<thead>
 						<th>Nombre</th>
-						<th>E-mail</th>
 						<th>Telefono</th>
 						<th>opciones</th>						
 					</thead>
@@ -25,7 +24,6 @@
 								{{$an->Papp}}
 								{{$an->Sapp}}	
 							</td>
-							<td>{{$an->emailEmpresa}}</td>
 							<td>{{$an->Telefono}}</td>
 							<td>
 					 			<a href="{{URL::action('AnalistaController@edit',$an->ID_analista)}} "><button class="btn btn-primary"> Editar </button></a>

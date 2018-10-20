@@ -27,7 +27,7 @@ class AnalistaController extends Controller
            $query=trim($request->get('searchText'));
            $analista=DB::table('Analista as a')
            ->join('CoordinadorRev as c','a.ID_coordinador','=','c.ID_coordinador')
-           ->select('a.ID_analista','a.Nombre','a.Papp','a.Sapp','a.emailEmpresa','a.Telefono')
+           ->select('a.ID_analista','a.Nombre','a.Papp','a.Sapp','a.Telefono')
            ->where('a.condicion','=','1')
            ->where('a.Nombre','LIKE','%'.$query.'%')
            ->orwhere('a.Papp','LIKE','%'.$query.'%')           
@@ -62,7 +62,6 @@ class AnalistaController extends Controller
         $analista->Papp=$request->get('ṔrimerApp');
         $analista->Sapp=$request->get('SegundoApp');
         $analista->Telefono=$request->get('Telefono');
-        $analista->emailEmpresa=$request->get('email');
         $analista->ID_coordinador=$request->get('ID_coordinador'); //pendiente de quitar //
         $analista->condicion='1';
         $analista->save();
@@ -111,7 +110,6 @@ class AnalistaController extends Controller
         $analista->Papp=$request->get('Papp');
         $analista->Sapp=$request->get('Sapp');
         $analista->Telefono=$request->get('Telefono');
-        $analista->emailEmpresa=$request->get('emailEmpresa');
         $analista->update();
         return Redirect::to('revolution/analista');
     }

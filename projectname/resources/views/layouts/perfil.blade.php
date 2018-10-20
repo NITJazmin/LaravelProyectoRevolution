@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('contenido')
+
 <div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12"> 
 			<h3 style="font-size:20px;">Inicio de Coordinador de Revolution</h3>
@@ -14,16 +15,26 @@
 			<label>Nombre de usuario</label>
 		</div>
 	</div>	
-</div>
+</div><br><br>
 
 <div class="row">
-	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-		<div class="form-group" style="margin: 15px;">
-			<h3>Información Personal</h3><br>
-			<div>
-				<label>Nombre:</label>
+	<div class="col-md-12" >
+		<div class="box" style=" border: 3px #FFC200 solid; width: 65%;">
+			<div class="box-header with-border">
+				<label>Datos Personales</label>
 			</div>
+			<div class="box-body">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12ss">
+							<label>hola</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			
 		</div>
+		
 	</div>	
 </div>
 

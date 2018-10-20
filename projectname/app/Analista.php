@@ -14,7 +14,6 @@ class Analista extends Model
     	'Nombre',
     	'Papp',
     	'Sapp',
-    	'emailEmpresa',
     	'Telefono',
     	'ID_coordinador'
     ];

@@ -31,10 +31,6 @@
 				<input type="text" name="Telefono" value="{{$analista->Telefono}}" class="form-control" placeholder="Telefono">
 			</div>
 			<div class="form-group">
-				<label for="Email">E-mail</label>
-				<input type="text" name="emailEmpresa"  value="{{$analista->emailEmpresa}}" class="form-control" placeholder="E-mail">
-			</div>
-			<div class="form-group">
 				<label>Coordinador que da de alta pero hay que quitarlo debe ser automatico</label>
 				<select name="ID_coordinador" value="{{old('ID_coordinador')}}" class="form-control"> 
 					@foreach ($coordinador as $coor)
