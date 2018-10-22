@@ -9,7 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {   
-    protected $redirectTo = '/revolution/coordinador';
+    protected $redirectTo = '/revolution/';
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
