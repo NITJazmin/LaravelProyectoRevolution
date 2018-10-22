@@ -18,8 +18,8 @@
 </div><br><br>
 
 <div class="row">
-	<div class="col-md-12" >
-		<div class="box" style=" border: 3px #FFC200 solid; width: 65%;">
+	<div class="col-md-12">
+		<div class="box" style=" border: 3px #FFC200 solid; width: 65%; position: left;">
 			<div class="box-header with-border">
 				<label>Datos Personales</label>
 			</div>
@@ -31,8 +31,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			
+			</div>	
 		</div>
 		
 	</div>	
