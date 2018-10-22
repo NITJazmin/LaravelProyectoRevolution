@@ -14,7 +14,6 @@ class CoordinadorRev extends Model
     	'Nombre',
     	'Papp',
     	'Sapp',
-    	'email',
     	'condicion'
     ];
 

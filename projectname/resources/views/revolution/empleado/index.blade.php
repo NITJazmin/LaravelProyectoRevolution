@@ -15,7 +15,6 @@
 					<thead>
 						<th>Nombre del Encargado</th>
 						<th>Telefono</th>
-						<th>E-mail</th>
 						<th>Puesto</th>
 						<th>Empresa</th>
 						<th>opciones</th>						
@@ -28,7 +27,6 @@
 								{{$empl->Sapp}}	
 							</td>
 							<td>{{$empl->Telefono}}</td>
-							<td>{{$empl->email}}</td>
 							<td>{{$empl->puesto}}</td>
 							<td> {{$empl->empresa}}</td>
 							<td>

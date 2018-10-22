@@ -27,7 +27,6 @@ class AnalistaFormRequest extends Request
             'Nombre'=>'required|max:45', //puede o no ser requerido =>'required'
             'Papp'=>'max:45',
             'Sapp'=>'max:45',
-            'emailEmpresa'=>'required|max:45',
             'Telefono'=>'max:45',
             'ID_coordinador'=>'required'
         ];

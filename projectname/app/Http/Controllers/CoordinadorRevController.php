@@ -27,7 +27,6 @@ class CoordinadorRevController extends Controller
            ->where('Nombre','LIKE','%'.$query.'%')
            ->orwhere('Papp','LIKE','%'.$query.'%')
            ->orwhere('Sapp','LIKE','%'.$query.'%')
-           ->orwhere('email','LIKE','%'.$query.'%')
            ->where('condicion','=','1')
            ->orderBy('ID_coordinador','asc')
            -> paginate(15);
@@ -60,7 +59,6 @@ class CoordinadorRevController extends Controller
         $coordinador->Nombre=$request->get('Nombre');
         $coordinador->Papp=$request->get('Sapp');
         $coordinador->Sapp=$request->get('Sapp');
-        $coordinador->Email=$request->get('Email');
         $coordinador->condicion='1';
         $coordinador->save();
         //Después de guardar nos redireccionamos a la carpeta coordinador
@@ -102,7 +100,6 @@ class CoordinadorRevController extends Controller
         $coordinador->Nombre=$request->get('Nombre');
         $coordinador->Papp=$request->get('Papp');
         $coordinador->Sapp=$request->get('Sapp');
-        $coordinador->Email=$request->get('Email');
         $coordinador->update();
         return Redirect::to('revolution/coordinador');
     }
