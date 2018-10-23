@@ -28,7 +28,6 @@ class AnalistaFormRequest extends Request
             'Papp'=>'max:45',
             'Sapp'=>'max:45',
             'Telefono'=>'max:45',
-            'ID_coordinador'=>'required'
         ];
     }
 }

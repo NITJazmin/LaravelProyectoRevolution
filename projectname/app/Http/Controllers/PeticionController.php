@@ -46,7 +46,7 @@ class PeticionController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -104,4 +104,36 @@ class PeticionController extends Controller
     {
         //
     }
+
+    public function asignacion($id)
+    {
+        $query=trim($request->get('searchText'));
+        $peticion=DB::table('Peticion as p')
+        ->join('A as p','a.ID_peticion','=','p.ID_peticion')
+        ->select('a.*','p.*')
+        ->where('a.condicion','=','1')
+        ->where('a.Nombre','LIKE','%'.$query.'%') 
+        ->orwhere('p.Nombre')       
+        ->orderBy('a.Nombre','asc')
+        -> paginate(15);
+           return view('revolution.analista.peticion',["analista"=>$analista,"searchText"=>$query]);
+    }
+
 }
+
+/* 
+
+public function peticion(Request $request)
+    {
+        $query=trim($request->get('searchText'));
+        $analista=DB::table('Analista as a')
+        ->join('Peticion as p','a.ID_peticion','=','p.ID_peticion')
+        ->select('a.*','p.*')
+        ->where('a.condicion','=','1')
+        ->where('a.Nombre','LIKE','%'.$query.'%') 
+        ->orwhere('p.Nombre')       
+        ->orderBy('a.Nombre','asc')
+        -> paginate(15);
+           return view('revolution.analista.peticion',["analista"=>$analista,"searchText"=>$query]);
+    }
+*/

@@ -26,8 +26,6 @@ Route::get('/revolution', function () {
     return view('revolution.construccion');
 });
 
-
-
 Route::resource('revolution/analista','AnalistaController');
 Route::resource('revolution/coordinador','CoordinadorRevController');
 Route::resource('revolution/empleado','EmpleadoController'); 

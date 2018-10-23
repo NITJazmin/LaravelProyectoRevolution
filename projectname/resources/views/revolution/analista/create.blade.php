@@ -31,14 +31,6 @@
 				<label for="Telefono">Telefono</label>
 				<input type="text" name="Telefono" value="{{old('Telefono')}}" class="form-control" placeholder="Telefono">
 			</div>
-			<div class="form-group">
-				<label>Coordinador que da de alta pero hay que quitarlo debe ser automatico</label>
-				<select name="ID_coordinador" value="{{old('ID_coordinador')}}" class="form-control"> 
-					@foreach ($coordinador as $coor)
-						<option value="{{$coor->ID_coordinador}}">{{$coor->Nombre}}</option>
-					@endforeach	
-				</select>
-			</div>
 
 			<div class="form-group">
 				<button class="btn btn-primary" type="submit">Guardar</button>

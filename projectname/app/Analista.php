@@ -15,6 +15,6 @@ class Analista extends Model
     	'Papp',
     	'Sapp',
     	'Telefono',
-    	'ID_coordinador'
+    	'ID_peticion'
     ];
 }

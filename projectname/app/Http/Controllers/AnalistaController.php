@@ -25,13 +25,11 @@ class AnalistaController extends Controller
         if ($request)
         {
            $query=trim($request->get('searchText'));
-           $analista=DB::table('Analista as a')
-           ->join('CoordinadorRev as c','a.ID_coordinador','=','c.ID_coordinador')
-           ->select('a.ID_analista','a.Nombre','a.Papp','a.Sapp','a.Telefono')
-           ->where('a.condicion','=','1')
-           ->where('a.Nombre','LIKE','%'.$query.'%')
-           ->orwhere('a.Papp','LIKE','%'.$query.'%')           
-           ->orderBy('a.Nombre','asc')
+           $analista=DB::table('Analista')
+           ->where('condicion','=','1')
+           ->where('Nombre','LIKE','%'.$query.'%')           
+           ->orwhere('Papp','LIKE','%'.$query.'%')        
+           ->orderBy('Nombre','asc')
            -> paginate(15);
            return view('revolution.analista.index',["analista"=>$analista,"searchText"=>$query])->with('vista',$vista);
         }
@@ -44,8 +42,8 @@ class AnalistaController extends Controller
      */
     public function create()
     {
-        $coordinador=DB::table('CoordinadorRev')->where('condicion','=','1')->get();
-        return view("revolution.analista.create",["coordinador"=>$coordinador]); 
+        $peticion=DB::table('Peticion')->where('condicion','=','1')->get();
+        return view("revolution.analista.create",["peticion"=>$peticion]); 
     }
 
     /**
@@ -62,7 +60,7 @@ class AnalistaController extends Controller
         $analista->Papp=$request->get('ṔrimerApp');
         $analista->Sapp=$request->get('SegundoApp');
         $analista->Telefono=$request->get('Telefono');
-        $analista->ID_coordinador=$request->get('ID_coordinador'); //pendiente de quitar //
+        $analista->ID_peticion=$request->get('ID_peticion'); //pendiente de quitar //
         $analista->condicion='1';
         $analista->save();
         //Después de guardar nos redireccionamos a la carpeta 
@@ -89,10 +87,10 @@ class AnalistaController extends Controller
     public function edit($id)
     {
         $analista=Analista::findOrFail($id);
-        $coordinador=DB::table('CoordinadorRev')
+        $peticion=DB::table('Peticion')
         ->where('condicion','=','1')
         ->get();
-        return view("revolution.analista.edit",["analista"=>$analista,"coordinador"=>$coordinador]);
+        return view("revolution.analista.edit",["analista"=>$analista,"peticion"=>$peticion]);
     }
 
     /**
@@ -129,4 +127,5 @@ class AnalistaController extends Controller
         return Redirect::to('revolution/analista');
     }
 
+    
 }

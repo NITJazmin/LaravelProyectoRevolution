@@ -31,10 +31,10 @@
 				<input type="text" name="Telefono" value="{{$analista->Telefono}}" class="form-control" placeholder="Telefono">
 			</div>
 			<div class="form-group">
-				<label>Coordinador que da de alta pero hay que quitarlo debe ser automatico</label>
-				<select name="ID_coordinador" value="{{old('ID_coordinador')}}" class="form-control"> 
-					@foreach ($coordinador as $coor)
-						<option value="{{$coor->ID_coordinador}}">{{$coor->Nombre}}</option>
+				
+				<select name="ID_peticion" value="{{old('ID_peticion')}}" class="form-control"> 
+					@foreach ($peticion as $pet)
+						<option value="{{$pet->ID_peticion}}">{{$pet->Nombre}}</option>
 					@endforeach	
 				</select>
 			</div>

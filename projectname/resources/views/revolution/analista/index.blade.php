@@ -26,6 +26,7 @@
 							</td>
 							<td>{{$an->Telefono}}</td>
 							<td>
+								<a href="/revolution/analista/peticion"><button class="btn btn-success">Ver mas</button></a>
 					 			<a href="{{URL::action('AnalistaController@edit',$an->ID_analista)}} "><button class="btn btn-primary"> Editar </button></a>
 
 								<button type="button" data-target="#modal-delete-{{$an->ID_analista}}" data-toggle="modal" class="btn btn-danger">Eliminar</button>

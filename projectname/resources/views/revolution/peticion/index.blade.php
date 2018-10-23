@@ -17,7 +17,7 @@
 						<th>Fecha de inicio</th>
 						<th>Fecha de fin</th>
 						<th>Status</th>
-						<th>Descripxion</th>						
+						<th>Descripción</th>						
 						<th>Solicitante</th>						
 						<th>Agente Rev</th>	
 						<th>opciones</th>						
@@ -41,14 +41,13 @@
 							</td>
 							<td>
 					 			
-
-								<button type="button" class="btn btn-danger">Eliminar</button>
+								<button type="button" class="btn btn-primary">Asignar</button>
+								<button type="button" class="btn btn-danger">X</button>
 							</td>
 						</tr>
 					@endforeach
 				</table>
 			</div>
-			<a href="/revolution/empleado/create"><button type="button" class="btn btn-success">Nuevo</button></a>
 		</div>
 	</div>
 
