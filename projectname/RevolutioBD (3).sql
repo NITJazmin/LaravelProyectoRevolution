@@ -3,10 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-10-2018 a las 18:45:51
+-- Tiempo de generación: 23-10-2018 a las 19:30:35
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -21,9 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `RevolutioBD`
 --
-drop database RevolutioBD;
-CREATE database RevolutioBD;
-use RevolutioBD;
 
 -- --------------------------------------------------------
 
@@ -34,13 +30,24 @@ use RevolutioBD;
 CREATE TABLE `Analista` (
   `ID_analista` int(11) NOT NULL,
   `Nombre` varchar(45) DEFAULT NULL,
-  `P.app` varchar(45) DEFAULT NULL,
-  `S.app` varchar(45) DEFAULT NULL,
-  `e-mailEmpresa` varchar(45) DEFAULT NULL,
+  `Papp` varchar(45) DEFAULT NULL,
+  `Sapp` varchar(45) DEFAULT NULL,
   `Telefono` varchar(45) DEFAULT NULL,
-  `ID_encargado` int(11) NOT NULL,
-  `condicion` int(1) DEFAULT NULL
+  `condicion` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Analista`
+--
+
+INSERT INTO `Analista` (`ID_analista`, `Nombre`, `Papp`, `Sapp`, `Telefono`, `condicion`) VALUES
+(4, 'Analista1', NULL, 'del analista', '2452', 0),
+(5, 'jocelin', 'becerril', 'jsao', '567890\'', 1),
+(6, 'pancho', 'lopex', 'fghjk', '2345', 1),
+(7, 'jazmin', 'camarillo', 'gh', '489009', 1),
+(8, 'Danie', 'hernandez', 'yjedf', '5678', 1),
+(9, 'juan', 'romero', 'ghko', '1111', 1),
+(10, 'qwer', NULL, '1231', '24', 1);
 
 -- --------------------------------------------------------
 
@@ -53,7 +60,6 @@ CREATE TABLE `CoordinadorRev` (
   `Nombre` varchar(45) DEFAULT NULL,
   `Papp` varchar(45) DEFAULT NULL,
   `Sapp` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
   `condicion` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -61,11 +67,12 @@ CREATE TABLE `CoordinadorRev` (
 -- Volcado de datos para la tabla `CoordinadorRev`
 --
 
-INSERT INTO `CoordinadorRev` (`ID_coordinador`, `Nombre`, `Papp`, `Sapp`, `email`, `condicion`) VALUES
-(1, 'Andrea', 'Vita', 'Pardo', 'direccion@hr-revolution.com', 1),
-(2, 'Carlos', 'Gonzalez', 'Gonzalez', 'design@hr-revolution.com.mx', 1),
-(3, 'ejemplo1', 'ejemplo', 'ejemplo', 'ninguno', 1),
-(5, 'jazmin', 'Martinez', 'Martinez', 'handjazzzz@hotmail.com', 0);
+INSERT INTO `CoordinadorRev` (`ID_coordinador`, `Nombre`, `Papp`, `Sapp`, `condicion`) VALUES
+(1, 'Andty', 'Vita', 'Pardo', 1),
+(2, 'Carlos', 'Gonzalez', 'Gonzalez', 1),
+(3, 'ejemplo1', 'ejemplo', 'ejemplo', 1),
+(5, 'jazmin', 'Martinez', 'Martinez', 0),
+(6, 'Empresa Ejemplo', 's', 's', 1);
 
 -- --------------------------------------------------------
 
@@ -93,15 +100,27 @@ CREATE TABLE `DatosPersonales` (
 --
 
 CREATE TABLE `Empleado` (
-  `ID_Empleado` int(11) NOT NULL,
+  `ID_empleado` int(11) NOT NULL,
   `Nombre` varchar(45) NOT NULL,
   `Papp` varchar(45) DEFAULT NULL,
   `Sapp` varchar(45) DEFAULT NULL,
   `Telefono` varchar(45) DEFAULT NULL,
-  `email` varchar(45) NOT NULL,
+  `puesto` varchar(80) NOT NULL,
   `ID_empresa` int(11) NOT NULL,
   `condicion` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Empleado`
+--
+
+INSERT INTO `Empleado` (`ID_empleado`, `Nombre`, `Papp`, `Sapp`, `Telefono`, `puesto`, `ID_empresa`, `condicion`) VALUES
+(1, 'Carlos', 'aaa', 'aaaa', '02930', '', 1, 1),
+(2, '0', NULL, '0', '0', '0', 1, 0),
+(3, '1', NULL, '1', '1', '1', 2, 1),
+(4, 'asnk', NULL, 'jk', 'nl', 'nkj', 10, 0),
+(5, 'aa', NULL, 'a', 'a', 'a', 13, 0),
+(6, 'p', 'xxxxxx', 'pp', 'p', 'ninguno', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -126,8 +145,20 @@ INSERT INTO `Empresa` (`ID_empresa`, `Nombre`, `Telefono`, `condicion`, `Giro`, 
 (1, 'Empresa1', '55378664', 1, 'Ropa', 'plaza jardin #100 colonia roma, cerca deperif'),
 (2, 'Empresa numero dos', 'no hay', 1, NULL, NULL),
 (3, 'empresita', 'no hay', 0, NULL, NULL),
-(4, 'empresa carlos', 'no tiene', 0, NULL, NULL),
-(5, 'palacio', '77442', 1, 'ropa', 'polanco');
+(4, 'a', 's', 0, 's', 's'),
+(5, 'Came', '9381', 1, 'Comercio', 'hnsoa'),
+(6, 'Cosco', '9381', 1, 'Comercio', 'hnsoa'),
+(7, 'Cosia', '9381', 1, 'Comercio', 'hnsoa'),
+(8, 'Came', '9381', 1, 'Comercio', 'hnsoa'),
+(9, 'Revolution', '3712021', 1, 'recuirement', 'jdnkas9'),
+(10, 'palacio', '231', 1, 'comercio', 'asnga23'),
+(11, 'palacio', '231', 1, 'comercio', 'asnga23'),
+(12, 'EJEMPLO', '34112', 1, 'DE EMPRESA', 'NSAARJ123'),
+(13, 'a', 'a', 1, 'a', 'a'),
+(14, 'z', 'z', 1, 'z', 'z'),
+(15, 'as', 'f', 1, 'f', 'f'),
+(16, 'as', 'f', 1, 'f', 'f'),
+(17, 'v', 'v', 1, 'v', 'v');
 
 -- --------------------------------------------------------
 
@@ -155,16 +186,17 @@ CREATE TABLE `EstudioSocioE` (
 
 CREATE TABLE `Peticion` (
   `ID_peticion` int(11) NOT NULL,
+  `Nombre` varchar(80) NOT NULL,
   `FechaIni` date DEFAULT NULL,
   `FechaFin` date DEFAULT NULL,
   `Status` varchar(45) DEFAULT NULL,
   `Descripcion` varchar(45) DEFAULT NULL,
   `ID_Empleado` int(11) NOT NULL,
   `ID_coordinador` int(11) NOT NULL,
+	`ID_analista` int(11),
   `condicion` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `PortadaSocio`
@@ -256,8 +288,7 @@ CREATE TABLE `RefPers` (
 -- Indices de la tabla `Analista`
 --
 ALTER TABLE `Analista`
-  ADD PRIMARY KEY (`ID_analista`),
-  ADD KEY `ID_encargado` (`ID_encargado`);
+  ADD PRIMARY KEY (`ID_analista`);
 
 --
 -- Indices de la tabla `CoordinadorRev`
@@ -276,7 +307,7 @@ ALTER TABLE `DatosPersonales`
 -- Indices de la tabla `Empleado`
 --
 ALTER TABLE `Empleado`
-  ADD PRIMARY KEY (`ID_Empleado`),
+  ADD PRIMARY KEY (`ID_empleado`),
   ADD KEY `ID_empresa` (`ID_empresa`);
 
 --
@@ -298,7 +329,8 @@ ALTER TABLE `EstudioSocioE`
 ALTER TABLE `Peticion`
   ADD PRIMARY KEY (`ID_peticion`),
   ADD KEY `ID_Empleado` (`ID_Empleado`),
-  ADD KEY `ID_coordinador` (`ID_coordinador`);
+  ADD KEY `ID_coordinador` (`ID_coordinador`),
+	ADD KEY `ID_analista` (`ID_analista`);
 
 --
 -- Indices de la tabla `PortadaSocio`
@@ -336,13 +368,13 @@ ALTER TABLE `RefPers`
 -- AUTO_INCREMENT de la tabla `Analista`
 --
 ALTER TABLE `Analista`
-  MODIFY `ID_analista` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_analista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `CoordinadorRev`
 --
 ALTER TABLE `CoordinadorRev`
-  MODIFY `ID_coordinador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_coordinador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `DatosPersonales`
@@ -354,13 +386,13 @@ ALTER TABLE `DatosPersonales`
 -- AUTO_INCREMENT de la tabla `Empleado`
 --
 ALTER TABLE `Empleado`
-  MODIFY `ID_Empleado` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `Empresa`
 --
 ALTER TABLE `Empresa`
-  MODIFY `ID_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `EstudioSocioE`
@@ -372,7 +404,7 @@ ALTER TABLE `EstudioSocioE`
 -- AUTO_INCREMENT de la tabla `Peticion`
 --
 ALTER TABLE `Peticion`
-  MODIFY `ID_peticion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_peticion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `RefLab`
@@ -389,12 +421,6 @@ ALTER TABLE `RefPers`
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `Analista`
---
-ALTER TABLE `Analista`
-  ADD CONSTRAINT `Analista_ibfk_1` FOREIGN KEY (`ID_encargado`) REFERENCES `CoordinadorRev` (`ID_coordinador`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `DatosPersonales`
@@ -418,7 +444,7 @@ ALTER TABLE `EstudioSocioE`
 -- Filtros para la tabla `Peticion`
 --
 ALTER TABLE `Peticion`
-  ADD CONSTRAINT `Peticion_ibfk_1` FOREIGN KEY (`ID_Empleado`) REFERENCES `Empleado` (`ID_Empleado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `Peticion_ibfk_1` FOREIGN KEY (`ID_Empleado`) REFERENCES `Empleado` (`ID_empleado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `Peticion_ibfk_2` FOREIGN KEY (`ID_coordinador`) REFERENCES `CoordinadorRev` (`ID_coordinador`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -432,18 +458,6 @@ ALTER TABLE `PortadaSocio`
 --
 ALTER TABLE `Psicosocial`
   ADD CONSTRAINT `Psicosocial_ibfk_1` FOREIGN KEY (`ID_estudio`) REFERENCES `EstudioSocioE` (`ID_estudio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `RefLab`
---
-ALTER TABLE `RefLab`
-  ADD CONSTRAINT `RefLab_ibfk_1` FOREIGN KEY (`ID_estudio`) REFERENCES `EstudioSocioE` (`ID_estudio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Filtros para la tabla `RefPers`
---
-ALTER TABLE `RefPers`
-  ADD CONSTRAINT `RefPers_ibfk_1` FOREIGN KEY (`ID_estudio`) REFERENCES `EstudioSocioE` (`ID_estudio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
