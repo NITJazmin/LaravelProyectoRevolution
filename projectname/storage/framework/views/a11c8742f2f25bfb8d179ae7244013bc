@@ -88,7 +88,7 @@
                 <span>Inicio</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="/layouts/perfil"><i class="fa fa-circle-o"></i> Ver Perfil</a></li>
-                <li><a href="/layouts"><i class="fa fa-circle-o"></i> Editar Perfil</a></li>
+                <li><a href="/revolution/"><i class="fa fa-circle-o"></i> Editar Perfil</a></li>
               </ul>
             </li>
             <li class="treeview"><a href="#"><i class="fa fa-child"></i>
@@ -106,8 +106,8 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Ver Reclutadores</a></li>
-                <li><a href="/revolution"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
+                <li><a href="/revolution/reclutador"><i class="fa fa-circle-o"></i> Ver Reclutadores</a></li>
+                <li><a href="/revolution/reclutador/create"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
               </ul>
             </li>
             
@@ -144,7 +144,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="configuracion/usuario"><i class="fa fa-area-chart"></i>Reporte Global</a></li>
+                <li><a href="/revolution/"><i class="fa fa-area-chart"></i>Reporte Global</a></li>
                 
               </ul>
             </li>                        

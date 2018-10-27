@@ -40,14 +40,18 @@
 
 							</td>
 							<td>
-					 			
-								<button type="button" class="btn btn-primary">Asignar</button>
-								<button type="button" class="btn btn-danger">X</button>
+								
+					 			<button type="button" data-target="#more-{{$sol->ID_peticion}}" data-toggle="modal" class="btn btn-primary">Ver mas</button>
+
+								<button type="button" data-target="#modal-delete-{{$sol->ID_peticion}}" data-toggle="modal" class="btn btn-danger">X</button>
 							</td>
 						</tr>
+					@include('revolution.peticion.more')
+					@include('revolution.peticion.modal')
 					@endforeach
 				</table>
 			</div>
+
 		</div>
 	</div>
 

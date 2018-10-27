@@ -30,7 +30,8 @@ class PeticionFormRequest extends Request
             'Status'=>'required|max:45',
             'Descripcion'=>'max:45',
             'ID_empleado'=>'required',
-            'ID_coordinador'=>'required'   
+            'ID_coordinador'=>'required' 
+              
         ];
     }
 }

@@ -17,6 +17,8 @@ class Peticion extends Model
     	'Status',
     	'Descripcion',
     	'ID_empleado',
-    	'ID_coordinador'
+    	'ID_coordinador',
+        'ID_analista',
+        'condicion'
     ];
 }

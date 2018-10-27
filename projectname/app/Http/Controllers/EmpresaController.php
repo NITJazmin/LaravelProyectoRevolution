@@ -26,7 +26,7 @@ class EmpresaController extends Controller
            $empresa=DB::table('Empresa')->where('Nombre','LIKE','%'.$query.'%')
            ->where('condicion','=','1')
            ->orderBy('ID_empresa','asc')
-           -> paginate(15);
+           -> paginate(14);
            return view('revolution.empresa.index',["empresa"=>$empresa,"searchText"=>$query])->with('vista',$vista);
         }
         

@@ -14,6 +14,7 @@ class Empresa extends Model
     	'Nombre',
     	'Giro',
     	'Direccion',
-    	'Telefono'
+    	'Telefono',
+    	'condicion'
     ];
 }

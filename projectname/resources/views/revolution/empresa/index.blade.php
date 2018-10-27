@@ -37,6 +37,7 @@
 				</table>
 			</div>
 			<a href="/revolution/empresa/create"><button type="button" class="btn btn-success">Nuevo</button></a>
+			{{$empresa->render()}}
 		</div>
 	</div>
 

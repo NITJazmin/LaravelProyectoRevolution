@@ -26,14 +26,13 @@ Route::get('/revolution', function () {
     return view('revolution.construccion');
 });
 
+
 Route::resource('revolution/analista','AnalistaController');
 Route::resource('revolution/coordinador','CoordinadorRevController');
 Route::resource('revolution/empleado','EmpleadoController'); 
 Route::resource('revolution/empresa','EmpresaController');
 Route::resource('revolution/peticion','PeticionController');
-
-
-
+Route::resource('revolution/reclutador','ReclutadorController');
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

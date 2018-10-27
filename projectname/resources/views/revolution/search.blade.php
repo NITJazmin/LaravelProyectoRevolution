@@ -6,10 +6,9 @@
 	{!! Form::open(array('url'=>'/revolution/empleado','method'=>'GET','autocomplete'=>'on','role'=>'search')) !!}
 @elseif($vista=="analista")
 	{!! Form::open(array('url'=>'/revolution/analista','method'=>'GET','autocomplete'=>'on','role'=>'search')) !!}
+@elseif($vista=="reclutador")
+	{!! Form::open(array('url'=>'/revolution/reclutador','method'=>'GET','autocomplete'=>'on','role'=>'search')) !!}
 @endif
-
-
-
 
 <div class="form-group">
 	<div class="input-group">

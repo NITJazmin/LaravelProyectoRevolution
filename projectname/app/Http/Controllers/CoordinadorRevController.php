@@ -57,7 +57,7 @@ class CoordinadorRevController extends Controller
         $coordinador=new CoordinadorRev;
         //'nombre' es obj creado del request
         $coordinador->Nombre=$request->get('Nombre');
-        $coordinador->Papp=$request->get('Sapp');
+        $coordinador->Papp=$request->get('Papp');
         $coordinador->Sapp=$request->get('Sapp');
         $coordinador->condicion='1';
         $coordinador->save();

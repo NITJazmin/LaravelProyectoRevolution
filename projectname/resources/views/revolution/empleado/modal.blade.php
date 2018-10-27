@@ -17,7 +17,7 @@
 				<p> Confirme si desea Eliminar a {{ $empl->Nombre}} {{ $empl->Papp}} {{ $empl->Sapp}} </p>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+				<button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
 				<button type="submit" class="btn btn-primary">Confirmar</button>
 			</div>
 		</div>
