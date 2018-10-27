@@ -3,9 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 23-10-2018 a las 19:30:35
+-- Tiempo de generación: 27-10-2018 a las 19:20:11
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -45,7 +46,6 @@ INSERT INTO `Analista` (`ID_analista`, `Nombre`, `Papp`, `Sapp`, `Telefono`, `co
 (5, 'jocelin', 'becerril', 'jsao', '567890\'', 1),
 (6, 'pancho', 'lopex', 'fghjk', '2345', 1),
 (7, 'jazmin', 'camarillo', 'gh', '489009', 1),
-(8, 'Danie', 'hernandez', 'yjedf', '5678', 1),
 (9, 'juan', 'romero', 'ghko', '1111', 1),
 (10, 'qwer', NULL, '1231', '24', 1);
 
@@ -193,10 +193,21 @@ CREATE TABLE `Peticion` (
   `Descripcion` varchar(45) DEFAULT NULL,
   `ID_Empleado` int(11) NOT NULL,
   `ID_coordinador` int(11) NOT NULL,
-	`ID_analista` int(11),
+  `ID_analista` int(11) DEFAULT NULL,
   `condicion` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `Peticion`
+--
+
+INSERT INTO `Peticion` (`ID_peticion`, `Nombre`, `FechaIni`, `FechaFin`, `Status`, `Descripcion`, `ID_Empleado`, `ID_coordinador`, `ID_analista`, `condicion`) VALUES
+(4, 'solicitud1', '2018-10-08', '2018-10-22', 'Terminado', NULL, 1, 5, 0, 0),
+(5, 'ESE', '2018-10-22', NULL, 'Proceso', NULL, 5, 1, 0, 1),
+(6, 'Vacante', '2018-10-14', '2018-10-15', 'Terminado', 'Caracteristicas de la vacante', 5, 6, 0, 1),
+(7, 'ESE', '2018-10-22', '2018-10-15', 'Proceso', 'sa', 3, 3, 8, 1);
+
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `PortadaSocio`
@@ -330,7 +341,7 @@ ALTER TABLE `Peticion`
   ADD PRIMARY KEY (`ID_peticion`),
   ADD KEY `ID_Empleado` (`ID_Empleado`),
   ADD KEY `ID_coordinador` (`ID_coordinador`),
-	ADD KEY `ID_analista` (`ID_analista`);
+  ADD KEY `ID_analista` (`ID_analista`);
 
 --
 -- Indices de la tabla `PortadaSocio`
@@ -404,7 +415,7 @@ ALTER TABLE `EstudioSocioE`
 -- AUTO_INCREMENT de la tabla `Peticion`
 --
 ALTER TABLE `Peticion`
-  MODIFY `ID_peticion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_peticion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `RefLab`
