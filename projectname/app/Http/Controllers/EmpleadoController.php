@@ -25,10 +25,10 @@ class EmpleadoController extends Controller
            $query=trim($request->get('searchText'));
            $empleado=DB::table('Empleado as empl')
            ->join('Empresa','empl.ID_empresa','=','Empresa.ID_empresa')
-           ->select('empl.ID_empleado','empl.Nombre','empl.Papp','empl.Sapp','empl.Telefono','empl.puesto','Empresa.Nombre as empresa')
+           ->select('empl.*','Empresa.Nombre as empresa','Empresa.condicion')
            ->where('empl.condicion','=','1')
-           ->where('empl.Nombre','LIKE','%'.$query.'%')
-           ->orwhere('empl.Papp','LIKE','%'.$query.'%')           
+           ->where('Empresa.condicion','=','1')
+           ->where('empl.Nombre','LIKE','%'.$query.'%')          
            ->orderBy('Empresa.Nombre','asc')
            -> paginate(15);
            return view('revolution.empleado.index',["empleado"=>$empleado,"searchText"=>$query])->with('vista',$vista);
@@ -74,9 +74,22 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        return view("revolution.empleado.show",["empleado"=>Empleado::findOrfile($id)]);
+        $vista="empleado";
+        if ($request)
+        {
+           $query=trim($request->get('searchText'));
+           $empleado=DB::table('Empleado as empl')
+           ->join('Empresa','empl.ID_empresa','=','Empresa.ID_empresa')
+           ->select('empl.*')
+           ->where('empl.condicion','=','1')
+           ->where('empl.Nombre','LIKE','%'.$query.'%')
+           ->where('empl.ID_empresa','=','1')          
+           ->orderBy('empl.Nombre','asc')
+           -> paginate(15);
+           return view('cliente.show',["empleado"=>$empleado,"searchText"=>$query])->with('vista',$vista);
+        }
     }
 
     /**

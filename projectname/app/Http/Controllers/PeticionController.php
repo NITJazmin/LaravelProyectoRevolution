@@ -50,7 +50,8 @@ class PeticionController extends Controller
      */
     public function create()
     {
-        
+        $peticion=DB::table('Peticion')->where('condicion','=','1')->get();
+        return view("cliente.create",["peticion"=>$peticion]); 
     }
 
     /**
@@ -59,9 +60,20 @@ class PeticionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PeticionFormRequest $request)
     {
-        //
+        $peticion=new Peticion;
+        //'nombre' es obj creado del request
+        $peticion->Nombre=$request->get('Nombre');
+        $peticion->FechaIni=$request->get('FechaI');
+        $peticion->Status='proceso';
+        $peticion->Descripcion=$request->get('Descripcion');
+        $peticion->ID_Empleado='2';
+        $peticion->ID_coordinador='5';
+        $peticion->condicion='1';
+        $peticion->save();
+        //Después de guardar nos redireccionamos a la carpeta 
+        return Redirect::to('/cliente/show'); 
     }
 
     /**
@@ -70,9 +82,21 @@ class PeticionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $vista="peticion";
+        if ($request)
+        {
+           $query=trim($request->get('searchText'));
+           $solicitud=DB::table('Peticion as sol')
+           ->join('CoordinadorRev as coor','sol.ID_coordinador','=','coor.ID_coordinador')
+           ->select('sol.*','coor.Nombre as coordinador','coor.Papp')
+           ->where('sol.condicion','=','1')
+           ->where('sol.ID_Empleado','=','2')//hay que haerlo automaticamente
+           ->orderBy('sol.Nombre','asc')
+           -> paginate(15);
+           return view('cliente.solicitud',["solicitud"=>$solicitud,"searchText"=>$query])->with('vista',$vista);
+        }
     }
 
     /**
@@ -83,19 +107,7 @@ class PeticionController extends Controller
      */
     public function edit($id)
     {
-        $solicitud=Peticion::findOrFail($id);
-        $analista=DB::table('Analista')
-        ->where('condicion','=','1')
-        ->get();
-        /* LAs tablas son para sacar sus valores pero no cambiarlos ya que no se necesita, solo que como son requeridos en el request se deben poner para la vista edit*/
-        $coordinador=DB::table('CoordinadorRev')
-        ->where('condicion','=','1')
-        ->get();
-        $empleado=DB::table('Empleado')
-        ->where('condicion','=','1')
-        ->get();
-        /*****/
-        return ["solicitud"=>$solicitud,"analista"=>$analista,"coordinador"=>$coordinador,"empleado"=>$empleado];
+        
     }
 
     /**

@@ -33,6 +33,10 @@ Route::resource('revolution/empleado','EmpleadoController');
 Route::resource('revolution/empresa','EmpresaController');
 Route::resource('revolution/peticion','PeticionController');
 Route::resource('revolution/reclutador','ReclutadorController');
+
+Route::get('/cliente/solicitud','PeticionController@show');
+Route::get('/cliente/create','PeticionController@create');
+Route::get('/cliente/show','EmpleadoController@show');
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

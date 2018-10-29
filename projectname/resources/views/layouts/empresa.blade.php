@@ -27,7 +27,7 @@
         <!-- Logo -->
         <a href="index.html" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>RE</b>V</span>
+          <span class="logo-mini"><b>REV</b></span>
           <!-- logo for regular state and mobile devices -->
           <span class="logo-lg"><b>ESE</b></span>
         </a>
@@ -86,28 +86,29 @@
             <li class="treeview"><a href="#"><i class="fa fa-qrcode"></i>
                 <span>Inicio</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="almacen/articulo"><i class="fa fa-circle-o"></i> Ver Perfil</a></li>
-                <li><a href="almacen/articulo"><i class="fa fa-circle-o"></i> Editar Perfil</a></li>
+                <li><a href=""><i class="fa fa-circle-o"></i> Ver Perfil</a></li>
+                <li><a href=""><i class="fa fa-circle-o"></i> Editar Perfil</a></li>
               </ul>
             </li>
 
             <li class="treeview"><a href="#"><i class="fa fa-child"></i>
-                <span>Gerentes</span><i class="fa fa-angle-left pull-right"></i></a>
+                <span>Empleados</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li class="active"><a href="/revolution/coordinador/"><i class="fa fa-circle-o"></i> Ver Gerentes</a></li>
-                <li><a href="/revolution/coordinador/create"><i class="fa fa-circle-o"></i> Agregar Nuevo</a></li>
+                <li class="active"><a href="/cliente/show"><i class="fa fa-circle-o"></i> Ver Empleados</a></li>
               </ul>
             </li>
 
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-child"></i>
-                <span>Estudios</span>
+                <span>Solicitudes</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i> Ver Estudios</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Pedir Nuevo Estudio</a></li>
+                <li><a href="/cliente/solicitud"><i class="fa fa-circle-o"></i>Ver Solicitudes mandadas</a></li>
+                <li><a href="/cliente/create"><i class="fa fa-circle-o"></i>Pedir Nueva Solicitud</a></li>
+                <li><a href=""><i class="fa fa-circle-o"></i>Ver Reportes</a></li>
+                <li><a href=""><i class="fa fa-circle-o"></i>Generar Reporte</a></li>
               </ul>
             </li>                     
           </ul>
