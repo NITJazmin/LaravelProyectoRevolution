@@ -35,6 +35,7 @@
 								<button type="button" data-target="#modal-delete-{{$empl->ID_empleado}}" data-toggle="modal" class="btn btn-danger">Eliminar</button>
 							</td>
 						</tr>
+					@include('revolution.empleado.modal')
 					@endforeach
 				</table>
 			</div>

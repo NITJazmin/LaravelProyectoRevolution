@@ -27,10 +27,8 @@ class PeticionFormRequest extends Request
             'Nombre'=>'required|max:45',
             'FechaIni'=>'date',
             'FechaFin'=>'date',
-            'Status'=>'required|max:45',
-            'Descripcion'=>'max:45',
-            'ID_empleado'=>'required',
-            'ID_coordinador'=>'required' 
+            'Status'=>'max:45',
+            'Descripcion'=>'max:45' 
               
         ];
     }
