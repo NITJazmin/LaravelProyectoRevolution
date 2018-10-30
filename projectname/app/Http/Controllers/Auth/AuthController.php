@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Auth;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {   
@@ -61,5 +63,52 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    protected function authenticated(Request $request)
+    {
+        $this->validate($request, [
+            $this->loginUsername() => 'required', 'password' => 'required',
+        ]);
+
+        $credenciales = $request->only($this->loginUsername(), 'password');
+        if ($request->has('remember')) {
+            if (Auth::attempt($credenciales,$request->has('remember'))) {
+                $this->redireccion($credenciales);
+            }
+        }
+        else{
+            if (Auth::attempt($credenciales)) {
+                return $this->redireccion($credenciales);
+                $this->redireccion($credenciales);
+            }
+        }
+        return redirect($this->loginPath())
+            ->withInput($request->only($this->loginUsername(), 'remember'))
+            ->withErrors([
+                $this->loginUsername() => $this->getFailedLoginMessage(),
+            ]);
+
+    }
+
+    protected function redireccion($credenciales){
+
+        $user = User::where('email', $credenciales['email'])->first();
+        switch ($user->rol) {
+            case 'coordinador':
+                $this->redirectTo = '/layouts/perfil/';
+                break;
+            case 'analista':
+                $this->redirectTo = '/revolution/analista/';
+                break;
+            case 'empleado':
+                $this->redirectTo = '/revolution/empleado/';
+                break;
+            case 'empleado':
+                $this->redirectTo = '/revolution/empresa/';
+                break;
+        }
+        return redirect()->intended($this->redirectPath());
+
     }
 }

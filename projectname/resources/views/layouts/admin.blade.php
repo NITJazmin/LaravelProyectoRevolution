@@ -207,6 +207,8 @@
     <script src="{{asset('js2/bootstrap.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('js2/app.min.js')}}"></script>
+    <!-- Plugin para validar form-->
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
     
   </body>
 </html>

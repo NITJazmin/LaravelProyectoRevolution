@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Empresa;
+use App\User;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\EmpresaFormRequest;
 use DB;
@@ -51,6 +52,13 @@ class EmpresaController extends Controller
      */
     public function store(EmpresaFormRequest $request)
     {
+        $user = new User;
+        $user->email = $request->input('mail');
+        $user->password = bcrypt( $request->input('password') );
+        $user->rol = "coordinador";
+        $user->save();
+        $user = User::where('email', $request->input('mail'))->first();
+
         $empresa=new Empresa;
         //'nombre' es obj creado del request
         $empresa->Nombre=$request->get('Nombre');
@@ -58,6 +66,7 @@ class EmpresaController extends Controller
         $empresa->Direccion=$request->get('Direccion');
         $empresa->Telefono=$request->get('Telefono');
         $empresa->condicion='1';
+        $empresa->users_id = $user->id;
         $empresa->save();
         //Después de guardar nos redireccionamos a la carpeta coordinador
         return Redirect::to('revolution/empresa'); 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 27-10-2018 a las 19:20:11
+-- Tiempo de generación: 29-10-2018 a las 03:46:33
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -22,11 +22,19 @@ SET time_zone = "+00:00";
 -- Base de datos: `RevolutioBD`
 --
 
--- --------------------------------------------------------
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `RevolutioBD` ;
+
+-- -----------------------------------------------------
+-- Schema RevolutioBD
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `RevolutioBD` DEFAULT CHARACTER SET utf8 ;
+USE `RevolutioBD` ;
 
 --
 -- Estructura de tabla para la tabla `Analista`
 --
+DROP TABLE IF EXISTS `Analista` ;
 
 CREATE TABLE `Analista` (
   `ID_analista` int(11) NOT NULL,
@@ -34,7 +42,8 @@ CREATE TABLE `Analista` (
   `Papp` varchar(45) DEFAULT NULL,
   `Sapp` varchar(45) DEFAULT NULL,
   `Telefono` varchar(45) DEFAULT NULL,
-  `condicion` int(1) NOT NULL
+  `condicion` int(1) NOT NULL,
+  `users_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -54,13 +63,15 @@ INSERT INTO `Analista` (`ID_analista`, `Nombre`, `Papp`, `Sapp`, `Telefono`, `co
 --
 -- Estructura de tabla para la tabla `CoordinadorRev`
 --
+DROP TABLE IF EXISTS `CoordinadorRev` ;
 
 CREATE TABLE `CoordinadorRev` (
   `ID_coordinador` int(11) NOT NULL,
   `Nombre` varchar(45) DEFAULT NULL,
   `Papp` varchar(45) DEFAULT NULL,
   `Sapp` varchar(45) DEFAULT NULL,
-  `condicion` int(1) DEFAULT NULL
+  `condicion` int(1) DEFAULT NULL,
+  `users_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -79,6 +90,7 @@ INSERT INTO `CoordinadorRev` (`ID_coordinador`, `Nombre`, `Papp`, `Sapp`, `condi
 --
 -- Estructura de tabla para la tabla `DatosPersonales`
 --
+DROP TABLE IF EXISTS `DatosPersonales` ;
 
 CREATE TABLE `DatosPersonales` (
   `ID_datP` int(11) NOT NULL,
@@ -98,6 +110,7 @@ CREATE TABLE `DatosPersonales` (
 --
 -- Estructura de tabla para la tabla `Empleado`
 --
+DROP TABLE IF EXISTS `Empleado` ;
 
 CREATE TABLE `Empleado` (
   `ID_empleado` int(11) NOT NULL,
@@ -107,7 +120,8 @@ CREATE TABLE `Empleado` (
   `Telefono` varchar(45) DEFAULT NULL,
   `puesto` varchar(80) NOT NULL,
   `ID_empresa` int(11) NOT NULL,
-  `condicion` int(1) DEFAULT NULL
+  `condicion` int(1) DEFAULT NULL,
+  `users_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -127,6 +141,7 @@ INSERT INTO `Empleado` (`ID_empleado`, `Nombre`, `Papp`, `Sapp`, `Telefono`, `pu
 --
 -- Estructura de tabla para la tabla `Empresa`
 --
+DROP TABLE IF EXISTS `Empresa` ;
 
 CREATE TABLE `Empresa` (
   `ID_empresa` int(11) NOT NULL,
@@ -134,7 +149,8 @@ CREATE TABLE `Empresa` (
   `Telefono` varchar(45) DEFAULT NULL,
   `condicion` int(1) DEFAULT NULL,
   `Giro` varchar(45) DEFAULT NULL,
-  `Direccion` varchar(150) DEFAULT NULL
+  `Direccion` varchar(150) DEFAULT NULL,
+  `users_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -165,6 +181,7 @@ INSERT INTO `Empresa` (`ID_empresa`, `Nombre`, `Telefono`, `condicion`, `Giro`, 
 --
 -- Estructura de tabla para la tabla `EstudioSocioE`
 --
+DROP TABLE IF EXISTS `EstudioSocioE` ;
 
 CREATE TABLE `EstudioSocioE` (
   `ID_estudio` int(11) NOT NULL,
@@ -181,8 +198,42 @@ CREATE TABLE `EstudioSocioE` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `migrations`
+--
+DROP TABLE IF EXISTS `migrations` ;
+
+CREATE TABLE `migrations` (
+  `migration` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `migrations`
+--
+
+INSERT INTO `migrations` (`migration`, `batch`) VALUES
+('2014_10_12_000000_create_users_table', 1),
+('2014_10_12_100000_create_password_resets_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `password_resets`
+--
+DROP TABLE IF EXISTS `password_resets` ;
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `Peticion`
 --
+DROP TABLE IF EXISTS `Peticion` ;
 
 CREATE TABLE `Peticion` (
   `ID_peticion` int(11) NOT NULL,
@@ -212,9 +263,10 @@ INSERT INTO `Peticion` (`ID_peticion`, `Nombre`, `FechaIni`, `FechaFin`, `Status
 --
 -- Estructura de tabla para la tabla `PortadaSocio`
 --
+DROP TABLE IF EXISTS `PortadaSocio` ;
 
 CREATE TABLE `PortadaSocio` (
-  `ID_portadaSocio` int(11) NOT NULL,
+  `ID_PortadaSocio` int(11) NOT NULL,
   `ResumenTelefono` varchar(45) DEFAULT NULL,
   `ResumenPsicosocial` varchar(45) DEFAULT NULL,
   `FactorRiesgo` varchar(15) DEFAULT NULL,
@@ -233,6 +285,7 @@ CREATE TABLE `PortadaSocio` (
 --
 -- Estructura de tabla para la tabla `Psicosocial`
 --
+DROP TABLE IF EXISTS `Psicosocial` ;
 
 CREATE TABLE `Psicosocial` (
   `ID_Psicosocial` int(11) NOT NULL,
@@ -249,6 +302,7 @@ CREATE TABLE `Psicosocial` (
 --
 -- Estructura de tabla para la tabla `RefLab`
 --
+DROP TABLE IF EXISTS `RefLab` ;
 
 CREATE TABLE `RefLab` (
   `ID_RefLab` int(11) NOT NULL,
@@ -277,6 +331,7 @@ CREATE TABLE `RefLab` (
 --
 -- Estructura de tabla para la tabla `RefPers`
 --
+DROP TABLE IF EXISTS `RefPers` ;
 
 CREATE TABLE `RefPers` (
   `ID_RefPers` int(11) NOT NULL,
@@ -291,6 +346,21 @@ CREATE TABLE `RefPers` (
   `condicion` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+DROP TABLE IF EXISTS `users` ;
+
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `password` varchar(60) CHARACTER SET utf8 NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `rol` varchar(22) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 --
 -- Índices para tablas volcadas
 --
@@ -299,13 +369,15 @@ CREATE TABLE `RefPers` (
 -- Indices de la tabla `Analista`
 --
 ALTER TABLE `Analista`
-  ADD PRIMARY KEY (`ID_analista`);
+  ADD PRIMARY KEY (`ID_analista`),
+  ADD KEY `fk_Analista_users1_idx` (`users_id`);
 
 --
 -- Indices de la tabla `CoordinadorRev`
 --
 ALTER TABLE `CoordinadorRev`
-  ADD PRIMARY KEY (`ID_coordinador`);
+  ADD PRIMARY KEY (`ID_coordinador`),
+  ADD KEY `fk_CoordinadorRev_users1_idx` (`users_id`);
 
 --
 -- Indices de la tabla `DatosPersonales`
@@ -319,13 +391,15 @@ ALTER TABLE `DatosPersonales`
 --
 ALTER TABLE `Empleado`
   ADD PRIMARY KEY (`ID_empleado`),
-  ADD KEY `ID_empresa` (`ID_empresa`);
+  ADD KEY `ID_empresa` (`ID_empresa`),
+  ADD KEY `fk_Empleado_users1_idx` (`users_id`);
 
 --
 -- Indices de la tabla `Empresa`
 --
 ALTER TABLE `Empresa`
-  ADD PRIMARY KEY (`ID_empresa`);
+  ADD PRIMARY KEY (`ID_empresa`),
+  ADD KEY `fk_Empresa_users1_idx` (`users_id`);
 
 --
 -- Indices de la tabla `EstudioSocioE`
@@ -333,6 +407,13 @@ ALTER TABLE `Empresa`
 ALTER TABLE `EstudioSocioE`
   ADD PRIMARY KEY (`ID_estudio`),
   ADD KEY `ID_analista` (`ID_analista`);
+
+--
+-- Indices de la tabla `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`),
+  ADD KEY `password_resets_token_index` (`token`);
 
 --
 -- Indices de la tabla `Peticion`
@@ -347,7 +428,7 @@ ALTER TABLE `Peticion`
 -- Indices de la tabla `PortadaSocio`
 --
 ALTER TABLE `PortadaSocio`
-  ADD PRIMARY KEY (`ID_portadaSocio`),
+  ADD PRIMARY KEY (`ID_PortadaSocio`),
   ADD KEY `ID_estudio` (`ID_estudio`);
 
 --
@@ -370,6 +451,13 @@ ALTER TABLE `RefLab`
 ALTER TABLE `RefPers`
   ADD PRIMARY KEY (`ID_RefPers`),
   ADD KEY `ID_estudio` (`ID_estudio`);
+
+--
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -430,6 +518,12 @@ ALTER TABLE `RefPers`
   MODIFY `ID_RefPers` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -469,6 +563,8 @@ ALTER TABLE `PortadaSocio`
 --
 ALTER TABLE `Psicosocial`
   ADD CONSTRAINT `Psicosocial_ibfk_1` FOREIGN KEY (`ID_estudio`) REFERENCES `EstudioSocioE` (`ID_estudio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -35,7 +35,7 @@ Route::resource('revolution/peticion','PeticionController');
 Route::resource('revolution/reclutador','ReclutadorController');
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::post('auth/login', 'Auth\AuthController@authenticated');
 Route::get('auth/logout', [
 	'uses' => 'Auth\AuthController@getLogout',
 	'as' => 'Cerrarsesion'

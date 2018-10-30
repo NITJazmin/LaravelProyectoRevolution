@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AnalistaFormRequest;
 use Illuminate\Support\Facades\Redirect;
 use App\Analista;
+use App\User;
 use DB;
 
 
@@ -54,14 +55,21 @@ class AnalistaController extends Controller
      */
     public function store(AnalistaFormRequest $request)
     {
+        $user = new User;
+        $user->email = $request->input('mail');
+        $user->password = bcrypt( $request->input('password') );
+        $user->rol = "analista";
+        $user->save();
+        $user = User::where('email', $request->input('mail'))->first();
+
         $analista=new Analista;
         //'nombre' es obj creado del request
         $analista->Nombre=$request->get('Nombre');
         $analista->Papp=$request->get('ṔrimerApp');
         $analista->Sapp=$request->get('SegundoApp');
         $analista->Telefono=$request->get('Telefono');
-        $analista->ID_peticion=$request->get('ID_peticion'); //pendiente de quitar //
         $analista->condicion='1';
+        $analista->users_id = $user->id;
         $analista->save();
         //Después de guardar nos redireccionamos a la carpeta 
         return Redirect::to('revolution/analista'); 

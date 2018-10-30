@@ -27,7 +27,9 @@ class EmpresaFormRequest extends Request
             'Nombre'=>'required|max:45',
             'Giro'=>'required|max:45',
             'Direccion'=>'required|max:150',
-            'Telefono'=>'max:45'
+            'Telefono'=>'max:45',
+            'password' => 'required|min:6',
+            'password_confir' => 'required|min:6|same:password' 
         ];
     }
 }
