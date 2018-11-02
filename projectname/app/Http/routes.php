@@ -18,6 +18,11 @@ Route::get('/', function () {
 Route::get('/layouts', function () {
     return view('layouts.empresa');
 });
+
+Route::get('/layouts', function () {
+    return view('layouts.analista');
+});
+
 Route::get('/layouts/perfil', function () {
     return view('layouts.perfil');
 });

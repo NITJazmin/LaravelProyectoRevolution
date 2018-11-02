@@ -556,7 +556,7 @@ ALTER TABLE `Peticion`
 -- Filtros para la tabla `PortadaSocio`
 --
 ALTER TABLE `PortadaSocio`
-  ADD CONSTRAINT `PortadaSocio_ibfk_1` FOREIGN KEY (`ID_estudio`) REFERENCES `EstudioSocioE` (`ID_estudio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `PortadaSocio_ibfk_1` FOREIGN KEY (`ID_estudio`) REFERENCES `EstudioSocioE` (`ID_estudio`) ON DELETE NO ACTION ON UPDATE NO ACTION;d
 
 --
 -- Filtros para la tabla `Psicosocial`
