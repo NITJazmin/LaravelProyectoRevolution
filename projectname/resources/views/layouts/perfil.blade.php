@@ -17,9 +17,26 @@
 	</div>	
 </div><br><br>
 
-<div class="row">
-	<div class="col-md-12">
-		<div class="box" style=" border: 3px #FFC200 solid; width: 65%; position: left;">
+<div class="row" style="margin: auto; ">
+	<div class="col-md-2 col-md-offset-2" style="padding: 0;">
+		<div class="box" style=" border: 2.3px #35388D solid; border-width: 2.5px 0.5px 2.5px 2.5px;">
+			<div class="box-header with-border" >
+				<label>Datos Personales</label>
+			</div>
+			<div class="box-body">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12ss">
+							<label>hola</label>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+		
+	</div>
+	<div class="col-md-6" style="padding: 0; ">
+		<div class="box" style=" border: 2.3px #35388D solid; border-width: 2.5px 2.5px 2.5px 0.4px;">
 			<div class="box-header with-border">
 				<label>Datos Personales</label>
 			</div>

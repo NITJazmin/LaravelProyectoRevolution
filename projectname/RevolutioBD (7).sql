@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 29-10-2018 a las 03:46:33
+-- Tiempo de generación: 30-10-2018 a las 18:39:33
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.7
 
@@ -21,7 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `RevolutioBD`
 --
-
 -- -----------------------------------------------------
 DROP SCHEMA IF EXISTS `RevolutioBD` ;
 
@@ -30,11 +29,10 @@ DROP SCHEMA IF EXISTS `RevolutioBD` ;
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `RevolutioBD` DEFAULT CHARACTER SET utf8 ;
 USE `RevolutioBD` ;
-
+-- -----------------------------------------------------
 --
 -- Estructura de tabla para la tabla `Analista`
 --
-DROP TABLE IF EXISTS `Analista` ;
 
 CREATE TABLE `Analista` (
   `ID_analista` int(11) NOT NULL,
@@ -63,7 +61,6 @@ INSERT INTO `Analista` (`ID_analista`, `Nombre`, `Papp`, `Sapp`, `Telefono`, `co
 --
 -- Estructura de tabla para la tabla `CoordinadorRev`
 --
-DROP TABLE IF EXISTS `CoordinadorRev` ;
 
 CREATE TABLE `CoordinadorRev` (
   `ID_coordinador` int(11) NOT NULL,
@@ -90,7 +87,6 @@ INSERT INTO `CoordinadorRev` (`ID_coordinador`, `Nombre`, `Papp`, `Sapp`, `condi
 --
 -- Estructura de tabla para la tabla `DatosPersonales`
 --
-DROP TABLE IF EXISTS `DatosPersonales` ;
 
 CREATE TABLE `DatosPersonales` (
   `ID_datP` int(11) NOT NULL,
@@ -110,7 +106,6 @@ CREATE TABLE `DatosPersonales` (
 --
 -- Estructura de tabla para la tabla `Empleado`
 --
-DROP TABLE IF EXISTS `Empleado` ;
 
 CREATE TABLE `Empleado` (
   `ID_empleado` int(11) NOT NULL,
@@ -129,19 +124,18 @@ CREATE TABLE `Empleado` (
 --
 
 INSERT INTO `Empleado` (`ID_empleado`, `Nombre`, `Papp`, `Sapp`, `Telefono`, `puesto`, `ID_empresa`, `condicion`) VALUES
-(1, 'Carlos', 'aaa', 'aaaa', '02930', '', 1, 1),
-(2, '0', NULL, '0', '0', '0', 1, 0),
-(3, '1', NULL, '1', '1', '1', 2, 1),
-(4, 'asnk', NULL, 'jk', 'nl', 'nkj', 10, 0),
-(5, 'aa', NULL, 'a', 'a', 'a', 13, 0),
-(6, 'p', 'xxxxxx', 'pp', 'p', 'ninguno', 5, 1);
+(1, 'Carlos', 'Martinez', 'mondragon', '02930', 'Reclutador', 1, 1),
+(2, 'Ilse', 'Ramon', 'Garcia', '5553112', 'Analista', 1, 1),
+(3, 'Juan', 'Ramirez', 'Gomez', '0848291', 'Gerente', 2, 1),
+(4, 'Maria', 'Arana', 'Trujillo', '747291', 'Gerente', 10, 1),
+(5, 'Javier', 'Torres', 'Mera', '47514', 'Analista', 13, 1),
+(6, 'Pedro', 'Macias', 'Ramon', '740123', 'ninguno', 5, 1);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `Empresa`
 --
-DROP TABLE IF EXISTS `Empresa` ;
 
 CREATE TABLE `Empresa` (
   `ID_empresa` int(11) NOT NULL,
@@ -158,30 +152,17 @@ CREATE TABLE `Empresa` (
 --
 
 INSERT INTO `Empresa` (`ID_empresa`, `Nombre`, `Telefono`, `condicion`, `Giro`, `Direccion`) VALUES
-(1, 'Empresa1', '55378664', 1, 'Ropa', 'plaza jardin #100 colonia roma, cerca deperif'),
+(1, 'Empresa1', '55378664', 0, 'Ropa', 'plaza jardin #100 colonia roma, cerca deperif'),
 (2, 'Empresa numero dos', 'no hay', 1, NULL, NULL),
-(3, 'empresita', 'no hay', 0, NULL, NULL),
-(4, 'a', 's', 0, 's', 's'),
-(5, 'Came', '9381', 1, 'Comercio', 'hnsoa'),
-(6, 'Cosco', '9381', 1, 'Comercio', 'hnsoa'),
-(7, 'Cosia', '9381', 1, 'Comercio', 'hnsoa'),
-(8, 'Came', '9381', 1, 'Comercio', 'hnsoa'),
-(9, 'Revolution', '3712021', 1, 'recuirement', 'jdnkas9'),
+(5, 'Came', '9381', 0, 'Comercio', 'hnsoa'),
 (10, 'palacio', '231', 1, 'comercio', 'asnga23'),
-(11, 'palacio', '231', 1, 'comercio', 'asnga23'),
-(12, 'EJEMPLO', '34112', 1, 'DE EMPRESA', 'NSAARJ123'),
-(13, 'a', 'a', 1, 'a', 'a'),
-(14, 'z', 'z', 1, 'z', 'z'),
-(15, 'as', 'f', 1, 'f', 'f'),
-(16, 'as', 'f', 1, 'f', 'f'),
-(17, 'v', 'v', 1, 'v', 'v');
+(13, 'Nautica', '582013', 1, 'Ropa', '');
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `EstudioSocioE`
 --
-DROP TABLE IF EXISTS `EstudioSocioE` ;
 
 CREATE TABLE `EstudioSocioE` (
   `ID_estudio` int(11) NOT NULL,
@@ -200,10 +181,9 @@ CREATE TABLE `EstudioSocioE` (
 --
 -- Estructura de tabla para la tabla `migrations`
 --
-DROP TABLE IF EXISTS `migrations` ;
 
 CREATE TABLE `migrations` (
-  `migration` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -214,17 +194,15 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`migration`, `batch`) VALUES
 ('2014_10_12_000000_create_users_table', 1),
 ('2014_10_12_100000_create_password_resets_table', 1);
-
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `password_resets`
 --
-DROP TABLE IF EXISTS `password_resets` ;
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `token` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -233,7 +211,6 @@ CREATE TABLE `password_resets` (
 --
 -- Estructura de tabla para la tabla `Peticion`
 --
-DROP TABLE IF EXISTS `Peticion` ;
 
 CREATE TABLE `Peticion` (
   `ID_peticion` int(11) NOT NULL,
@@ -256,17 +233,18 @@ INSERT INTO `Peticion` (`ID_peticion`, `Nombre`, `FechaIni`, `FechaFin`, `Status
 (4, 'solicitud1', '2018-10-08', '2018-10-22', 'Terminado', NULL, 1, 5, 0, 0),
 (5, 'ESE', '2018-10-22', NULL, 'Proceso', NULL, 5, 1, 0, 1),
 (6, 'Vacante', '2018-10-14', '2018-10-15', 'Terminado', 'Caracteristicas de la vacante', 5, 6, 0, 1),
-(7, 'ESE', '2018-10-22', '2018-10-15', 'Proceso', 'sa', 3, 3, 8, 1);
+(7, 'ESE', '2018-10-22', '2018-10-15', 'Proceso', 'sa', 3, 3, 8, 1),
+(8, 'Vacante', '2018-10-29', NULL, 'proceso', '', 2, 5, NULL, 1),
+(9, 'ESE', '2018-10-27', NULL, 'proceso', 'A domicilio', 2, 5, NULL, 1);
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `PortadaSocio`
 --
-DROP TABLE IF EXISTS `PortadaSocio` ;
 
 CREATE TABLE `PortadaSocio` (
-  `ID_PortadaSocio` int(11) NOT NULL,
+  `ID_portadaSocio` int(11) NOT NULL,
   `ResumenTelefono` varchar(45) DEFAULT NULL,
   `ResumenPsicosocial` varchar(45) DEFAULT NULL,
   `FactorRiesgo` varchar(15) DEFAULT NULL,
@@ -285,7 +263,6 @@ CREATE TABLE `PortadaSocio` (
 --
 -- Estructura de tabla para la tabla `Psicosocial`
 --
-DROP TABLE IF EXISTS `Psicosocial` ;
 
 CREATE TABLE `Psicosocial` (
   `ID_Psicosocial` int(11) NOT NULL,
@@ -300,9 +277,33 @@ CREATE TABLE `Psicosocial` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `Reclutador`
+--
+
+CREATE TABLE `Reclutador` (
+  `ID_reclutador` int(11) NOT NULL,
+  `Nombre` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
+  `Papp` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
+  `Sapp` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
+  `Telefono` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
+  `condicion` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `Reclutador`
+--
+
+INSERT INTO `Reclutador` (`ID_reclutador`, `Nombre`, `Papp`, `Sapp`, `Telefono`, `condicion`) VALUES
+(4, 'Jocelin', '', '', '3456', 0),
+(5, 'nikole', 'torres', '', '789', 1),
+(6, 'ejemplo', 'reclutado', 'nuevo', '098654', 1),
+(7, 'JUANITO', 'PREZ', 'SOLANO', '042', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `RefLab`
 --
-DROP TABLE IF EXISTS `RefLab` ;
 
 CREATE TABLE `RefLab` (
   `ID_RefLab` int(11) NOT NULL,
@@ -331,7 +332,6 @@ CREATE TABLE `RefLab` (
 --
 -- Estructura de tabla para la tabla `RefPers`
 --
-DROP TABLE IF EXISTS `RefPers` ;
 
 CREATE TABLE `RefPers` (
   `ID_RefPers` int(11) NOT NULL,
@@ -351,7 +351,6 @@ CREATE TABLE `RefPers` (
 --
 -- Estructura de tabla para la tabla `users`
 --
-DROP TABLE IF EXISTS `users` ;
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
@@ -360,6 +359,7 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `rol` varchar(22) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 --
 -- Índices para tablas volcadas
@@ -428,7 +428,7 @@ ALTER TABLE `Peticion`
 -- Indices de la tabla `PortadaSocio`
 --
 ALTER TABLE `PortadaSocio`
-  ADD PRIMARY KEY (`ID_PortadaSocio`),
+  ADD PRIMARY KEY (`ID_portadaSocio`),
   ADD KEY `ID_estudio` (`ID_estudio`);
 
 --
@@ -437,6 +437,12 @@ ALTER TABLE `PortadaSocio`
 ALTER TABLE `Psicosocial`
   ADD PRIMARY KEY (`ID_Psicosocial`),
   ADD KEY `ID_estudio` (`ID_estudio`);
+
+--
+-- Indices de la tabla `Reclutador`
+--
+ALTER TABLE `Reclutador`
+  ADD PRIMARY KEY (`ID_reclutador`);
 
 --
 -- Indices de la tabla `RefLab`
@@ -491,7 +497,7 @@ ALTER TABLE `Empleado`
 -- AUTO_INCREMENT de la tabla `Empresa`
 --
 ALTER TABLE `Empresa`
-  MODIFY `ID_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID_empresa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `EstudioSocioE`
@@ -503,7 +509,13 @@ ALTER TABLE `EstudioSocioE`
 -- AUTO_INCREMENT de la tabla `Peticion`
 --
 ALTER TABLE `Peticion`
-  MODIFY `ID_peticion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_peticion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `Reclutador`
+--
+ALTER TABLE `Reclutador`
+  MODIFY `ID_reclutador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `RefLab`
@@ -521,7 +533,7 @@ ALTER TABLE `RefPers`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
@@ -556,15 +568,13 @@ ALTER TABLE `Peticion`
 -- Filtros para la tabla `PortadaSocio`
 --
 ALTER TABLE `PortadaSocio`
-  ADD CONSTRAINT `PortadaSocio_ibfk_1` FOREIGN KEY (`ID_estudio`) REFERENCES `EstudioSocioE` (`ID_estudio`) ON DELETE NO ACTION ON UPDATE NO ACTION;d
+  ADD CONSTRAINT `PortadaSocio_ibfk_1` FOREIGN KEY (`ID_estudio`) REFERENCES `EstudioSocioE` (`ID_estudio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `Psicosocial`
 --
 ALTER TABLE `Psicosocial`
   ADD CONSTRAINT `Psicosocial_ibfk_1` FOREIGN KEY (`ID_estudio`) REFERENCES `EstudioSocioE` (`ID_estudio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

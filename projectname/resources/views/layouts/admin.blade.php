@@ -57,14 +57,10 @@
                       jaz.jcm1@gmail.com - Desarrollando Software
                     </p>
                   </li>
+                  <li class="user-footer">
                   <li role="separator" class="divider"></li>
                   <li><a href="{{route('Cerrarsesion')}}">Cerrar sesión</a></li>                  
-                  <!-- Menu Footer-->
-                  <li class="user-footer">
-                    
-                    <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Cerrar</a>
-                    </div>
+                  <!-- Menu Footer-->                    
                   </li>
                 </ul>
               </li>
