@@ -48,7 +48,11 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <small class="bg-red">{{ auth()->user()->rol }}</small>
                   <span class="hidden-xs">
-                    Ejemplo de nombre
+                    @if (isset($datos))
+                      {{$datos->Nombre}}
+                    @else
+                      Nombre
+                    @endif
                   </span>
                 </a>
                 <ul class="dropdown-menu">
@@ -56,12 +60,19 @@
                   <li class="user-header">
                     
                     <p>
-                      {{ auth()->user()->email }} - Desarrollando Software
+                      @if (isset($datos))
+                        {{ auth()->user()->email }} - {{$datos->Nombre}}
+                        {{$datos->Papp}}
+                        {{$datos->Sapp}}
+                      @else
+                        {{ auth()->user()->email }} - Desarrollo
+                      @endif
                     </p>
                   </li>
                   <li class="user-footer">
                   <li role="separator" class="divider"></li>
-                  <li><a href="{{route('Cerrarsesion')}}">Cerrar sesión</a></li>                  
+                  <li><a href="{{ route('Cerrarsesion') }}">Cerrar sesión</a>
+                  </li>                  
                   <!-- Menu Footer-->                    
                   </li>
                 </ul>

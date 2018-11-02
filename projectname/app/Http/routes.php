@@ -19,13 +19,11 @@ Route::get('/layouts', function () {
     return view('layouts.empresa');
 });
 
-Route::get('/layouts', function () {
+Route::get('/layouts/analista', function () {
     return view('layouts.analista');
 });
 
-Route::get('/layouts/perfil', function () {
-    return view('layouts.perfil');
-});
+Route::get('/layouts/perfil', ['uses'=> 'CoordinadorRevController@post_Login', 'as'=>'coordinador']);
 
 Route::get('/revolution', function () {
     return view('revolution.construccion');

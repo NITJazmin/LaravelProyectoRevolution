@@ -12,7 +12,11 @@
 	<div class="col-lg-12">
 		<div style="text-align: center; font-size: 29px;">
 			<h2>Bienvenido</h2>
-			<label>Nombre de usuario</label>
+			<label>
+				{{$datos->Nombre}}
+				{{$datos->Papp}}
+				{{$datos->Sapp}}
+			</label>
 		</div>
 	</div>	
 </div><br><br>

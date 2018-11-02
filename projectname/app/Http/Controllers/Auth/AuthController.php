@@ -73,12 +73,12 @@ class AuthController extends Controller
 
         $credenciales = $request->only($this->loginUsername(), 'password');
         if ($request->has('remember')) {
-            if (Auth::attempt($credenciales,$request->has('remember'))) {
+            if (Auth::attempt($credenciales, true)) {
                 $this->redireccion($credenciales);
             }
         }
         else{
-            if (Auth::attempt($credenciales)) {
+            if (Auth::attempt($credenciales, false)) {
                 return $this->redireccion($credenciales);
             }
         }
@@ -95,7 +95,7 @@ class AuthController extends Controller
         $user = User::where('email', $credenciales['email'])->first();
         switch ($user->rol) {
             case 'coordinador':
-                $this->redirectTo = '/layouts/perfil/';
+                return redirect()->route('coordinador');
                 break;
             case 'analista':
                 $this->redirectTo = '/revolution/analista/';
@@ -107,7 +107,7 @@ class AuthController extends Controller
                 $this->redirectTo = '/revolution/empresa/';
                 break;
         }
-        return redirect()->intended($this->redirectPath())->with(['user' => $user]);
+        return redirect()->intended($this->redirectTo);
 
     }
 }

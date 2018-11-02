@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\CoordinadorRev;
-use App\User;
+use Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\CoordinadorRevFormRequest;
 use DB;
@@ -62,20 +62,7 @@ class CoordinadorRevController extends Controller
         $user->rol = "coordinador";
         $user->save();
         $user = User::where('email', $request->input('mail'))->first();
-        /*
-        Acceder a los datos del usuario autenticado
 
-        Una vez que el usuario está autenticado podemos acceder a los datos del mismo a través del método Auth::user(), por ejemplo:
-
-        user = Auth::user();
-
-        Este método nos devolverá null en caso de que no esté autenticado. Si estamos seguros de que el usuario está autenticado (porque estamos en una ruta protegida) podremos acceder directamente a sus propiedades:
-
-        $email = Auth::user()->email;
-
-        use Auth;
-
-        */
         $coordinador=new CoordinadorRev;
         //'nombre' es obj creado del request
         $coordinador->Nombre=$request->get('Nombre');
@@ -139,5 +126,12 @@ class CoordinadorRevController extends Controller
         $coordinador->condicion='0';
         $coordinador->save();
         return Redirect::to('revolution/coordinador');
+    }
+
+    public function post_Login()
+    {
+        $user = Auth::user();
+        $coor = CoordinadorRev::findOrFail($user->id);
+        return view('layouts.perfil', ['user'=>$user, 'datos'=>$coor]);
     }
 }
