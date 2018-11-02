@@ -46,15 +46,17 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <small class="bg-red">Usuario</small>
-                  <span class="hidden-xs">Ejemplo de nombre</span>
+                  <small class="bg-red">{{ auth()->user()->rol }}</small>
+                  <span class="hidden-xs">
+                    Ejemplo de nombre
+                  </span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     
                     <p>
-                      jaz.jcm1@gmail.com - Desarrollando Software
+                      {{ auth()->user()->email }} - Desarrollando Software
                     </p>
                   </li>
                   <li role="separator" class="divider"></li>

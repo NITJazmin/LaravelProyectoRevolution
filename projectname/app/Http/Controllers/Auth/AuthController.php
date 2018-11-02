@@ -80,7 +80,6 @@ class AuthController extends Controller
         else{
             if (Auth::attempt($credenciales)) {
                 return $this->redireccion($credenciales);
-                $this->redireccion($credenciales);
             }
         }
         return redirect($this->loginPath())
@@ -108,7 +107,7 @@ class AuthController extends Controller
                 $this->redirectTo = '/revolution/empresa/';
                 break;
         }
-        return redirect()->intended($this->redirectPath());
+        return redirect()->intended($this->redirectPath())->with(['user' => $user]);
 
     }
 }
