@@ -14,6 +14,7 @@ class CoordinadorRev extends Model
     	'Nombre',
     	'Papp',
     	'Sapp',
+        'foto',
     	'condicion'
     ];
 
