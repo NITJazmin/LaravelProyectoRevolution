@@ -137,8 +137,8 @@ class CoordinadorRevController extends Controller
     public function post_Login()
     {
         $user = Auth::user();
-        $coor = CoordinadorRev::where('users_id',$user->id)->first();
-        return view('layouts.perfil', ['user'=>$user, 'datos'=>$coor]);
+        $coor = CoordinadorRev::where('users_id', $user->id)->first();
+        return view('layouts.perfil_coordinador', ['user'=>$user, 'datos'=>$coor]);
     }
 
     

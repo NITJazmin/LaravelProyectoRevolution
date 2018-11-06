@@ -41,7 +41,7 @@
                     <br>
                     <br>
                     <div class="link">
-                        <a href="#">¿Olvidaste tu contraseña?</a>
+                        <a href="/password/email">¿Olvidaste tu contraseña?</a>
                     </div>
                 </div>
             </div>

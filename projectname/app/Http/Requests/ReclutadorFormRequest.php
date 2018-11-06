@@ -28,6 +28,8 @@ class ReclutadorFormRequest extends Request
             'Papp'=>'max:45',
             'Sapp'=>'max:45',
             'Telefono'=>'max:45',
+            'password' => 'required|min:6',
+            'password_confir' => 'required|min:6|same:password'
         ];
     }
 }

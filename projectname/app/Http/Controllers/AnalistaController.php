@@ -10,6 +10,7 @@ use App\Http\Requests\AnalistaFormRequest;
 use Illuminate\Support\Facades\Redirect;
 use App\Analista;
 use App\User;
+use Auth;
 use DB;
 
 
@@ -133,6 +134,13 @@ class AnalistaController extends Controller
         $analista->condicion='0';
         $analista->update();
         return Redirect::to('revolution/analista');
+    }
+
+    public function post_Login()
+    {
+        $user = Auth::user();
+        $analista = Analista::where('users_id', $user->id)->first();
+        return view('layouts.perfil_analista', ['user'=>$user, 'datos'=>$analista]);
     }
 
     

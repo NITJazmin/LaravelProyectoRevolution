@@ -71,8 +71,7 @@
                   </li>
                   <li class="user-footer">
                   <li role="separator" class="divider"></li>
-                  <li><a href="{{ route('Cerrarsesion') }}">Cerrar sesión</a>
-                  </li>                  
+                  <li><a href="{{ route('Cerrarsesion') }}">Cerrar sesión</a></li>                  
                   <!-- Menu Footer-->                    
                   </li>
                 </ul>
@@ -96,7 +95,7 @@
             <li class="treeview"><a href="#"><i class="fa fa-qrcode"></i>
                 <span>Inicio</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href="/layouts/perfil"><i class="fa fa-circle-o"></i> Ver Perfil</a></li>
+                <li><a href="{{route('coordinador')}}"><i class="fa fa-circle-o"></i> Ver Perfil</a></li>
                 <li><a href="/revolution/"><i class="fa fa-circle-o"></i> Editar Perfil</a></li>
               </ul>
             </li>

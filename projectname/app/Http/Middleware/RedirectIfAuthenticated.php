@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 use Illuminate\Contracts\Auth\Guard;
 
 class RedirectIfAuthenticated
@@ -35,7 +36,19 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next)
     {
         if ($this->auth->check()) {
-            return redirect('/revolution/coordinador');
+            $user = Auth::user();
+            switch ($user->rol) {
+                case 'coordinador':
+                    return redirect()->route('coordinador');
+                case 'analista':
+                    return redirect()->route('analista');
+                case 'empleado':
+                    $this->redirectTo = '/revolution/empleado/';
+                    break;
+                case 'empleado':
+                    $this->redirectTo = '/revolution/empresa/';
+                    break;
+            }            
         }
 
         return $next($request);

@@ -72,21 +72,23 @@ class AuthController extends Controller
         ]);
 
         $credenciales = $request->only($this->loginUsername(), 'password');
-        if ($request->has('remember')) {
-            if (Auth::attempt($credenciales, true)) {
-                $this->redireccion($credenciales);
+        if (Auth::attempt($credenciales)) {
+            if ($request->has('remember')) {
+                Auth::login(Auth::user()->id, true);
+                return $this->redireccion($credenciales);
+            }
+            else{
+                return $this->redireccion($credenciales);   
             }
         }
         else{
-            if (Auth::attempt($credenciales, false)) {
-                return $this->redireccion($credenciales);
-            }
+
+            return redirect($this->loginPath())
+                ->withInput($request->only($this->loginUsername(), 'remember'))
+                ->withErrors([
+                    $this->loginUsername() => $this->getFailedLoginMessage(),
+                ]);
         }
-        return redirect($this->loginPath())
-            ->withInput($request->only($this->loginUsername(), 'remember'))
-            ->withErrors([
-                $this->loginUsername() => $this->getFailedLoginMessage(),
-            ]);
 
     }
 
@@ -96,16 +98,12 @@ class AuthController extends Controller
         switch ($user->rol) {
             case 'coordinador':
                 return redirect()->route('coordinador');
-                break;
             case 'analista':
-                $this->redirectTo = '/revolution/analista/';
-                break;
+                return redirect()->route('analista');
             case 'empleado':
-                $this->redirectTo = '/revolution/empleado/';
-                break;
-            case 'empleado':
-                $this->redirectTo = '/revolution/empresa/';
-                break;
+                return redirect()->route('cliente');
+            case 'reclutador':
+                return redirect()->route('reclutador');
         }
         return redirect()->intended($this->redirectTo);
 
