@@ -19,11 +19,11 @@ Route::get('/layouts', function () {
     return view('layouts.empresa');
 });
 
-Route::get('/layouts/analista', function () {
-    return view('layouts.analista');
-});
 
-Route::get('/layouts/perfil', ['uses'=> 'CoordinadorRevController@post_Login', 'as'=>'coordinador']);
+Route::get('/revolution/coordinador/inicio', ['uses'=> 'CoordinadorRevController@post_Login', 'as'=>'coordinador']);
+Route::get('/revolution/analista/inicio', ['uses'=> 'AnalistaController@post_Login', 'as'=>'analista']);
+Route::get('/revolution/reclutador/inicio', ['uses'=> 'ReclutadorController@post_Login', 'as'=>'reclutador']);
+Route::get('/cliente/show', ['uses'=>'EmpleadoController@show', 'as'=>'cliente']);
 
 Route::get('/revolution', function () {
     return view('revolution.construccion');
@@ -39,14 +39,19 @@ Route::resource('revolution/reclutador','ReclutadorController');
 
 Route::get('/cliente/solicitud','PeticionController@show');
 Route::get('/cliente/create','PeticionController@create');
-Route::get('/cliente/show','EmpleadoController@show');
+
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@authenticated');
-Route::get('auth/logout', [
-	'uses' => 'Auth\AuthController@getLogout',
-	'as' => 'Cerrarsesion'
-]);
+Route::get('auth/logout', ['uses' => 'Auth\AuthController@getLogout','as' => 'Cerrarsesion']);
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');

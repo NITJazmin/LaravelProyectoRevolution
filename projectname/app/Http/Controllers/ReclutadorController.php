@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 Use App\Reclutador;
+use App\User;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ReclutadorFormRequest;
+use Auth;
 Use DB;
 
 class ReclutadorController extends Controller
@@ -50,6 +52,13 @@ class ReclutadorController extends Controller
      */
     public function store(ReclutadorFormRequest $request)
     {
+        $user = new User;
+        $user->email = $request->input('mail');
+        $user->password = bcrypt( $request->input('password') );
+        $user->rol = "reclutador";
+        $user->save();
+        $user = User::where('email', $request->input('mail'))->first();
+
         $reclutador= new Reclutador;
         $reclutador->Nombre=$request->get('Nombre');
         $reclutador->Papp=$request->get('Papp');
@@ -112,5 +121,12 @@ class ReclutadorController extends Controller
         $reclutador->condicion='0';
         $reclutador->update();
         return Redirect::to('revolution/reclutador');
+    }
+
+    public function post_Login()
+    {
+        $user = Auth::user();
+        $recluta = Reclutador::where('users_id', $user->id)->first();
+        return view('layouts.perfil_reclutador', ['user'=>$user, 'datos'=>$recluta]);
     }
 }

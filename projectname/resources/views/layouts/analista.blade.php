@@ -25,7 +25,7 @@
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="index.html" class="logo">
+        <a href="/" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>REV</b></span>
           <!-- logo for regular state and mobile devices -->
@@ -46,24 +46,34 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <small class="bg-red">Usuario</small>
-                  <span class="hidden-xs">Ejemplo de nombre</span>
+                  <small class="bg-red">{{ auth()->user()->rol }}</small>
+                  <span class="hidden-xs">
+                    @if (isset($datos))
+                      {{$datos->Nombre}}
+                    @else
+                      Nombre
+                    @endif
+                  </span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     
                     <p>
-                      jaz.jcm1@gmail.com - Desarrollando Software
+                      @if (isset($datos))
+                        {{ auth()->user()->email }} - {{$datos->Nombre}}
+                        {{$datos->Papp}}
+                        {{$datos->Sapp}}
+                      @else
+                        {{ auth()->user()->email }} - Desarrollo
+                      @endif
                     </p>
                   </li>
                   
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                    
-                    <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Cerrar</a>
-                    </div>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{{ route('Cerrarsesion') }}">Cerrar sesión</a></li>
                   </li>
                 </ul>
               </li>
@@ -86,7 +96,7 @@
             <li class="treeview"><a href="#"><i class="fa fa-qrcode"></i>
                 <span>Inicio</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li><a href=""><i class="fa fa-circle-o"></i> Ver Perfil</a></li>
+                <li><a href="{{route('analista')}}"><i class="fa fa-circle-o"></i> Ver Perfil</a></li>
                 <li><a href=""><i class="fa fa-circle-o"></i> Editar Perfil</a></li>
               </ul>
             </li>
@@ -171,6 +181,8 @@
     <script src="{{asset('js2/bootstrap.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{asset('js2/app.min.js')}}"></script>
+    <!-- Plugin para validar form-->
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
     
   </body>
 </html>

@@ -5,6 +5,7 @@ namespace Illuminate\Foundation\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
+use Cookie;
 
 trait AuthenticatesUsers
 {
@@ -116,8 +117,12 @@ trait AuthenticatesUsers
     public function getLogout()
     {
         Auth::logout();
+        // Get remember_me cookie name
+        $rememberMeCookie = Auth::getRecallerName();
+        // Tell Laravel to forget this cookie
+        $cookie = Cookie::forget($rememberMeCookie);
 
-        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
+        return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/')->withCookie($cookie);;
     }
 
     /**

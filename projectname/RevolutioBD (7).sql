@@ -143,8 +143,7 @@ CREATE TABLE `Empresa` (
   `Telefono` varchar(45) DEFAULT NULL,
   `condicion` int(1) DEFAULT NULL,
   `Giro` varchar(45) DEFAULT NULL,
-  `Direccion` varchar(150) DEFAULT NULL,
-  `users_id` int(11) NOT NULL
+  `Direccion` varchar(150) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -286,7 +285,8 @@ CREATE TABLE `Reclutador` (
   `Papp` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
   `Sapp` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
   `Telefono` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
-  `condicion` int(1) NOT NULL
+  `condicion` int(1) NOT NULL,
+  `users_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 --
@@ -398,8 +398,7 @@ ALTER TABLE `Empleado`
 -- Indices de la tabla `Empresa`
 --
 ALTER TABLE `Empresa`
-  ADD PRIMARY KEY (`ID_empresa`),
-  ADD KEY `fk_Empresa_users1_idx` (`users_id`);
+  ADD PRIMARY KEY (`ID_empresa`);
 
 --
 -- Indices de la tabla `EstudioSocioE`
@@ -442,7 +441,8 @@ ALTER TABLE `Psicosocial`
 -- Indices de la tabla `Reclutador`
 --
 ALTER TABLE `Reclutador`
-  ADD PRIMARY KEY (`ID_reclutador`);
+  ADD PRIMARY KEY (`ID_reclutador`),
+  ADD KEY `fk_Reclutador_users1_idx` (`users_id`);
 
 --
 -- Indices de la tabla `RefLab`
@@ -533,7 +533,7 @@ ALTER TABLE `RefPers`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
