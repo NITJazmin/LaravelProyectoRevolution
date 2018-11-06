@@ -15,6 +15,7 @@ class Reclutador extends Model
     	'Papp',
     	'Sapp',
     	'Telefono',
+        'foto',
     	'condicion'
     ];
 }

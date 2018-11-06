@@ -9,6 +9,8 @@ use App\CoordinadorRev;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\CoordinadorRevFormRequest;
+use Illuminate\Support\Facades\Input;
+use App\User;
 use DB;
 
 class CoordinadorRevController extends Controller
@@ -68,6 +70,7 @@ class CoordinadorRevController extends Controller
         $coordinador->Nombre=$request->get('Nombre');
         $coordinador->Papp=$request->get('Papp');
         $coordinador->Sapp=$request->get('Sapp');
+        $coordinador->foto='imagenes/user-profile-icon.jpg';
         $coordinador->condicion='1';
         $coordinador->users_id = $user->id;
         $coordinador->save();
@@ -94,6 +97,11 @@ class CoordinadorRevController extends Controller
      */
     public function edit($id)
     {
+        /*if (Input::hasFile('foto')){
+            $file=Input::file('foto');
+            $file->move(public_path(), '/imagenes/fotos/',$file->getClienteOriginalName());
+            $coordinador->foto=$file->getClienteOriginalName();
+        }*/
         return view("revolution.coordinador.edit",["coordinador"=>CoordinadorRev::findOrFail($id)]);
     }
 
@@ -123,15 +131,15 @@ class CoordinadorRevController extends Controller
     public function destroy($id)
     {
        $coordinador=CoordinadorRev::findOrFail($id);
-        $coordinador->condicion='0';
-        $coordinador->save();
-        return Redirect::to('revolution/coordinador');
+       $coordinador->condicion='0';
+       $coordinador->save();
+       return Redirect::to('revolution/coordinador');
     }
 
     public function post_Login()
     {
         $user = Auth::user();
-        $coor = CoordinadorRev::findOrFail($user->id);
+        $coor = CoordinadorRev::where('users_id',$user->id)->first();
         return view('layouts.perfil', ['user'=>$user, 'datos'=>$coor]);
     }
 }

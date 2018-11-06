@@ -46,20 +46,37 @@
               <!-- User Account: style can be found in dropdown.less -->
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <small class="bg-red">Usuario</small>
-                  <span class="hidden-xs">Ejemplo de nombre</span>
+                  <small class="bg-red"><?php echo e(auth()->user()->rol); ?></small>
+                  <span class="hidden-xs">
+                    <?php if(isset($datos)): ?>
+                      <?php echo e($datos->Nombre); ?>
+
+                    <?php else: ?>
+                      Nombre
+                    <?php endif; ?>
+                  </span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     
                     <p>
-                      jaz.jcm1@gmail.com - Desarrollando Software
+                      <?php if(isset($datos)): ?>
+                        <?php echo e(auth()->user()->email); ?> - <?php echo e($datos->Nombre); ?>
+
+                        <?php echo e($datos->Papp); ?>
+
+                        <?php echo e($datos->Sapp); ?>
+
+                      <?php else: ?>
+                        <?php echo e(auth()->user()->email); ?> - Desarrollo
+                      <?php endif; ?>
                     </p>
                   </li>
                   <li class="user-footer">
                   <li role="separator" class="divider"></li>
-                  <li><a href="<?php echo e(route('Cerrarsesion')); ?>">Cerrar sesión</a></li>                  
+                  <li><a href="<?php echo e(route('Cerrarsesion')); ?>">Cerrar sesión</a>
+                  </li>                  
                   <!-- Menu Footer-->                    
                   </li>
                 </ul>

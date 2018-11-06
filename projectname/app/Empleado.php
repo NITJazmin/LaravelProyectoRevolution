@@ -17,6 +17,7 @@ class Empleado extends Model
     	'Telefono',
         'puesto',
     	'ID_empresa',
+        'foto',
     	'condicion'
     ];
 }
