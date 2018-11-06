@@ -27,10 +27,8 @@ class CoordinadorRevController extends Controller
         {
            $query=trim($request->get('searchText'));
            $coordinador=DB::table('CoordinadorRev')
-           ->where('Nombre','LIKE','%'.$query.'%')
-           ->orwhere('Papp','LIKE','%'.$query.'%')
-           ->orwhere('Sapp','LIKE','%'.$query.'%')
            ->where('condicion','=','1')
+           ->where('Nombre','LIKE','%'.$query.'%')
            ->orderBy('ID_coordinador','asc')
            -> paginate(15);
            return view('revolution.coordinador.index',["coordinador"=>$coordinador,"searchText"=>$query])->with('vista',$vista);
@@ -142,4 +140,6 @@ class CoordinadorRevController extends Controller
         $coor = CoordinadorRev::where('users_id',$user->id)->first();
         return view('layouts.perfil', ['user'=>$user, 'datos'=>$coor]);
     }
+
+    
 }
