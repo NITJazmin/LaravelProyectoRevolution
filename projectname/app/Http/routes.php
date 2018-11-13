@@ -23,12 +23,11 @@ Route::get('/layouts', function () {
 Route::get('/revolution/coordinador/inicio', ['uses'=> 'CoordinadorRevController@post_Login', 'as'=>'coordinador']);
 Route::get('/revolution/analista/inicio', ['uses'=> 'AnalistaController@post_Login', 'as'=>'analista']);
 Route::get('/revolution/reclutador/inicio', ['uses'=> 'ReclutadorController@post_Login', 'as'=>'reclutador']);
-Route::get('/cliente/show', ['uses'=>'EmpleadoController@show', 'as'=>'cliente']);
+Route::get('/cliente/inicio', ['uses'=>'EmpleadoController@post_Login', 'as'=>'cliente']);
 
 Route::get('/revolution', function () {
     return view('revolution.construccion');
 });
-
 
 Route::resource('revolution/analista','AnalistaController');
 Route::resource('revolution/coordinador','CoordinadorRevController');
@@ -36,9 +35,8 @@ Route::resource('revolution/empleado','EmpleadoController');
 Route::resource('revolution/empresa','EmpresaController');
 Route::resource('revolution/peticion','PeticionController');
 Route::resource('revolution/reclutador','ReclutadorController');
-
-Route::get('/cliente/solicitud','PeticionController@show');
-Route::get('/cliente/create','PeticionController@create');
+Route::resource('cliente/peticion','PeticionController');
+Route::resource('cliente/empleado','EmpleadoController');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

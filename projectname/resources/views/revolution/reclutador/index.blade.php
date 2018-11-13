@@ -26,8 +26,8 @@
 							</td>
 							<td>{{$recl->Telefono}}</td>
 							<td>
-								
-					 			<a href="{{URL::action('ReclutadorController@edit',$recl->ID_reclutador)}} "><button class="btn btn-primary"> Editar </button></a>
+								<?php $procedencia="index"; ?>
+					 			<a href="{{URL::action('ReclutadorController@edit',array($recl->ID_reclutador,'procedencia'=>$procedencia))}} "><button class="btn btn-primary"> Editar </button></a>
 
 					 			<button type="button" data-target="#modal-delete-{{$recl->ID_reclutador}}" data-toggle="modal" class="btn btn-danger">Eliminar</button>
 							</td>

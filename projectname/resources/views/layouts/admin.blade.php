@@ -87,7 +87,7 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- Sidebar user panel -->
-                    
+          <?php $procedencia='revolution'; ?>       
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header"></li>
@@ -96,7 +96,6 @@
                 <span>Inicio</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
                 <li><a href="{{route('coordinador')}}"><i class="fa fa-circle-o"></i> Ver Perfil</a></li>
-                <li><a href="/revolution/"><i class="fa fa-circle-o"></i> Editar Perfil</a></li>
               </ul>
             </li>
             <li class="treeview"><a href="#"><i class="fa fa-child"></i>
@@ -140,8 +139,9 @@
               <ul class="treeview-menu">
                 <li><a href="/revolution/empresa/"><i class="fa fa-circle-o"></i>Ver Empresas</a></li>
                 <li><a href="/revolution/empresa/create"><i class="fa fa-circle-o"></i>Agregar Nuevo</a></li>
-                <li><a href="/revolution/empleado/"><i class="fa fa-circle-o"></i>Empleados</a></li>
-                <li class="active"><a href="/revolution/peticion/"><i class="fa fa-eye""></i> Ver Solicitudes</a></li>
+                <li><a href="{{URL::action('EmpleadoController@index',array('procedencia'=>$procedencia))}}"><i class="fa fa-circle-o"></i>Empleados</a></li>
+                
+                <li class="active"><a href="{{URL::action('PeticionController@index',array('procedencia'=>$procedencia))}}"><i class="fa fa-eye""></i> Ver Solicitudes</a></li>
                  
               </ul>
             </li>

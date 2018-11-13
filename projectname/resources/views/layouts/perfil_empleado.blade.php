@@ -1,12 +1,10 @@
 @extends('layouts.empresa')
-
 @section('contenido')
 
 <div class="row">
 		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12"> 
 			<h3 style="font-size:20px;">Inicio de Cliente</h3>
 		</div>
-		
 </div>		
 
 <div class="row">
@@ -22,41 +20,38 @@
 	</div>	
 </div><br><br>
 
-<div class="row" style="margin: auto; ">
-	<div class="col-md-2 col-md-offset-2" style="padding: 0;">
-		<div class="box" style=" border: 2.3px #35388D solid; border-width: 2.5px 0.5px 2.5px 2.5px;">
-			<div class="box-header with-border" >
-				<label>Datos Personales</label>
-			</div>
-			<div class="box-body">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12ss">
-							<label>hola</label>
-						</div>
-					</div>
-				</div>
-			</div>	
-		</div>
-		
+<div class="row">
+	<div class="col-lg-12">
+		<div class="table-responsive">
+			<table class="table table-bordered"   style="margin: auto; text-align: center; width: 60%;">
+				<thead style="color: #fff; background-color: #35388D" >
+					<th>Datos Personales</th>						
+				</thead>
+				<tbody>
+					<table class="table "   style="margin: auto; width: 60%">
+						<tr>
+							<td height="150" style="text-align: center;"><br>
+								<img src="{{asset('imagenes/'.$datos->foto)}}" style="height: 70%;">
+							</td>
+							<td style="text-align: justify;"><br><br>
+								<label>Nombre:</label> {{$datos->Nombre}} {{$datos->Papp}} {{$datos->Sapp}}<br>
+                        		<label>e-mail:</label> {{ auth()->user()->email }} <br>
+                        		<label>Telefono: </label> {{$datos->telefono}}
+                        		<tr>
+                        			<td></td>
+                        			<td style="text-align: right;">
+                        				<?php $procedencia="perfil"; ?>
+                        			<a href="{{URL::action('EmpleadoController@edit',array($datos->ID_empleado,'procedencia'=>$procedencia))}}"><button class="btn btn-primary">Editar</button>
+                        				</a>
+                        			</td>
+                        		</tr>
+                        	</td>
+						</tr>
+					</table>
+				</tbody>			
+			</table>
 	</div>
-	<div class="col-md-6" style="padding: 0; ">
-		<div class="box" style=" border: 2.3px #35388D solid; border-width: 2.5px 2.5px 2.5px 0.4px;">
-			<div class="box-header with-border">
-				<label>Datos Personales</label>
-			</div>
-			<div class="box-body">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12ss">
-							<label>hola</label>
-						</div>
-					</div>
-				</div>
-			</div>	
-		</div>
-		
-	</div>	
 </div>
+
 
 @endsection

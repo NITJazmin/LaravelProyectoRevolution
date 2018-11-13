@@ -57,7 +57,24 @@
 				</select>
 			</div>
 		</div>
-
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div class="form-group">
+				<label for="mail">Correo</label>
+				<input type="mail" name="mail" class="form-control" placeholder="example@mail.com" required>
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div class="form-group">
+				<label for="password">Contraseña</label>
+				<input type="password" name="password" class="form-control" minlength="6" maxlength="16" required>
+			</div>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+			<div class="form-group">
+				<label for="password_confir">Confirma contraseña</label>
+				<input type="password" name="password_confir" class="form-control" minlength="6" maxlength="16" required>
+			</div>
+		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
 				<button class="btn btn-primary">Aceptar</button>

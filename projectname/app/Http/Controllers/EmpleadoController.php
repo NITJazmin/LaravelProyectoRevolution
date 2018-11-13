@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\EmpleadoFormRequest;
-use App\Empleado;
+use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
+use App\Empleado;
+use App\User;
+use Session;
+use Auth;
 use DB;
 
 class EmpleadoController extends Controller
@@ -20,18 +25,24 @@ class EmpleadoController extends Controller
     public function index(Request $request)
     {
         $vista="empleado";
+        $procedencia=$_GET['procedencia'];
+
         if ($request)
         {
-           $query=trim($request->get('searchText'));
-           $empleado=DB::table('Empleado as empl')
-           ->join('Empresa','empl.ID_empresa','=','Empresa.ID_empresa')
-           ->select('empl.*','Empresa.Nombre as empresa','Empresa.condicion')
-           ->where('empl.condicion','=','1')
-           ->where('Empresa.condicion','=','1')
-           ->where('empl.Nombre','LIKE','%'.$query.'%')          
-           ->orderBy('Empresa.Nombre','asc')
-           -> paginate(15);
-           return view('revolution.empleado.index',["empleado"=>$empleado,"searchText"=>$query])->with('vista',$vista);
+            $query=trim($request->get('searchText'));
+            $empleado=DB::table('Empleado as empl')
+            ->join('Empresa','empl.ID_empresa','=','Empresa.ID_empresa')
+            ->select('empl.*','Empresa.Nombre as empresa','Empresa.condicion')
+            ->where('empl.condicion','=','1')
+            ->where('Empresa.condicion','=','1')
+            ->where('empl.Nombre','LIKE','%'.$query.'%')          
+            ->orderBy('Empresa.Nombre','asc')
+            -> paginate(15);
+            if($procedencia=='revolution'){
+                return view('revolution.empleado.index',["empleado"=>$empleado,"searchText"=>$query])->with('vista',$vista);
+            }
+            else
+                return "ok";
         }
     }
 
@@ -54,6 +65,13 @@ class EmpleadoController extends Controller
      */
     public function store(EmpleadoFormRequest $request)
     {
+        $user = new User;
+        $user->email = $request->input('mail');
+        $user->password = bcrypt( $request->input('password') );
+        $user->rol = "cliente";
+        $user->save();
+        $user = User::where('email', $request->input('mail'))->first();
+
         $empleado=new Empleado;
         //'nombre' es obj creado del request
         $empleado->Nombre=$request->get('Nombre');
@@ -62,11 +80,16 @@ class EmpleadoController extends Controller
         $empleado->Telefono=$request->get('Telefono');
         $empleado->puesto=$request->get('puesto');
         $empleado->ID_empresa=$request->get('ID_empresa');
+        $empleado->foto='user-profile-icon.jpg';
         $empleado->condicion='1';
+        $empleado->users_id = $user->id;
         $empleado->save();
-        //Después de guardar nos redireccionamos a la carpeta 
+
+        
+        
         return Redirect::to('revolution/empleado'); 
     }
+
 
     /**
      * Display the specified resource.
@@ -100,11 +123,19 @@ class EmpleadoController extends Controller
      */
     public function edit($id)
     {
+        $procedencia=$_GET['procedencia'];  
         $empleado=Empleado::findOrFail($id);
         $empresa=DB::table('Empresa')
         ->where('condicion','=','1')
         ->get();
-        return view("revolution.empleado.edit",["empleado"=>$empleado,"empresa"=>$empresa]);
+
+        if ($procedencia=='perfil') {
+             return view("cliente.editPerfil",["empleado"=>$empleado]);
+        }
+        elseif($procedencia=='index'){
+            return view("revolution.empleado.edit",["empleado"=>$empleado,"empresa"=>$empresa]);
+        }
+        
     }
 
     /**
@@ -114,17 +145,29 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EmpleadoFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $empleado=Empleado::findOrFail($id);
+        $procedencia=$_POST['procedencia'];
 
+        $empleado=Empleado::findOrFail($id);
         $empleado->Nombre=$request->get('Nombre');
         $empleado->Papp=$request->get('Papp');
         $empleado->Sapp=$request->get('Sapp');
         $empleado->Telefono=$request->get('Telefono');
         $empleado->puesto=$request->get('puesto');
+        if (Input::hasFile('foto')){
+            $file = Input::file('foto');
+            $file->move(public_path().'/imagenes/',$file->getClientOriginalName());
+            $empleado->foto = $file->getClientOriginalName();
+        }
         $empleado->update();
-        return Redirect::to('revolution/empleado');
+
+        if ($procedencia=='edit') {
+            return Redirect::to('revolution/empleado');
+        }
+        else
+            return Redirect::to('cliente/inicio');
+        
     }
 
     /**
@@ -142,5 +185,15 @@ class EmpleadoController extends Controller
         return Redirect::to('revolution/empleado');
     }
 
+    public function post_Login()
+    {
+        $user = Auth::user();
+        $empleado = Empleado::where('users_id', $user->id)->first();
+        if ($empleado->condicion===0) {
+            return Redirect::to('auth/login');
+        }
+        Session::put('ID_empleado',$empleado->ID_empleado);
+        return view('layouts.perfil_empleado', ['user'=>$user, 'datos'=>$empleado]);
+    }
 
 }

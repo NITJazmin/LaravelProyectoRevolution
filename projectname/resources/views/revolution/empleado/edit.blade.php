@@ -64,6 +64,12 @@
 				<button class="btn btn-danger" type="reset">Cancelar</button>
 			</div>
 		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align: center;">
+			<div class="form-group" >
+				<input type="hidden" name="procedencia" value="edit" />
+			</div>
+		</div>
 	</div>			
-			{!!Form::close()!!}
+		
+		{!!Form::close()!!}
 @endsection

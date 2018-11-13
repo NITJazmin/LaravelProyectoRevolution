@@ -10,7 +10,7 @@
 </div>		
 
 <div class="row">
-	<div class="col-lg-6">
+	<div class="col-lg-12">
 		<div style="text-align: center; font-size: 29px;">
 			<h2>Bienvenido</h2>
 			<label>
@@ -24,17 +24,17 @@
 
 
 <div class="row">
-	<div class="col-lg-6">
+	<div class="col-lg-12">
 		<div class="table-responsive">
-			<table class="table table-bordered"   style="margin: auto; text-align: center;">
+			<table class="table table-bordered"   style="margin: auto; text-align: center; width: 60%;">
 				<thead style="color: #fff; background-color: #35388D" >
 					<th>Datos Personales</th>						
 				</thead>
 				<tbody>
-					<table class="table "   style="margin: auto; ">
+					<table class="table "   style="margin: auto; width: 60%">
 						<tr>
 							<td height="150" style="text-align: center;"><br>
-								<img src="{{asset($datos->foto)}}" style="height: 70%;">
+								<img src="{{asset('imagenes/'.$datos->foto)}}" style="height: 70%;">
 							</td>
 							<td style="text-align: justify;"><br><br>
 								<label>Nombre:</label> {{$datos->Nombre}} {{$datos->Papp}} {{$datos->Sapp}}<br>
@@ -43,15 +43,14 @@
                         		<tr>
                         			<td></td>
                         			<td style="text-align: right;">
-                        				<button class="btn btn-primary">Editar</button>
+                        				<a href="{{URL::action('CoordinadorRevController@edit',$datos->ID_coordinador)}}"><button class="btn btn-primary">Editar</button>
+                        				</a>
                         			</td>
                         		</tr>
                         	</td>
 						</tr>
 					</table>
-				</tbody>
-					
-				
+				</tbody>			
 			</table>
 	</div>
 </div>

@@ -26,8 +26,8 @@
 							</td>
 							<td>{{$an->Telefono}}</td>
 							<td>
-								
-					 			<a href="{{URL::action('AnalistaController@edit',$an->ID_analista)}} "><button class="btn btn-primary"> Editar </button></a>
+								<?php $procedencia="index" ?>
+					 			<a href="{{URL::action('AnalistaController@edit',array($an->ID_analista,'procedencia'=>$procedencia))}} "><button class="btn btn-primary"> Editar </button></a>
 
 								<button type="button" data-target="#modal-delete-{{$an->ID_analista}}" data-toggle="modal" class="btn btn-danger">Eliminar</button>
 							</td>

@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
+use App\Http\Requests\ReclutadorFormRequest;
 Use App\Reclutador;
 use App\User;
-use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\ReclutadorFormRequest;
 use Auth;
 Use DB;
 
@@ -60,11 +61,14 @@ class ReclutadorController extends Controller
         $user = User::where('email', $request->input('mail'))->first();
 
         $reclutador= new Reclutador;
+
         $reclutador->Nombre=$request->get('Nombre');
         $reclutador->Papp=$request->get('Papp');
         $reclutador->Sapp=$request->get('Sapp');
         $reclutador->Telefono=$request->get('Telefono');
+        $reclutador->foto='user-profile-icon.jpg';
         $reclutador->condicion='1';
+        $reclutador->users_id = $user->id;
         $reclutador->save();
         return Redirect::to('revolution/reclutador');
     }
@@ -88,8 +92,15 @@ class ReclutadorController extends Controller
      */
     public function edit($id)
     {
+        $procedencia=$_GET['procedencia'];
         $reclutador= Reclutador::findOrFail($id);
-        return view("revolution.reclutador.edit",["reclutador"=>$reclutador]);
+        if ($procedencia=='perfil') {
+             return view("revolution.reclutador.editPerfil",["reclutador"=>$reclutador]);
+        }
+        elseif($procedencia=='index'){
+            return view("revolution.reclutador.edit",["reclutador"=>$reclutador]);
+        }
+        
     }
 
     /**
@@ -101,12 +112,24 @@ class ReclutadorController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $procedencia=$_POST['procedencia'];
+
         $reclutador=Reclutador::findOrFail($id);
         $reclutador->Nombre=$request->get('Nombre');
         $reclutador->Papp=$request->get('Papp');
         $reclutador->Sapp=$request->get('Sapp');
+        $reclutador->Telefono=$request->get('Telefono');
+        if (Input::hasFile('foto')){
+            $file = Input::file('foto');
+            $file->move(public_path().'/imagenes/',$file->getClientOriginalName());
+            $reclutador->foto = $file->getClientOriginalName();
+        }
         $reclutador->update();
-        return Redirect::to('revolution/reclutador');
+        if ($procedencia=='edit') {
+            return Redirect::to('revolution/reclutador');
+        }
+        else
+            return Redirect::to('/revolution/reclutador/inicio');
     }
 
     /**
@@ -127,6 +150,9 @@ class ReclutadorController extends Controller
     {
         $user = Auth::user();
         $recluta = Reclutador::where('users_id', $user->id)->first();
+        if ($recluta->condicion===0) {
+            return Redirect::to('auth/login');
+        }
         return view('layouts.perfil_reclutador', ['user'=>$user, 'datos'=>$recluta]);
     }
 }

@@ -42,32 +42,40 @@
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
               <!-- Messages: style can be found in dropdown.less-->
-              
-              <!-- User Account: style can be found in dropdown.less -->
+
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <small class="bg-red">Usuario</small>
-                  <span class="hidden-xs">Ejemplo de nombre</span>
+                  <small class="bg-red">{{ auth()->user()->rol }}</small>
+                  <span class="hidden-xs">
+                    @if (isset($datos))
+                      {{$datos->Nombre}}
+                    @else
+                      Nombre
+                    @endif
+                  </span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     
                     <p>
-                      jaz.jcm1@gmail.com - Desarrollando Software
+                      @if (isset($datos))
+                        {{ auth()->user()->email }} - {{$datos->Nombre}}
+                        {{$datos->Papp}}
+                        {{$datos->Sapp}}
+                      @else
+                        {{ auth()->user()->email }} - Desarrollo
+                      @endif
                     </p>
                   </li>
                   
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                    
-                    <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Cerrar</a>
-                    </div>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{{ route('Cerrarsesion') }}">Cerrar sesión</a></li>
                   </li>
                 </ul>
-              </li>
-              
+              </li>           
             </ul>
           </div>
 
@@ -83,6 +91,7 @@
           <ul class="sidebar-menu">
             <li class="header"></li>
             
+            <?php $procedencia='cliente'; ?>
             <li class="treeview"><a href="#"><i class="fa fa-qrcode"></i>
                 <span>Inicio</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
@@ -94,7 +103,7 @@
             <li class="treeview"><a href="#"><i class="fa fa-child"></i>
                 <span>Empleados</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li class="active"><a href="/cliente/show"><i class="fa fa-circle-o"></i> Ver Empleados</a></li>
+                <li class="active"><a href="{{URL::action('EmpleadoController@index',array('procedencia'=>$procedencia))}}"><i class="fa fa-circle-o"></i> Ver Empleados</a></li>
               </ul>
             </li>
 
@@ -105,8 +114,8 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="/cliente/solicitud"><i class="fa fa-circle-o"></i>Ver Solicitudes mandadas</a></li>
-                <li><a href="/cliente/create"><i class="fa fa-circle-o"></i>Pedir Nueva Solicitud</a></li>
+                <li><a href="{{URL::action('PeticionController@index',array('procedencia'=>$procedencia))}}"><i class="fa fa-circle-o"></i>Ver Solicitudes mandadas</a></li>
+                <li><a href="{{URL::action('PeticionController@create')}}"><i class="fa fa-circle-o"></i>Pedir Nueva Solicitud</a></li>
                 <li><a href=""><i class="fa fa-circle-o"></i>Ver Reportes</a></li>
                 <li><a href=""><i class="fa fa-circle-o"></i>Generar Reporte</a></li>
               </ul>

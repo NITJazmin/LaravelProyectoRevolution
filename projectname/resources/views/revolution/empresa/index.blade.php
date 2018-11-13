@@ -26,10 +26,10 @@
 							<td>{{ $emp->Giro}}</td>
 							<td>{{ $emp->Direccion}}</td>
 							<td>{{ $emp->Telefono}} </td>
-							<td>
+							<td style="text-align: center;">
 								<!--<a href="/revolution/empleado"><button type="button" class="btn btn-warning">Encargado(s)</button></a>-->
 								<a href="{{URL::action('EmpresaController@edit',$emp->ID_empresa)}}"><button class="btn btn-primary"> Editar </button></a>
-								<button type="button" data-target="#modal-delete-{{$emp->ID_empresa}}" data-toggle="modal" class="btn btn-danger">Eliminar</button>
+								<button type="button" data-target="#modal-delete-{{$emp->ID_empresa}}" data-toggle="modal" class="btn btn-danger">x</button>
 							</td>
 						</tr>
 					@include('revolution.empresa.modal')

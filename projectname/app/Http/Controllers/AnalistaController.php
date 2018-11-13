@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AnalistaFormRequest;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
 use App\Analista;
 use App\User;
 use Auth;
@@ -69,6 +70,7 @@ class AnalistaController extends Controller
         $analista->Papp=$request->get('ṔrimerApp');
         $analista->Sapp=$request->get('SegundoApp');
         $analista->Telefono=$request->get('Telefono');
+        $analista->foto='user-profile-icon.jpg';
         $analista->condicion='1';
         $analista->users_id = $user->id;
         $analista->save();
@@ -84,7 +86,7 @@ class AnalistaController extends Controller
      */
     public function show($id)
     {
-        return view("revolution.analista.show",["analista"=>Analista::findOrfile($id)]);
+        return view("revolution.analista.show",["analista"=>Analista::findOrFail($id)]);
     }
 
     /**
@@ -95,11 +97,19 @@ class AnalistaController extends Controller
      */
     public function edit($id)
     {
+        $procedencia=$_GET['procedencia'];
         $analista=Analista::findOrFail($id);
         $peticion=DB::table('Peticion')
         ->where('condicion','=','1')
         ->get();
-        return view("revolution.analista.edit",["analista"=>$analista,"peticion"=>$peticion]);
+
+        if ($procedencia=='perfil') {
+             return view("revolution.analista.editPerfil",["analista"=>$analista,"peticion"=>$peticion]);
+        }
+        elseif($procedencia=='index'){
+            return view("revolution.analista.edit",["analista"=>$analista,"peticion"=>$peticion]);
+        }
+
     }
 
     /**
@@ -109,16 +119,27 @@ class AnalistaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AnalistaFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $analista=Analista::findOrFail($id);
+        $procedencia=$_POST['procedencia'];
 
+        $analista=Analista::findOrFail($id);
         $analista->Nombre=$request->get('Nombre');
         $analista->Papp=$request->get('Papp');
         $analista->Sapp=$request->get('Sapp');
         $analista->Telefono=$request->get('Telefono');
+        if (Input::hasFile('foto')){
+            $file = Input::file('foto');
+            $file->move(public_path().'/imagenes/',$file->getClientOriginalName());
+            $analista->foto = $file->getClientOriginalName();
+        }
         $analista->update();
-        return Redirect::to('revolution/analista');
+        if ($procedencia=='edit') {
+            return Redirect::to('revolution/analista');
+        }
+        else
+            return Redirect::to('/revolution/analista/inicio');
+        
     }
 
     /**
@@ -136,10 +157,21 @@ class AnalistaController extends Controller
         return Redirect::to('revolution/analista');
     }
 
+    public function editPerfil($id)
+    {
+        $analista=Analista::findOrFail($id);
+        $peticion=DB::table('Peticion')
+        ->where('condicion','=','1')
+        ->get();
+        return view("revolution.analista.editPerfil",["analista"=>$analista,"peticion"=>$peticion]);
+    }
     public function post_Login()
     {
         $user = Auth::user();
         $analista = Analista::where('users_id', $user->id)->first();
+        if ($recluta->condicion===0) {
+            return Redirect::to('auth/login');
+        }
         return view('layouts.perfil_analista', ['user'=>$user, 'datos'=>$analista]);
     }
 

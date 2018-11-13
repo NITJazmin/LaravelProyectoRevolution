@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Peticion;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\PeticionFormRequest;
+use Session;
 use DB;
 
 class PeticionController extends Controller
@@ -21,25 +22,33 @@ class PeticionController extends Controller
     public function index(Request $request)
     {
         $vista="peticion";
+        $procedencia=$_GET['procedencia'];
+        $sesion=Session::get('ID_empleado');
+
         if ($request)
-        {    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+        {   
            $query=trim($request->get('searchText'));
-           $solicitud=DB::table('Peticion as sol')
-           ->join('Empleado as empl','sol.ID_empleado','=','empl.ID_empleado')
-           ->join('CoordinadorRev as coor','sol.ID_coordinador','=','coor.ID_coordinador')
-          
-           ->select('sol.*','empl.Nombre as empleado','empl.Papp','empl.Sapp','coor.Nombre as coordinador','coor.Papp as apellido')
-           ->where('sol.condicion','=','1')
-           ->where('sol.Nombre','LIKE','%'.$query.'%')          
-           ->orderBy('sol.ID_peticion','asc')
-           -> paginate(15);
-           return view('revolution.peticion.index',["solicitud"=>$solicitud,"searchText"=>$query])->with('vista',$vista);
+
+           if($procedencia=='revolution'){
+               $solicitud=DB::table('Peticion as sol')
+                   ->join('Empleado as empl','sol.ID_empleado','=','empl.ID_empleado')
+                   ->join('CoordinadorRev as coor','sol.ID_coordinador','=','coor.ID_coordinador')
+                   ->select('sol.*','empl.Nombre as empleado','empl.Papp','empl.Sapp','coor.Nombre as coordinador','coor.Papp as apellido')
+                   ->where('sol.condicion','=','1')
+                   ->where('sol.Nombre','LIKE','%'.$query.'%')          
+                   ->orderBy('sol.FechaIni','asc')
+                   -> paginate(15);
+                 return view('revolution.peticion.index',["solicitud"=>$solicitud,"searchText"=>$query])->with('vista',$vista);
+           }
+            else{
+                $solicitud=DB::table('Peticion as sol')
+                   ->join('Empleado as empl','sol.ID_empleado','=','empl.ID_empleado')
+                   ->select('sol.*','empl.Nombre as empleado')
+                   ->where('empl.ID_empleado','=',$sesion)
+                   ->where('sol.Nombre','LIKE','%'.$query.'%')   
+                   -> paginate(15);
+                return view('cliente.peticion.solicitud',["solicitud"=>$solicitud,"searchText"=>$query])->with('vista',$vista);
+            }
         }
     }
 
@@ -48,10 +57,11 @@ class PeticionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /*El cliente es el único en crear una peticion nueva*/
     public function create()
     {
         $peticion=DB::table('Peticion')->where('condicion','=','1')->get();
-        return view("cliente.create",["peticion"=>$peticion]); 
+        return view("cliente.peticion.create",["peticion"=>$peticion]); 
     }
 
     /**
@@ -60,20 +70,23 @@ class PeticionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    /*El cliente es el único en crear una peticion nueva*/
     public function store(PeticionFormRequest $request)
     {
+        $valor=Session::get('ID_empleado');
+       
         $peticion=new Peticion;
-        //'nombre' es obj creado del request
         $peticion->Nombre=$request->get('Nombre');
         $peticion->FechaIni=$request->get('FechaI');
         $peticion->Status='proceso';
         $peticion->Descripcion=$request->get('Descripcion');
-        $peticion->ID_Empleado='2';
+        $peticion->ID_empleado= $valor;
         $peticion->ID_coordinador='5';
+        $peticion->ID_analista='sin asignar';
+        $peticion->ID_reclutador='sin asignar';
         $peticion->condicion='1';
         $peticion->save();
-        //Después de guardar nos redireccionamos a la carpeta 
-        return Redirect::to('/cliente/show'); 
+        return Redirect::to('/cliente/peticion/solicitud'); 
     }
 
     /**
@@ -84,29 +97,39 @@ class PeticionController extends Controller
      */
     public function show(Request $request)
     {
-        $vista="peticion";
-        if ($request)
-        {
-           $query=trim($request->get('searchText'));
-           $solicitud=DB::table('Peticion as sol')
-           ->join('CoordinadorRev as coor','sol.ID_coordinador','=','coor.ID_coordinador')
-           ->select('sol.*','coor.Nombre as coordinador','coor.Papp')
-           ->where('sol.condicion','=','1')
-           ->where('sol.ID_Empleado','=','2')//hay que haerlo automaticamente
-           ->orderBy('sol.Nombre','asc')
-           -> paginate(15);
-           return view('cliente.solicitud',["solicitud"=>$solicitud,"searchText"=>$query])->with('vista',$vista);
-        }
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @pa@extends('layouts.admin')
+@section('contenido')@extends('layouts.admin')
+@section('contenido')@extends('layouts.admin')
+@section('contenido')@extends('layouts.admin')
+@section('contenido')@extends('layouts.admin')
+@section('contenido')ram  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
+        $procedencia=$_GET["procedencia"];
+        $empleado=$_GET["empleado"];
+        $Papp=$_GET["Papp"];
+        $peticion=Peticion::findOrFail($id);
+        $analista=DB::table('Analista')
+        ->where('condicion','=','1')
+        ->get();
+        $reclutador=DB::table('Reclutador')
+        ->where('condicion','=','1')
+        ->get();
+
+
+        if ($procedencia=='index') {
+
+           return view("revolution.peticion.more",["peticion"=>$peticion,"analista"=>$analista,"reclutador"=>$reclutador,"empleado"=>$empleado,"Papp"=>$Papp]);
+        }
+        return var_dump($procedencia);
         
     }
 
@@ -119,15 +142,15 @@ class PeticionController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        $solicitud=Peticion::findOrFail($id);
 
-        $solicitud->Nombre=$request->get('Nombre');
-        $solicitud->FechIni=$request->get('FechIni');
         $solicitud->FechaFin=$request->get('FechaFin');
         $solicitud->Status=$request->get('Status');
         $solicitud->Descripcion=$request->get('Descripcion');
-        $solicitud->ID_empleado=$request->get('ID_empleado');
-        $solicitud->ID_coordinador=$request->get('ID_coordinador');
         $solicitud->ID_analista=$request->get('ID_analista');
+        $solicitud->ID_reclutador=$request->get('ID_reclutador');
+
         $solicitud->update();
         return Redirect::to('revolution/peticion');
     }

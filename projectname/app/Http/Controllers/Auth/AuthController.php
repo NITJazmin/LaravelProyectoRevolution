@@ -100,10 +100,11 @@ class AuthController extends Controller
                 return redirect()->route('coordinador');
             case 'analista':
                 return redirect()->route('analista');
-            case 'empleado':
+            case 'cliente':
                 return redirect()->route('cliente');
             case 'reclutador':
                 return redirect()->route('reclutador');
+
         }
         return redirect()->intended($this->redirectTo);
 

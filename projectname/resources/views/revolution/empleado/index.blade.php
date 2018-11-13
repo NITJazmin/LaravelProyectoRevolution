@@ -30,8 +30,8 @@
 							<td>{{$empl->puesto}}</td>
 							<td> {{$empl->empresa}}</td>
 							<td>
-					 			
-								<a href="{{URL::action('EmpleadoController@edit',$empl->ID_empleado)}} "><button class="btn btn-primary"> Editar </button></a>
+					 			<?php $procedencia="index"; ?>
+								<a href="{{URL::action('EmpleadoController@edit',array($empl->ID_empleado,'procedencia'=>$procedencia))}} "><button class="btn btn-primary"> Editar </button></a>
 								<button type="button" data-target="#modal-delete-{{$empl->ID_empleado}}" data-toggle="modal" class="btn btn-danger">Eliminar</button>
 							</td>
 						</tr>

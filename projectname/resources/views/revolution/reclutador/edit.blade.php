@@ -34,6 +34,10 @@
 				<button class="btn btn-primary" type="submit">Guardar</button>
 				<button class="btn btn-danger" type="reset">Cancelar</button>
 			</div>
+			<div class="form-group" >
+				<input type="hidden" name="procedencia" value="edit" />
+			</div>
+		
 			
 			{!!Form::close()!!}
 

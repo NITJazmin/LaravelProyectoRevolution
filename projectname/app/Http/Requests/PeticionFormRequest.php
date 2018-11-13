@@ -28,7 +28,7 @@ class PeticionFormRequest extends Request
             'FechaIni'=>'date',
             'FechaFin'=>'date',
             'Status'=>'max:45',
-            'Descripcion'=>'max:45' 
+            'Descripcion'=>'max:200' 
               
         ];
     }

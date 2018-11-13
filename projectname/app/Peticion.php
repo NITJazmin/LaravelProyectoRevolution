@@ -16,9 +16,10 @@ class Peticion extends Model
     	'FechaFin',
     	'Status',
     	'Descripcion',
-    	'ID_empleado',
+    	'ID_Empleado',
     	'ID_coordinador',
         'ID_analista',
+        'ID_reclutador',
         'condicion'
     ];
 }

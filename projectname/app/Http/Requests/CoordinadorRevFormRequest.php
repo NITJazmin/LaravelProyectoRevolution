@@ -28,7 +28,7 @@ class CoordinadorRevFormRequest extends FormRequest
             'Nombre'=>'required|max:45', //puede o no ser requerido =>'required'
             'Papp'=>'required|max:45',
             'Sapp'=>'required|max:45',
-            'foto'=>'mimes:jpg,bmp,png',
+            'foto'=>'mimes:jpg,bmp,png,jpeg',
             'password' => 'required|min:6',
             'password_confir' => 'required|min:6|same:password'                
         ];

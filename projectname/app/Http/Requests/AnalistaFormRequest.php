@@ -27,7 +27,8 @@ class AnalistaFormRequest extends Request
             'Nombre'=>'required|max:45', //puede o no ser requerido =>'required'
             'Papp'=>'max:45',
             'Sapp'=>'max:45',
-            'Telefono'=>'max:45',
+            'Telefono'=>'max:45',            
+            'foto'=>'mimes:jpg,bmp,png,jpeg',
             'password' => 'required|min:6',
             'password_confir' => 'required|min:6|same:password'
         ];

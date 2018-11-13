@@ -43,8 +43,7 @@ class RedirectIfAuthenticated
                 case 'analista':
                     return redirect()->route('analista');
                 case 'empleado':
-                    $this->redirectTo = '/revolution/empleado/';
-                    break;
+                    return redirect()->route('cliente');
                 case 'empleado':
                     $this->redirectTo = '/revolution/empresa/';
                     break;

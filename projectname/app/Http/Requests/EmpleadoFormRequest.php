@@ -29,7 +29,10 @@ class EmpleadoFormRequest extends Request
             'Sapp'=>'max:45',            
             'Telefono'=>'max:45',
             'puesto'=>'required|max:80',
-            'ID_empresa'=>'required'
+            'ID_empresa'=>'required',
+            'foto'=>'mimes:jpg,bmp,png,jpeg',
+            'password' => 'required|min:6',
+            'password_confir' => 'required|min:6|same:password'
         ];
     }
 }

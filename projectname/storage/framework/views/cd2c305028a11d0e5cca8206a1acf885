@@ -11,37 +11,66 @@
 				</ul>
 			</div>
 			<?php endif; ?>
+		</div>
+	</div>
 
-			<?php echo Form::model($coordinador,['method'=>'PATCH','route'=>['revolution.coordinador.update',$coordinador->ID_coordinador]]); ?>
+			<?php echo Form::model($coordinador,['method'=>'PATCH','route'=>['revolution.coordinador.update',$coordinador->ID_coordinador],'files'=>'true']); ?>
 
+
+	<div class="row" style="text-align: right;">
+		
+	</div><br>
 			
+	<div class="row">
+
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
 				<label for="Nombre">Nombre</label>
 				<input type="text" name="Nombre" class="form-control" value="<?php echo e($coordinador->Nombre); ?>" placeholder="Nombre...">
 			</div>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
 				<label for="Papp">Primer apellido</label>
 				<input type="text" name="Papp" class="form-control" value="<?php echo e($coordinador->Papp); ?>" placeholder="Primer apellido">
 			</div>
+		</div>
+
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
 				<label for="Sapp">Segundo apellido</label>
 				<input type="text" name="Sapp" class="form-control" value="<?php echo e($coordinador->Sapp); ?>" placeholder="Segundo apellido">
 			</div>
+		</div>
+
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
-				<label for="Email">E-mail</label>
-				<input type="text" name="Email" class="form-control" value="<?php echo e($coordinador->email); ?>" placeholder="E-mail">
+				<label>Imagen</label>
+				<input type="file" name="foto" class="form-control">
 			</div>
+		</div>
+
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 			<div class="form-group">
 				<button class="btn btn-primary" type="submit">Guardar</button>
 				<a href="/revolution/coordinador/">
 					<button class="btn btn-danger" type="reset">Cancelar</button>
 				</a>
 			</div>
-			<?php echo Form::close(); ?>
-
-
 		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align: center;">
+			<div class="form-group" >
+				<?php if(($coordinador->foto)!=""): ?>
+					<img src="<?php echo e(asset('imagenes/'.$coordinador->foto)); ?>" style="height: 150px; width: 180px;">
+				<?php endif; ?>
+			</div>
+		</div>
+				
 	</div>
+			
+<?php echo Form::close(); ?>
+
+
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.admin', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

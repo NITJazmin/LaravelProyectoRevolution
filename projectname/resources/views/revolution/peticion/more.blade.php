@@ -1,48 +1,62 @@
-<div class="modal fade modal-slide-in-right" aria-hidden="true" role="dialog" tabindex="-1" id="more-{{$sol->ID_peticion}}">
+@extends('layouts.admin')
+@section('contenido')
 	
+	<div class="row">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align: center;">
+			<form class="group">
+				<h3>peticion Tipo {{$peticion->ID_peticion}} {{$peticion->Nombre}}</h3>	
+			</form>	
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"> 
+			<form class="group">
+				<h3>Solicitado por  {{$empleado}} {{$Papp}} </h3>	
+			</form>	
+		</div>
+	</div>
+	<br><br>
 	
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">x</span>
-				</button>
-				<h4 class="modal-title">{{$sol->Nombre}} </h4>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-						<div class="form-group">
-							<label> Archivo cargado</label>
-							<p style="border: 3em;">aqui va el cv adjunto</p>
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-						<div class="form-group" style="text-align: center;">
-							@if($sol->Nombre=="ESE")
-								<label>Analista</label>
-								@if($sol->ID_analista==0)
-									<p>sin Asignar</p>
+	{!! Form::model($peticion,['method'=>'PATCH','route'=>['revolution.peticion.update',$peticion->ID_peticion]]) !!}
+	<div class="row" >
+		<div class="col-lg-2 col-md-2 col-sm-2"></div>
+		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12" style="margin: auto;">
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered table-condensed table-hover">
+					<thead>
+						<th>Descripción</th>
+						<th>Status</th>	
+						<th>Archivo</th>
+						<th>Encargado Revolution</th>										
+					</thead>
+					<tbody>
+						<tr>	
+							<td>
+								{{$peticion->Descripcion}}	
+							</td>
+							<td>{{$peticion->Status}}</td>
+							<td>Va el archivo</td>
+							<td>
+								@if($peticion->Nombre=="ESE")
+									<select name="ID_analista" class="form-control"> 
+									@foreach ($analista as $an)
+											<option value="{{$an->ID_analista}}">{{$an->Nombre}} {{$an->Papp}} </option>
+										@endforeach	
+									</select>
 								@else
-									<P>{{$sol->ID_analista}} </P>								 
+									<select name="ID_reclutador" class="form-control"> 
+									@foreach ($reclutador as $recl)
+											<option value="{{$recl->ID_reclutador}}">{{$recl->Nombre}} {{$recl->Papp}} </option>
+										@endforeach	
+									</select>
 								@endif
-							@elseif($sol->Nombre=="Vacante")
-								<label>Reclutadodor</label>
-								@if($sol->ID_analista==0)
-									<p>sin Asignar</p>
-								@else
-									<P>{{$sol->ID_reclutador}} </P>								 
-								@endif
-							@endif
-						</div>
-					</div>
-				</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
-				<button type="submit" class="btn btn-primary">Confirmar</button>
+			<div style="text-align: left;">
+				<button class="btn btn-primary">Aceptar</button>
 			</div>
 		</div>
 	</div>
-	
-</div>
+
+@endsection
