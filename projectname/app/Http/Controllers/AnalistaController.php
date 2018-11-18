@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use App\Analista;
 use App\User;
+use Session;
 use Auth;
 use DB;
 
@@ -169,9 +170,11 @@ class AnalistaController extends Controller
     {
         $user = Auth::user();
         $analista = Analista::where('users_id', $user->id)->first();
-        if ($recluta->condicion===0) {
+        if ($analista->condicion===0) {
             return Redirect::to('auth/login');
         }
+        Session::put('rol',$user->rol);
+        Session::put('id',$analista->ID_analista);
         return view('layouts.perfil_analista', ['user'=>$user, 'datos'=>$analista]);
     }
 

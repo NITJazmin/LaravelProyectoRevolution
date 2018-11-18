@@ -10,6 +10,7 @@ use Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\CoordinadorRevFormRequest;
 use Illuminate\Support\Facades\Input;
+use Session;
 use App\User;
 use DB;
 
@@ -141,6 +142,7 @@ class CoordinadorRevController extends Controller
         if ($coor->condicion===0) {
             return Redirect::to('auth/login');
         }
+        Session::put('rol',$user->rol);
         return view('layouts.perfil_coordinador', ['user'=>$user, 'datos'=>$coor]);
     }
 

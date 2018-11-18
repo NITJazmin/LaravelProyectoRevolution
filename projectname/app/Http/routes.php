@@ -28,6 +28,11 @@ Route::get('/cliente/inicio', ['uses'=>'EmpleadoController@post_Login', 'as'=>'c
 Route::get('/revolution', function () {
     return view('revolution.construccion');
 });
+	
+Route::get('/pdf',function() {
+	$pdf = PDF::loadView('pdf.invoice');
+	return $pdf->stream('archivo.pdf');
+});
 
 Route::resource('revolution/analista','AnalistaController');
 Route::resource('revolution/coordinador','CoordinadorRevController');
@@ -37,6 +42,8 @@ Route::resource('revolution/peticion','PeticionController');
 Route::resource('revolution/reclutador','ReclutadorController');
 Route::resource('cliente/peticion','PeticionController');
 Route::resource('cliente/empleado','EmpleadoController');
+Route::resource('revolution/prueba','PeticionController');
+Route::resource('revolution/perfilador','PerfiladorController');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

@@ -103,7 +103,7 @@
             <li class="treeview"><a href="#"><i class="fa fa-child"></i>
                 <span>Empleados</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li class="active"><a href="{{URL::action('EmpleadoController@index',array('procedencia'=>$procedencia))}}"><i class="fa fa-circle-o"></i> Ver Empleados</a></li>
+                <li class="active"><a href="/cliente/empleado/"><i class="fa fa-circle-o"></i> Ver Empleados</a></li>
               </ul>
             </li>
 
@@ -114,8 +114,8 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{URL::action('PeticionController@index',array('procedencia'=>$procedencia))}}"><i class="fa fa-circle-o"></i>Ver Solicitudes mandadas</a></li>
-                <li><a href="{{URL::action('PeticionController@create')}}"><i class="fa fa-circle-o"></i>Pedir Nueva Solicitud</a></li>
+                <li><a href="/cliente/peticion"><i class="fa fa-circle-o"></i>Ver Solicitudes mandadas</a></li>
+                <li><a href="/cliente/peticion/create"><i class="fa fa-circle-o"></i>Pedir Nueva Solicitud</a></li>
                 <li><a href=""><i class="fa fa-circle-o"></i>Ver Reportes</a></li>
                 <li><a href=""><i class="fa fa-circle-o"></i>Generar Reporte</a></li>
               </ul>

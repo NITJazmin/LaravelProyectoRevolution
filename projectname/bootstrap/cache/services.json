@@ -26,7 +26,8 @@
         "App\\Providers\\AppServiceProvider",
         "App\\Providers\\EventServiceProvider",
         "App\\Providers\\RouteServiceProvider",
-        "Collective\\Html\\HtmlServiceProvider"
+        "Collective\\Html\\HtmlServiceProvider",
+        "Barryvdh\\DomPDF\\ServiceProvider"
     ],
     "eager": [
         "Illuminate\\Auth\\AuthServiceProvider",
@@ -42,7 +43,8 @@
         "Illuminate\\View\\ViewServiceProvider",
         "App\\Providers\\AppServiceProvider",
         "App\\Providers\\EventServiceProvider",
-        "App\\Providers\\RouteServiceProvider"
+        "App\\Providers\\RouteServiceProvider",
+        "Barryvdh\\DomPDF\\ServiceProvider"
     ],
     "deferred": {
         "command.app.name": "Illuminate\\Foundation\\Providers\\ArtisanServiceProvider",

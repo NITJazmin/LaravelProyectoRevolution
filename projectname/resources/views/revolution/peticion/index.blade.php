@@ -35,8 +35,7 @@
 							</td>
 							<td>
 								<?php $procedencia="index"; ?>
-
-				<a href="{{URL::action('PeticionController@edit',array($sol->ID_peticion,'procedencia'=>$procedencia,'empleado'=>$sol->empleado,'Papp'=>$sol->Papp))}} "><button class="btn btn-primary">Asignar</button></a>
+<a href="{{URL::action('PeticionController@edit',array($sol->ID_peticion,'procedencia'=>$procedencia,'empleado'=>$sol->empleado,'Papp'=>$sol->Papp))}} "><button class="btn btn-primary">Asignar</button></a>
 
 								<button type="button" data-target="#modal-delete-{{$sol->ID_peticion}}" data-toggle="modal" class="btn btn-danger">X</button>
 							</td>

@@ -10,6 +10,7 @@ use App\Peticion;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\PeticionFormRequest;
 use Session;
+use PDF;
 use DB;
 
 class PeticionController extends Controller
@@ -22,14 +23,13 @@ class PeticionController extends Controller
     public function index(Request $request)
     {
         $vista="peticion";
-        $procedencia=$_GET['procedencia'];
+        $procedencia=Session::get('rol');
         $sesion=Session::get('ID_empleado');
-
         if ($request)
         {   
            $query=trim($request->get('searchText'));
 
-           if($procedencia=='revolution'){
+           if($procedencia=='coordinador'){
                $solicitud=DB::table('Peticion as sol')
                    ->join('Empleado as empl','sol.ID_empleado','=','empl.ID_empleado')
                    ->join('CoordinadorRev as coor','sol.ID_coordinador','=','coor.ID_coordinador')
@@ -97,7 +97,20 @@ class PeticionController extends Controller
      */
     public function show(Request $request)
     {
-        
+        $query=trim($request->get('searchText'));
+        $usuario=Session::get('rol');
+        $ID=Session::get('id');
+        $solicitud=DB::table('Peticion as sol')
+            ->join('Empleado as empl','sol.ID_empleado','=','empl.ID_empleado')
+            ->select('sol.*','empl.Nombre as empleado','empl.Papp','empl.Sapp')
+            ->where('sol.condicion','=','1')
+            ->where('sol.ID_'.$usuario,'=',$ID)
+            ->where('sol.Nombre','LIKE','%'.$query.'%')   
+            -> paginate(15);
+        if($usuario=='reclutador')
+            return view('revolution.peticion.solicitud',["solicitud"=>$solicitud,"searchText"=>$query]);
+        elseif ($usuario=='empleado') 
+            return Redirect::to('cliente/peticion');
     }
 
     /**
@@ -114,19 +127,22 @@ class PeticionController extends Controller
     public function edit($id)
     {
         $procedencia=$_GET["procedencia"];
+
         $empleado=$_GET["empleado"];
         $Papp=$_GET["Papp"];
         $peticion=Peticion::findOrFail($id);
+        
         $analista=DB::table('Analista')
         ->where('condicion','=','1')
         ->get();
+
         $reclutador=DB::table('Reclutador')
         ->where('condicion','=','1')
         ->get();
 
 
         if ($procedencia=='index') {
-
+            
            return view("revolution.peticion.more",["peticion"=>$peticion,"analista"=>$analista,"reclutador"=>$reclutador,"empleado"=>$empleado,"Papp"=>$Papp]);
         }
         return var_dump($procedencia);
@@ -169,21 +185,8 @@ class PeticionController extends Controller
         return Redirect::to('revolution/peticion');
     }
 
+    
+    
+
+
 }
-
-/* 
-
-public function peticion(Request $request)
-    {
-        $query=trim($request->get('searchText'));
-        $analista=DB::table('Analista as a')
-        ->join('Peticion as p','a.ID_peticion','=','p.ID_peticion')
-        ->select('a.*','p.*')
-        ->where('a.condicion','=','1')
-        ->where('a.Nombre','LIKE','%'.$query.'%') 
-        ->orwhere('p.Nombre')       
-        ->orderBy('a.Nombre','asc')
-        -> paginate(15);
-           return view('revolution.analista.peticion',["analista"=>$analista,"searchText"=>$query]);
-    }
-*/

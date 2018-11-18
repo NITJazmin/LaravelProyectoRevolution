@@ -25,24 +25,33 @@ class EmpleadoController extends Controller
     public function index(Request $request)
     {
         $vista="empleado";
-        $procedencia=$_GET['procedencia'];
-
+        $procedencia=Session::get('rol');
         if ($request)
         {
             $query=trim($request->get('searchText'));
-            $empleado=DB::table('Empleado as empl')
-            ->join('Empresa','empl.ID_empresa','=','Empresa.ID_empresa')
-            ->select('empl.*','Empresa.Nombre as empresa','Empresa.condicion')
-            ->where('empl.condicion','=','1')
-            ->where('Empresa.condicion','=','1')
-            ->where('empl.Nombre','LIKE','%'.$query.'%')          
-            ->orderBy('Empresa.Nombre','asc')
-            -> paginate(15);
-            if($procedencia=='revolution'){
+
+            if($procedencia=='coordinador'){
+                $empleado=DB::table('Empleado as empl')
+                ->join('Empresa','empl.ID_empresa','=','Empresa.ID_empresa')
+                ->select('empl.*','Empresa.Nombre as empresa','Empresa.condicion')
+                ->where('empl.condicion','=','1')
+                ->where('Empresa.condicion','=','1')
+                ->where('empl.Nombre','LIKE','%'.$query.'%')          
+                ->orderBy('Empresa.Nombre','asc')
+                -> paginate(15);            
                 return view('revolution.empleado.index',["empleado"=>$empleado,"searchText"=>$query])->with('vista',$vista);
             }
             else
-                return "ok";
+                $empresa =Session::get('ID_empresa');
+                $empleado=DB::table('Empleado as empl')
+                ->join('Empresa','empl.ID_empresa','=','Empresa.ID_empresa')
+                ->select('empl.*','Empresa.Nombre as empresa')
+                ->where('empl.condicion','=','1')
+                ->where('Empresa.condicion','=','1')
+                ->where('empl.ID_empresa','=',''.$empresa.'')          
+                ->orderBy('Empresa.Nombre','asc')
+                -> paginate(15);        
+                return view('cliente.empleado.encargados',["empleado"=>$empleado,"searchText"=>$query])->with('vista',$vista);
         }
     }
 
@@ -58,7 +67,8 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly cr        $procedencia=Session::get('rol');
+eated resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -68,7 +78,7 @@ class EmpleadoController extends Controller
         $user = new User;
         $user->email = $request->input('mail');
         $user->password = bcrypt( $request->input('password') );
-        $user->rol = "cliente";
+        $user->rol = "empleado";
         $user->save();
         $user = User::where('email', $request->input('mail'))->first();
 
@@ -192,7 +202,8 @@ class EmpleadoController extends Controller
         if ($empleado->condicion===0) {
             return Redirect::to('auth/login');
         }
-        Session::put('ID_empleado',$empleado->ID_empleado);
+        
+        Session::put(['id'=>$empleado->ID_empleado,'ID_empresa'=>$empleado->ID_empresa,'rol'=>$user->rol]);
         return view('layouts.perfil_empleado', ['user'=>$user, 'datos'=>$empleado]);
     }
 

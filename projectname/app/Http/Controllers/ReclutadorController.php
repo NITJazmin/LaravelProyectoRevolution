@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Input;
 use App\Http\Requests\ReclutadorFormRequest;
 Use App\Reclutador;
 use App\User;
+use Session;
 use Auth;
 Use DB;
 
@@ -153,6 +154,9 @@ class ReclutadorController extends Controller
         if ($recluta->condicion===0) {
             return Redirect::to('auth/login');
         }
+        Session::put('rol',$user->rol);
+        Session::put('id',$recluta->ID_reclutador);
+
         return view('layouts.perfil_reclutador', ['user'=>$user, 'datos'=>$recluta]);
     }
 }
