@@ -38,8 +38,13 @@
 							<td>
 								<a href="{{URL::action('PerfiladorController@create',['id'=>$sol->ID_peticion])}}">
 								<button class="btn btn-success">Empezar</button></a>
-								<a href="{{URL::action('PerfiladorController@show',['id'=>$sol->ID_peticion])}}">
+								
+								<a href="{{URL::action('PerfiladorController@show',['id'=>$sol->ID_peticion,'procedencia'=>$procedencia='solicitud'])}}">
 								 <button class="btn btn-primary">Ver proceso</button></a>
+
+								 <a href="{{URL::action('PerfiladorController@show',['id'=>$sol->ID_peticion,'procedencia'=>$procedencia='sol_pdf'])}}">
+								 	<button class="btn btn-warning">Ver PDF</button>
+								 </a>
 							</td>
 							
 						</tr>

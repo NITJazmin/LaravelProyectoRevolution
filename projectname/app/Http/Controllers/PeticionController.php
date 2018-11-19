@@ -97,6 +97,7 @@ class PeticionController extends Controller
      */
     public function show(Request $request)
     {
+        //Sirve para Analista y reclutador para ver peticiones respectivamente
         $query=trim($request->get('searchText'));
         $usuario=Session::get('rol');
         $ID=Session::get('id');
@@ -111,6 +112,7 @@ class PeticionController extends Controller
             return view('revolution.peticion.solicitud',["solicitud"=>$solicitud,"searchText"=>$query]);
         elseif ($usuario=='empleado') 
             return Redirect::to('cliente/peticion');
+
     }
 
     /**
@@ -131,7 +133,7 @@ class PeticionController extends Controller
         $empleado=$_GET["empleado"];
         $Papp=$_GET["Papp"];
         $peticion=Peticion::findOrFail($id);
-        
+
         $analista=DB::table('Analista')
         ->where('condicion','=','1')
         ->get();
@@ -142,7 +144,7 @@ class PeticionController extends Controller
 
 
         if ($procedencia=='index') {
-            
+            //index proviene de revolution/peticion/solicitud
            return view("revolution.peticion.more",["peticion"=>$peticion,"analista"=>$analista,"reclutador"=>$reclutador,"empleado"=>$empleado,"Papp"=>$Papp]);
         }
         return var_dump($procedencia);
