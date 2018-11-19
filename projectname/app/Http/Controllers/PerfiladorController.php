@@ -38,7 +38,7 @@ class PerfiladorController extends Controller
     {
         $id=$_GET['id'];
         //el id que se recibe es el de la peticion;
-        return view('revolution.perfilador.create')->with('id',$id);;
+        return view('revolution.perfilador.create')->with('id',$id);
     }
     
     /**
@@ -50,6 +50,7 @@ class PerfiladorController extends Controller
 
     public function store(PerfiladorFormRequest $request)
     {
+        
         $datos=new DatosContacto;
         $carac=new Caracteristicas;        
         $reclu=new Reclutamiento;
@@ -94,6 +95,7 @@ class PerfiladorController extends Controller
         $datos->rangoEdad=$request->get('rangoEdad');
         $datos->sexo=$request->get('sexo');
         $datos->estadoCivil=$request->get('estadoCivil');
+        $datos->genteCargo=$request->get('genteCargo');
         $datos->actoresInternos=$request->get('actoresInternos');
         $datos->actoresExternos=$request->get('actoresExternos');
         $datos->ID_datos=$contacto;
@@ -156,6 +158,11 @@ class PerfiladorController extends Controller
      */
     public function show($id)
     {
+        /*viene de: 
+            revolution/peticion/solicitud || 
+            revolution/perfilador/show
+         */
+        $procedencia=$_GET['procedencia'];
         //EL id que se recibe es el de la peticion
        $contacto=DB::table('DatosContacto')
         ->where('ID_peticion','=',$id)
@@ -176,9 +183,21 @@ class PerfiladorController extends Controller
         $reclu=DB::table('Reclutamiento')
         ->where('ID_datos','=',$contacto->ID_datos)
         ->first();
-        //return var_dump($contacto);
-        //return $contacto->ID_datos;
-        return view('revolution.perfilador.show',["contacto"=>$contacto,'carac'=>$carac,'educa'=>$educa,'prest'=>$prest,'reclu'=>$reclu]);
+
+        if($procedencia=='sol_pdf'){
+           //return "pdf";
+            $view = \View::make('revolution.perfilador.pdf',compact('contacto','carac','educa','prest','reclu'))->render();
+            $pdf= \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+            return $pdf->stream('pdf');
+        }
+        if ($procedencia=='solicitud') {
+            return view('revolution.perfilador.show',["contacto"=>$contacto,'carac'=>$carac,'educa'=>$educa,'prest'=>$prest,'reclu'=>$reclu]);
+        }
+        elseif ($procedencia=='show') {
+            return view('revolution.perfilador.edit',["contacto"=>$contacto,'carac'=>$carac,'educa'=>$educa,'prest'=>$prest,'reclu'=>$reclu]);
+        }
+        
     }
 
     /**
@@ -189,7 +208,7 @@ class PerfiladorController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -199,10 +218,27 @@ class PerfiladorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PerfiladorFormRequest $request, $id)
     {
-        //
+        $datos=DatosContacto::findOrFail($id);
+        $this->putContacto($request,$datos);
+    
+        $carac=Caracteristicas::findOrFail($_POST['ID_caracteristicas']);
+        $this->putCaracteristicas($request,$carac,$_POST['ID_caracteristicas']);
+
+        $educa=Educacion::findOrFail($_POST['ID_educacion']);
+        $this->putEducacion($request,$educa,$_POST['ID_educacion']);
+
+        $prest=Prestacion::findOrFail($_POST['ID_prestacion']);
+        $this->putPrestacion($request,$prest,$_POST['ID_prestacion']);
+
+        $reclu=Reclutamiento::findOrFail($_POST['ID_reclutado']);
+        $this->putReclutamiento($request,$reclu,$_POST['ID_reclutado']);
+
+        return Redirect::to('/cliente/peticion/solicitud'); 
     }
+
+    
 
     /**
      * Remove the specified resource from storage.
