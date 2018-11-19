@@ -111,6 +111,9 @@ class PeticionController extends Controller
             return view('revolution.peticion.solicitud',["solicitud"=>$solicitud,"searchText"=>$query]);
         elseif ($usuario=='empleado') 
             return Redirect::to('cliente/peticion');
+        elseif ($usuario == 'analista') {
+            return view('revolution.peticion.solicitud_analista',["solicitud"=>$solicitud,"searchText"=>$query]);
+        }
     }
 
     /**

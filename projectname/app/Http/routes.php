@@ -44,6 +44,7 @@ Route::resource('cliente/peticion','PeticionController');
 Route::resource('cliente/empleado','EmpleadoController');
 Route::resource('revolution/prueba','PeticionController');
 Route::resource('revolution/perfilador','PerfiladorController');
+Route::resource('revolution/estudios','EstudiosController');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

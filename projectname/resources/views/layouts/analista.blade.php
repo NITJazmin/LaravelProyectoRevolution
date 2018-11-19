@@ -104,7 +104,7 @@
             <li class="treeview"><a href="#"><i class="fa fa-child"></i>
                 <span>Solicitud</span><i class="fa fa-angle-left pull-right"></i></a>
               <ul class="treeview-menu">
-                <li class="active"><a href="/cliente/show"><i class="fa fa-circle-o"></i> Ver solicitudes</a></li>
+                <li class="active"><a href="/revolution/peticion/show"><i class="fa fa-circle-o"></i> Ver solicitudes</a></li>
               </ul>
             </li>
 
