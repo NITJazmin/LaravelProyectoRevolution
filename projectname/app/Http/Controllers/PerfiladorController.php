@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PerfiladorFormRequest;
+use Laracasts\Flash\Flash;
 use App\Caracteristicas;
 use App\Reclutamiento;
 use App\DatosContacto;
@@ -167,6 +168,12 @@ class PerfiladorController extends Controller
        $contacto=DB::table('DatosContacto')
         ->where('ID_peticion','=',$id)
         ->first();
+
+        if($contacto == NULL)
+        {
+            Flash::warning("Aún no has iniciado proceso");
+            return Redirect::to('revolution/peticion/show');
+        }
 
         $carac=DB::table('Caracteristicas')
         ->where('ID_datos','=',$contacto->ID_datos)
