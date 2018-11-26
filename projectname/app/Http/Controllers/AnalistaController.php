@@ -175,6 +175,8 @@ class AnalistaController extends Controller
         }
         Session::put('rol',$user->rol);
         Session::put('id',$analista->ID_analista);
+        Session::put('nombre',$analista->Nombre);
+        Session::put('apellido',$analista->Papp);
         return view('layouts.perfil_analista', ['user'=>$user, 'datos'=>$analista]);
     }
 

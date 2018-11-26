@@ -13,12 +13,12 @@
 
 <body>
 	<div class="row">
-		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" >
+		<div class="col-lg-4 col-md-6 col-sm-4 col-xs-4" >
 			<div class="form-group">
 				<img src="img/logo1.jpg" style="width: 50%; height: 45%;">
 			</div>
 		</div>
-		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-top: 20px;">
+		<div class="col-lg-4 col-md-6 col-sm-4 col-xs-4" style="margin-top: 20px;">
 			<div class="form-group">
 				<h2 style="color: #E5007E;">Perfilador</h2>
 			</div>

@@ -63,7 +63,7 @@ class PerfiladorController extends Controller
         $this->putPrestacion($request,$prest,$datos->ID_datos);
         $this->putReclutamiento($request,$reclu,$datos->ID_datos);
         //return view('revolution.perfilador.index',['datos'=>$datos,'carac'=>$carac]);
-        return Redirect::to('/cliente/peticion/solicitud'); 
+        return Redirect::to('/revolution/peticion/solicitud'); 
     }
 
     public function putContacto(PerfiladorFormRequest $request,DatosContacto $datos)
@@ -165,7 +165,7 @@ class PerfiladorController extends Controller
          */
         $procedencia=$_GET['procedencia'];
         //EL id que se recibe es el de la peticion
-       $contacto=DB::table('DatosContacto')
+        $contacto=DB::table('DatosContacto')
         ->where('ID_peticion','=',$id)
         ->first();
 
@@ -242,7 +242,7 @@ class PerfiladorController extends Controller
         $reclu=Reclutamiento::findOrFail($_POST['ID_reclutado']);
         $this->putReclutamiento($request,$reclu,$_POST['ID_reclutado']);
 
-        return Redirect::to('/cliente/peticion/solicitud'); 
+        return Redirect::to('/revolution/peticion/solicitud'); 
     }
 
     
