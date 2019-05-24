@@ -1,0 +1,67 @@
+
+html,body{
+  color:white;
+  font-family: sans-serif,'Opens Sans',helvetica;  
+  height:100%;
+  min-height: 700px;
+  width:100%;
+  margin: 0px;
+}
+
+.fondo{
+	background: url('../img/fondo.png') no-repeat fixed center;
+	width: 100%;	
+   	height: 100%;
+   	-webkit-background-size: cover;
+   	-moz-background-size: cover;
+   	-o-background-size: cover;
+   	background-size: cover;
+	
+}
+
+.glass{
+	background-color: rgba(64,19,126,0.8);
+	padding: 5% 20%;
+	margin: 5% auto;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border: 0px solid #000000;
+
+
+}
+.title{
+	color: yellow;
+	text-align: center;
+}
+
+h1.title{
+	font-size: 4em;
+}
+
+.boton{
+	background-color: yellow;
+	color: rgb(45,48,135);
+	border-radius: 10px;
+	border:0px solid #000000;
+	font-size: 1.5em;
+	margin: 0 10%;
+	
+}
+
+input.form-control{
+	border-radius: 20px;
+}
+
+.link{
+	font-style: italic;
+	text-align: center;
+	font-size: 1.2em;
+}
+.link > a{
+	color: #20c906;
+}
+
+
+/*
+http://lorempixel.com/g/1354/700/*/

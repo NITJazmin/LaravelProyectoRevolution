@@ -1,0 +1,81 @@
+.tituloP{
+	color:#E5007E; 
+	text-align: center;
+	padding-top: 35px;
+}
+.tit{
+	color:#E5007E; 
+	text-align: center;
+	padding-left: 70px;
+}
+.superior{
+	border-top: solid rgba(229, 0, 126,0.5) ; 
+	border-radius: 15px;
+	border-left: solid rgba(229, 0, 126,0.5) ; 
+	border-right: solid rgba(229, 0, 126,0.5) ;  
+	
+	padding-left: 70px;
+}
+.imagen{
+	margin: auto;
+	width: 100px; 
+	height: 120px;
+	padding-left: 50px;
+	padding-top: 15px;
+}
+.enImg{
+	width: 100%;
+	height: 59%;
+}
+.tam{
+	height: 50px;
+}
+.semicuadro1{
+	border-top: solid rgba(229, 0, 126,0.5) ; 
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	border-left: solid rgba(229, 0, 126,0.5) ; 
+	border-right: solid rgba(229, 0, 126,0.5) ; 
+	border-bottom: solid rgba(229, 0, 126,0.5) ; 
+}
+.semicuadro2{
+	border-left: solid rgba(229, 0, 126,0.5) ; 
+	border-right: solid rgba(229, 0, 126,0.5) ; 	
+	border-bottom: solid rgba(229, 0, 126,0.5) ;
+	border-bottom-right-radius: 15px;
+	border-bottom-left-radius: 15px;
+}
+.semicuadro3{
+	border-top: solid rgba(229, 0, 126,0.5) ; 
+	border-top-right-radius: 15px;
+	border-top-left-radius: 15px;
+	border-left: solid rgba(229, 0, 126,0.5) ; 
+	border-right: solid rgba(229, 0, 126,0.5) ; 
+}
+.cuadrado{
+	border-left: solid rgba(229, 0, 126,0.5) ; 
+	border-right: solid rgba(229, 0, 126,0.5) ; 
+	border-bottom: solid rgba(229, 0, 126,0.5) ; 
+}
+.cuadradito{
+	border-left: solid rgba(229, 0, 126,0.5) ; 
+	border-right: solid rgba(229, 0, 126,0.5) ; 
+}
+.lin{
+	border-right: solid rgba(229, 0, 126,0.5) ;
+	height: 20px; 
+}
+.separacion{
+	margin-top: 5px;
+}
+.separacion2{
+	margin-top: 8px;
+}
+.altura{
+	height: 20px;
+}
+.laterales
+{
+	border-left: solid rgba(229, 0, 126,0.5) ; 
+	border-right: solid rgba(229, 0, 126,0.5) ; 
+}
